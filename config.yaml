@@ -1,23 +1,9 @@
-baseurl: https://example.com
-languageCode: en-us
+baseurl: https://radicalgrimoire.github.io/
+languageCode: ja
 theme: hugo-theme-stack
 paginate: 5
-title: Example Site
+title: GadgetLogs
 
-languages:
-    en:
-        languageName: English
-        title: Example Site
-        weight: 1
-    zh-cn:
-        languageName: 中文
-        title: 演示站点
-        weight: 2
-    ar:
-        languageName: عربي
-        languagedirection: rtl
-        title: موقع تجريبي
-        weight: 3
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
@@ -27,7 +13,7 @@ googleAnalytics:
 
 # Theme i18n support
 # Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
-DefaultContentLanguage: en
+DefaultContentLanguage: ja
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
@@ -45,7 +31,7 @@ params:
     favicon:
 
     footer:
-        since: 2020
+        since: 2019
         customText:
 
     dateFormat:
@@ -53,19 +39,19 @@ params:
         lastUpdated: Jan 02, 2006 15:04 MST
 
     sidebar:
-        emoji: 🍥
-        subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        emoji: 
+        subtitle: I am the most fucking engineer.
         avatar:
             enabled: true
-            local: true
-            src: img/avatar.png
+            local: false
+            src: images/4945590.png
 
     article:
-        math: false
-        toc: true
-        readingTime: true
+        math: true
+        toc: false
+        readingTime: false
         license:
-            enabled: true
+            enabled: false
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
@@ -196,13 +182,13 @@ menu:
     social:
         - identifier: github
           name: GitHub
-          url: https://github.com/CaiJimmy/hugo-theme-stack
+          url: https://github.com/radicalgrimoire
           params:
               icon: brand-github
 
         - identifier: twitter
           name: Twitter
-          url: https://twitter.com
+          url: https://twitter.com/radicalgrimoire
           params:
               icon: brand-twitter
 
