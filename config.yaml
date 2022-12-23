@@ -44,7 +44,7 @@ params:
         avatar:
             enabled: true
             local: false
-            src: images/4945590.png
+            src: https://radicalgrimoire.github.io/images/4945590.png
 
     article:
         math: true
