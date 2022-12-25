@@ -1,7 +1,7 @@
 baseurl: https://radicalgrimoire.github.io/
 languageCode: ja
 theme: hugo-theme-stack
-paginate: 5
+paginate: 9
 title: GadgetLogs
 
 
@@ -55,7 +55,7 @@ params:
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
-        enabled: true
+        enabled: false
         provider: disqus
 
         disqusjs:
