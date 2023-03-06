@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tech on GadgetLogs</title><link>https://radicalgrimoire.github.io/tags/tech/</link><description>Recent content in Tech on GadgetLogs</description><generator>Hugo -- gohugo.io</generator><language>ja</language><lastBuildDate>Tue, 21 Sep 2021 18:00:00 +0900</lastBuildDate><atom:link href="https://radicalgrimoire.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>ITMediaから取材受けた件</title><link>https://radicalgrimoire.github.io/p/itmedia%E3%81%8B%E3%82%89%E5%8F%96%E6%9D%90%E5%8F%97%E3%81%91%E3%81%9F%E4%BB%B6/</link><pubDate>Tue, 21 Sep 2021 18:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/p/itmedia%E3%81%8B%E3%82%89%E5%8F%96%E6%9D%90%E5%8F%97%E3%81%91%E3%81%9F%E4%BB%B6/</guid><description>&lt;h1 id="取材を受けた件">取材を受けた件&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tech on GadgetLogs</title><link>https://radicalgrimoire.github.io/tags/tech/</link><description>Recent content in Tech on GadgetLogs</description><generator>Hugo -- gohugo.io</generator><language>ja</language><lastBuildDate>Tue, 13 Dec 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://radicalgrimoire.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows アップデートが失敗する際の対応</title><link>https://radicalgrimoire.github.io/p/windows-%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%8C%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E5%AF%BE%E5%BF%9C/</link><pubDate>Tue, 13 Dec 2022 16:30:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/p/windows-%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%8C%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E5%AF%BE%E5%BF%9C/</guid><description>&lt;h1 id="方法1-システムファイルを復元して修復する">方法1. システムファイルを復元して修復する&lt;/h1>
+&lt;p>&lt;strong>WindowsUpdate&lt;/strong> に必要なファイルが破損している可能性があるらしい。
+次の手順でシステムファイルの修復を試みる。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>スタート&lt;/code>ボタンを選び、タスクバーの検索ボックスに「コマンド プロンプト」と入力します&lt;/li>
+&lt;li>結果の一覧から &lt;code>コマンドプロンプト&lt;/code>を選びます。&lt;/li>
+&lt;li>表示されたウィンドウで、&lt;code>DISM.exe /Online /Cleanup-image /Restorehealth&lt;/code>と入力し、Enter キーを押します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://answers.microsoft.com/ja-jp/windows/forum/windows_10-update/windows/0f7da171-6236-480a-aba7-7c1cd7c348f4" target="_blank" rel="noopener"
+>マイクロソフト コミュニティ&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://support.microsoft.com/ja-jp/windows/windows-10-%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%A8%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E3%83%98%E3%83%AB%E3%83%97-ea144c24-513d-a60e-40df-31ff78b3158a" target="_blank" rel="noopener"
+>Windows 10 のアップグレードとインストールに関するエラーのヘルプ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">DISM.exe /Online /Cleanup-image /Restorehealth
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="方法2-アップデートアシスタントを使い無理矢理アップデートしてしまう">方法2. アップデートアシスタントを使い無理矢理アップデートしてしまう&lt;/h1>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.microsoft.com/ja-jp/software-download/windows10%E3%80%80" target="_blank" rel="noopener"
+>Windows 10 のダウンロード&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ページ上部にある &lt;code>Update Assistant&lt;/code> をダウンロードする&lt;/p>
+&lt;p>これでアップデートをする&lt;/p></description></item><item><title>ITMediaから取材受けた件</title><link>https://radicalgrimoire.github.io/p/itmedia%E3%81%8B%E3%82%89%E5%8F%96%E6%9D%90%E5%8F%97%E3%81%91%E3%81%9F%E4%BB%B6/</link><pubDate>Tue, 21 Sep 2021 18:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/p/itmedia%E3%81%8B%E3%82%89%E5%8F%96%E6%9D%90%E5%8F%97%E3%81%91%E3%81%9F%E4%BB%B6/</guid><description>&lt;h1 id="取材を受けた件">取材を受けた件&lt;/h1>
 &lt;p>開発環境をAzureに移行したらテレワーク中の出社が減りました　「オンプレはもう限界」──ゲーム企業が成し遂げたクラウド移行の舞台裏
 &lt;a class="link" href="https://www.itmedia.co.jp/news/articles/2109/21/news039.html" target="_blank" rel="noopener"
 >https://www.itmedia.co.jp/news/articles/2109/21/news039.html&lt;/a>&lt;/p>
