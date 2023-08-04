@@ -20,7 +20,7 @@ doNotLoadAnimations = false
 # Google Site Verify
 #googleSiteVerify = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 enableGitInfo = true
-singleDateFormat = "2006/01/01"
+singleDateFormat = "2006/01/02"
 indexDateFormat = "2006/01/02"
 listDateFormat = "2006/01/02"
 # Commento Comments
@@ -28,8 +28,8 @@ listDateFormat = "2006/01/02"
 # Read More links for truncated summaries
 # readMore = true
 # postSectionName = "blog"
-# relatedPosts = true
-# numberOfRelatedPosts = 3
+relatedPosts = true
+numberOfRelatedPosts = 3
 
 
 reversepagetitle = true # When set to 'true', the Window Title will be reversed to 'Title | Author' instead of the default 'Author | Title'
@@ -72,4 +72,4 @@ title = "twitter"
 url = "https://twitter.com/radicalgrimoire"
 
 [mermaid]
-# enable = true
+enable = true
