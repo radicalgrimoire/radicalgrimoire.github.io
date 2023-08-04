@@ -2,7 +2,7 @@
 title = "My blog"
 weight = 1
 LanguageName = "JA"
-contentDir = "content/japane"
+contentDir = "content/japanese"
 
 [en]
 title = "My blog"
