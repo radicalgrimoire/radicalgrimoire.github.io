@@ -1,6 +1,6 @@
-baseURL = "https://example.com"
-languageCode = "en"
-DefaultContentLanguage = "en"
+baseURL = "https://radicalgrimoire.github.io/"
+languageCode = "ja"
+DefaultContentLanguage = "ja"
 title = "Website of Jane Doe"
 
 # theme as hugo module
@@ -19,7 +19,7 @@ enableRobotsTXT = true
 #googleAnalytics = "UA-123-45"
 
 # Syntax highlighting
-pygmentsUseClasses = true   
+pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 
