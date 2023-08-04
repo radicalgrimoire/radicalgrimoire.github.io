@@ -1,1 +1,0 @@
-# radicalgrimoire.github.io
