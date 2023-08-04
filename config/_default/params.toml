@@ -35,6 +35,9 @@ reversepagetitle = true # When set to 'true', the Window Title will be reversed 
 
 # hidesidebar = true
 
+[blackfriday]
+smartypants = false
+
 [simpleAnalytics]
 # enable = true
 # customurl = "https://analytics.example.com"
