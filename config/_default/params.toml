@@ -1,7 +1,7 @@
-title = "I'm Jane Doe"
-author = "Jane Doe"
-#copyright = "2020-2021"
-description = "Call me Jane"
+title = "GadgetLogs"
+author = "radicalgrimoire"
+copyright = "2020-"
+description = "I am the most fucking engineer."
 profilePicture = "images/profile.jpg"
 keywords = ""
 favicon = "favicons/"
@@ -56,24 +56,19 @@ use = "katex"  # options: "katex", "mathjax". default is "katex".
 ## Social links
 # use 'fab' when brand icons, use 'fas' when standard solid icons.
 [[socialIcons]]
-icon = "fab fa-linkedin"
-title = "Linkedin"
-url = "https://de.linkedin.com/"
-
-[[socialIcons]]
 icon = "fab fa-github"
 title = "GitHub"
-url = "https://github.com/lxndrblz/anatole/"
+url = "https://github.com/radicalgrimoire"
 
 [[socialIcons]]
 icon = "fab fa-instagram"
 title = "instagram"
-url = "https://www.instagram.com/"
+url = "https://www.instagram.com/radicalgrimoire/"
 
 [[socialIcons]]
-icon = "fas fa-envelope"
-title = "e-mail"
-url = "mailto:mail@example.com"
+icon = "fab fa-twitter"
+title = "twitter"
+url = "https://twitter.com/radicalgrimoire"
 
 [mermaid]
 # enable = true
