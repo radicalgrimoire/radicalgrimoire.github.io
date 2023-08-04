@@ -1,7 +1,7 @@
 baseURL = "https://radicalgrimoire.github.io/"
 languageCode = "ja"
 DefaultContentLanguage = "ja"
-title = "Website of Jane Doe"
+title = "GadgetLogs"
 
 # theme as hugo module
 #theme = "github.com/lxndrblz/anatole"
