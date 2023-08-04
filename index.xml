@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>My blog</title><link>https://radicalgrimoire.github.io/</link><description>Recent content on My blog</description><generator>Hugo -- gohugo.io</generator><language>ja</language><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://radicalgrimoire.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>HelixCore DocumentLink</title><link>https://radicalgrimoire.github.io/post/2023.02/</link><pubDate>Mon, 12 Jun 2023 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2023.02/</guid><description>公式ドキュメント HelixCore Server AdministratorGuide Linux package-based installation Setting up a commit/edge server environment Installing Helix Authentication Service Upgrading the server Github repository Helix AuthenticationService Helix AuthenticationExtension</description></item><item><title>Windows アップデートが失敗する際の対応</title><link>https://radicalgrimoire.github.io/post/2022.08/</link><pubDate>Tue, 13 Dec 2022 16:30:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.08/</guid><description>方法1. システムファイルを復元して修復する WindowsUpdate に必要なファイルが破損している可能性があるらしい。 次の手順でシステムファイルの修復を試みる。
-スタートボタンを選び、タスクバーの検索ボックスに「コマンド プロンプト」と入力します 結果の一覧から コマンドプロンプトを選びます。 表示されたウィンドウで、DISM.exe /Online /Cleanup-image /Restorehealthと入力し、Enter キーを押します。 マイクロソフト コミュニティ Windows 10 のアップグレードとインストールに関するエラーのヘルプ DISM.</description></item><item><title>【試乗】ダイハツ　タントファンクロス試乗してきました。</title><link>https://radicalgrimoire.github.io/post/2022.07/</link><pubDate>Sun, 11 Dec 2022 16:30:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.07/</guid><description>乗ってきた 実車 ウナ丼さんや河口まなぶさんが紹介していて気になったファンクロスが人生で初めて「乗ってみてぇ～ｗ」「所有してみたい」と思ったもので、人生で初めて試乗しにいきました。</description></item><item><title>(ネタバレ有り)THE FIRST SLAM DUNK</title><link>https://radicalgrimoire.github.io/post/2022.06/</link><pubDate>Sat, 03 Dec 2022 09:30:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.06/</guid><description>大分前から映画のチケットを購入していた事もあり、公開初日朝7時からの封切りにいってきました
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>My blog</title><link>https://radicalgrimoire.github.io/</link><description>Recent content on My blog</description><generator>Hugo -- gohugo.io</generator><language>ja</language><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://radicalgrimoire.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>HelixCore DocumentLink</title><link>https://radicalgrimoire.github.io/post/2023.02/</link><pubDate>Mon, 12 Jun 2023 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2023.02/</guid><description>公式ドキュメント HelixCore Server AdministratorGuide Linux package-based installation Setting up a commit/edge server environment Installing Helix Authentication Service Upgrading the server Github repository Helix AuthenticationService Helix AuthenticationExtension</description></item><item><title>ダイハツ タントファンクロス 納車</title><link>https://radicalgrimoire.github.io/post/2023.04/</link><pubDate>Tue, 04 Apr 2023 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2023.04/</guid><description/></item><item><title>Windows アップデートが失敗する際の対応</title><link>https://radicalgrimoire.github.io/post/2022.08/</link><pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.08/</guid><description>方法1. システムファイルを復元して修復する WindowsUpdate に必要なファイルが破損している可能性があるらしい。 次の手順でシステムファイルの修復を試みる。
+スタートボタンを選び、タスクバーの検索ボックスに「コマンド プロンプト」と入力します 結果の一覧から コマンドプロンプトを選びます。 表示されたウィンドウで、DISM.exe /Online /Cleanup-image /Restorehealthと入力し、Enter キーを押します。 マイクロソフト コミュニティ Windows 10 のアップグレードとインストールに関するエラーのヘルプ DISM.</description></item><item><title>【試乗】ダイハツ　タントファンクロス試乗してきました。</title><link>https://radicalgrimoire.github.io/post/2022.07/</link><pubDate>Sun, 11 Dec 2022 16:30:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.07/</guid><description>乗ってきた 実車 ウナ丼さんや河口まなぶさんが紹介していて気になったファンクロスが 人生で初めて「乗ってみてぇ～ｗ」「所有してみたい」と思ったもので、人生で初めて試乗しにいきました</description></item><item><title>(ネタバレ有り)THE FIRST SLAM DUNK</title><link>https://radicalgrimoire.github.io/post/2022.06/</link><pubDate>Sat, 03 Dec 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.06/</guid><description>大分前から映画のチケットを購入していた事もあり、公開初日朝7時からの封切りにいってきました
 映画館前 映画館ではスラムダンク公開に合わせたグッズが多数飾られていて既に長蛇の列
 自分も記念に湘北高校全員のポスター5種とタオル、クリアファイル2種購入
 購入グッズ（タオル） お決まりのポップコーンセットを購入して準備完了
 いざ開幕まで待機
 ポップコーンセット そして映画が始まって、宮城のバックストーリーから物語が始まる
-宮城が主人公なのでは？とスラムダンクファンから推測されていたけど、やはりか。と</description></item><item><title>ニコニコ超パーティー2022 に行ってきました</title><link>https://radicalgrimoire.github.io/post/2022.05/</link><pubDate>Mon, 17 Oct 2022 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.05/</guid><description>ニコニコ超パーティ2022に行ってきました。
+宮城が主人公なのでは？とスラムダンクファンから推測されていたけど、やはりか。と</description></item><item><title>ニコニコ超パーティー2022 に行ってきました</title><link>https://radicalgrimoire.github.io/post/2022.05/</link><pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.05/</guid><description>ニコニコ超パーティ2022に行ってきました。
 会場前 浮かれる40代男性 凄い楽しい一日でした。
 会場内の撮影が出来ないとの事なので会場通路のみですが…
 会場なか プレミアム会員のガラガラくじ。
 缶バッジと1個アクキーあたりました。
-いろいろ会場には 装花 いっぱいきてました。</description></item><item><title>リコリス・リコイル面白い</title><link>https://radicalgrimoire.github.io/post/2022.04/</link><pubDate>Wed, 10 Aug 2022 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.04/</guid><description>ブルーレイ全巻買いました。
-いやあ、面白いね！リコリス・リコイル！！</description></item><item><title>Awards</title><link>https://radicalgrimoire.github.io/awards/</link><pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/awards/</guid><description>Hugo Awards, an annual literary award for the best science fiction or fantasy works</description></item><item><title>Certifications</title><link>https://radicalgrimoire.github.io/certifications/</link><pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/certifications/</guid><description>Hugo Certifications</description></item><item><title>【FF14】 極ハイデリンクリア</title><link>https://radicalgrimoire.github.io/post/2022.03/</link><pubDate>Mon, 10 Jan 2022 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.03/</guid><description>極ゾディアークと比べて、
+いろいろ会場には 装花 いっぱいきてました。</description></item><item><title>リコリス・リコイル面白い</title><link>https://radicalgrimoire.github.io/post/2022.04/</link><pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.04/</guid><description>ブルーレイ全巻買いました。
+いやあ、面白いね！リコリス・リコイル！！</description></item><item><title>Awards</title><link>https://radicalgrimoire.github.io/awards/</link><pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/awards/</guid><description>Hugo Awards, an annual literary award for the best science fiction or fantasy works</description></item><item><title>Certifications</title><link>https://radicalgrimoire.github.io/certifications/</link><pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/certifications/</guid><description>Hugo Certifications</description></item><item><title>【FF14】 極ハイデリンクリア</title><link>https://radicalgrimoire.github.io/post/2022.03/</link><pubDate>Mon, 10 Jan 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.03/</guid><description>極ゾディアークと比べて、
 極コンテンツらしい極コンテンツだったので、マジで苦戦しました。
 ゾディアークと比べて、ハイデリンはホントに難しかった……
 クリアーまでに参加した練習は10回じゃくだりません。
@@ -20,7 +20,7 @@
 あとは誰かについていけばいいだけですからね。
 極ハイデリンはちゃんと覚えなければいけないギミックが多くてなかなか苦戦しました。
 クリアーしてもなお、3回目のライトウェーブは不安です。
-ナ、戦、暗、竜と取得できたので、残るはガンブレのみ。</description></item><item><title>【FF14】 タンク4ジョブ分の育成で得たマテリア売った結果</title><link>https://radicalgrimoire.github.io/post/2022.02/</link><pubDate>Thu, 06 Jan 2022 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.02/</guid><description>前回の日記で
+ナ、戦、暗、竜と取得できたので、残るはガンブレのみ。</description></item><item><title>【FF14】 タンク4ジョブ分の育成で得たマテリア売った結果</title><link>https://radicalgrimoire.github.io/post/2022.02/</link><pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.02/</guid><description>前回の日記で
 「新式のアクセ以外の頭～足までの防具を購入して、マテリアをマケボで売り流しています。」
 という報告をしたのですが、今回の日記はその結果です。
 結果、新式防具の購入費用を全部賄えて、
@@ -29,7 +29,7 @@
 新式は初日のご祝儀価格からは大分1日で落ち着きましたが、
 特に気にする事でもないでしょう。
 （新式防具購入、オシャレ防具購入ぐらいしかぼっちにはFF14はギルの用途が存在しない為）
-自分は戦士と竜騎士メインなので、特に戦士はスキルスピードを盛る理由が無くなり、不屈でも盛っとけ風潮らしくて…</description></item><item><title>【FF14】 ばあじょんあっぷ</title><link>https://radicalgrimoire.github.io/post/2022.01/</link><pubDate>Wed, 05 Jan 2022 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2022.01/</guid><description>恒例の新式買って、マテリアを売る時期が到来しました
+自分は戦士と竜騎士メインなので、特に戦士はスキルスピードを盛る理由が無くなり、不屈でも盛っとけ風潮らしくて…</description></item><item><title>【FF14】 ばあじょんあっぷ</title><link>https://radicalgrimoire.github.io/post/2022.01/</link><pubDate>Wed, 05 Jan 2022 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2022.01/</guid><description>恒例の新式買って、マテリアを売る時期が到来しました
 前回の日記から、FCにもLS、CWLSにも特に参加できず、
 早期攻略を特にできそうもなさそうなので、気にする事なく売ってしまいます。
 極ハイデリンがまだ未クリアなので武器は買わず、
@@ -37,7 +37,7 @@
 この時期のマテリア額を思えば安いものです。
 ともあれ、極ハイデリンは早々にクリアーしてしまいたいですね……
 タンクしかレベル上げしてないもので、ハイデリンは動画見る限りタンクの動き重要そうではありますが…
-なかなかコミュ障にはハードル高く。</description></item><item><title>【FF14】 久々にプレイ再開</title><link>https://radicalgrimoire.github.io/post/2021-12-06/</link><pubDate>Mon, 06 Dec 2021 00:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-12-06/</guid><description>レジスタンスウェポンを作ろうと2021年9月ぐらいに復帰していたんですけど、モチベは保てたのは1か月ぐらいでした
+なかなかコミュ障にはハードル高く。</description></item><item><title>【FF14】 久々にプレイ再開</title><link>https://radicalgrimoire.github.io/post/2021-12-06/</link><pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-12-06/</guid><description>レジスタンスウェポンを作ろうと2021年9月ぐらいに復帰していたんですけど、モチベは保てたのは1か月ぐらいでした
 継続する努力が足らない…
 https://jp.finalfantasyxiv.com/lodestone/character/3335773/achievement/detail/2769/
 どうも、レベッカです。
@@ -46,15 +46,15 @@ https://jp.finalfantasyxiv.com/lodestone/character/3335773/achievement/detail/27
 81IDの1ボス目とか、「踏んでダメージ軽減するギミック」かと思ったら全く違うとか
 「おおいｗ吉田ふざけんなよ？」
 と思わず声を出してしまうほど楽しんでおります。
-ストーリーは恐らく三分の一まで進んだと思っているのですが（進めたID的に）</description></item><item><title>ひとこと感想 2021年11月12日</title><link>https://radicalgrimoire.github.io/post/2021-11-12/</link><pubDate>Fri, 12 Nov 2021 07:45:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-12/</guid><description>【Komiflo】快楽天BEAST更新 れぐでぐ、Cuvie、すーぱーぞんびと
+ストーリーは恐らく三分の一まで進んだと思っているのですが（進めたID的に）</description></item><item><title>ひとこと感想 2021年11月12日</title><link>https://radicalgrimoire.github.io/post/2021-11-12/</link><pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-12/</guid><description>【Komiflo】快楽天BEAST更新 れぐでぐ、Cuvie、すーぱーぞんびと
 六魔辞典くんが４５っている作品が読めて作品読めてありがたい限り。
 れぐでぐ作品で出てくる女性はみんな乳が素晴らしいので是非。
 熟女好きな六魔辞典くんも生唾呑み込んでしまう良さがれぐでぐ作品にあります
-独自カメラで撮影した秘蔵映像が盛りだくさん 角田裕毅選手に迫るドキュメンタリーを配信！ 今シーズンの残すレースもDAZNで応援しよう！ こういう番組大好き</description></item><item><title>ひとこと感想 2021年11月10日</title><link>https://radicalgrimoire.github.io/post/2021-11-10/</link><pubDate>Wed, 10 Nov 2021 12:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-10/</guid><description>人気No.1レースクイーンを決定するMediBang日本レースクイーン大賞2021 2年ぶりの開催
+独自カメラで撮影した秘蔵映像が盛りだくさん 角田裕毅選手に迫るドキュメンタリーを配信！ 今シーズンの残すレースもDAZNで応援しよう！ こういう番組大好き</description></item><item><title>ひとこと感想 2021年11月10日</title><link>https://radicalgrimoire.github.io/post/2021-11-10/</link><pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-10/</guid><description>人気No.1レースクイーンを決定するMediBang日本レースクイーン大賞2021 2年ぶりの開催
 ギャルズパラダイス愛読者として、どの子が優勝するかは気になる所存
 篠崎こころのジャックオーチャレンジ！ #shorts #jackochallenge すげー柔らかい！！
 けど、チャレンジしてる全員が「キツ…」って漏らしてるので、
-動画外のシーンが気になってしまうおじさんです</description></item><item><title>【DAZN】森保一監督インタビュー「愛弟子と展望するアウェイ2連戦」 感想</title><link>https://radicalgrimoire.github.io/post/2021-11-06/</link><pubDate>Sat, 06 Nov 2021 10:26:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-06/</guid><description>DAZNのインタビュー番組が更新 きたる2021年11月11日、11月16日とサッカー日本代表のアウェー2連戦が始まります
+動画外のシーンが気になってしまうおじさんです</description></item><item><title>【DAZN】森保一監督インタビュー「愛弟子と展望するアウェイ2連戦」 感想</title><link>https://radicalgrimoire.github.io/post/2021-11-06/</link><pubDate>Sat, 06 Nov 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-06/</guid><description>DAZNのインタビュー番組が更新 きたる2021年11月11日、11月16日とサッカー日本代表のアウェー2連戦が始まります
 厳しいサッカー日本代表を率いる森保監督のインタビュー番組がDAZNに更新されてました
 https://www.dazn.com/ja-JP/home/ArticleId:pr96c7402f271by4xususcj1m
 サッカー日本代表なんて
@@ -62,26 +62,26 @@ https://www.dazn.com/ja-JP/home/ArticleId:pr96c7402f271by4xususcj1m
 どうなる？どうなる？という感じで気になっていたので
 今、日本代表を率いている監督の心境だったり、考え、気持ちが知れてとても見ていて面白かったです。
 サッカーについては正直何もわからないので、知らない人間から見た感想ですが
-宜しくお願いします</description></item><item><title>六魔辞典氏のYoutube離れ</title><link>https://radicalgrimoire.github.io/post/2021-11-05/</link><pubDate>Fri, 05 Nov 2021 12:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-05/</guid><description>2019年の大腸ガンでの入院の時、入院中に きまぐれでDAZNを契約 しました
+宜しくお願いします</description></item><item><title>六魔辞典氏のYoutube離れ</title><link>https://radicalgrimoire.github.io/post/2021-11-05/</link><pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-11-05/</guid><description>2019年の大腸ガンでの入院の時、入院中に きまぐれでDAZNを契約 しました
 始めはF1中継見て終わりだったのですが、F1Labっていう番組を見て
 「ん？これは面白いぞ」と&amp;hellip;
 DAZNは特にサッカーの特別番組がいろいろあり、
 内田篤人のFOOTBALL TIME、FOOTBALL FREAKS、Jリーグプレビューショー、Jリーグジャッジメントリプレイ、やべっちスタジアム&amp;hellip;
-どれもこれも面白いじゃないか！と&amp;hellip;</description></item><item><title>ITMediaから取材受けた件</title><link>https://radicalgrimoire.github.io/post/2021-09-21/</link><pubDate>Tue, 21 Sep 2021 18:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-09-21/</guid><description>取材を受けた件 開発環境をAzureに移行したらテレワーク中の出社が減りました　「オンプレはもう限界」──ゲーム企業が成し遂げたクラウド移行の舞台裏 https://www.itmedia.co.jp/news/articles/2109/21/news039.html
-当日取材受けてたんですけど。 喋ってなさすぎていない事になりました。</description></item><item><title>再入院 ⇒ 退院した</title><link>https://radicalgrimoire.github.io/post/2021-07-25/</link><pubDate>Sun, 25 Jul 2021 10:07:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-07-25/</guid><description>再入院してたが先日退院できた
+どれもこれも面白いじゃないか！と&amp;hellip;</description></item><item><title>ITMediaから取材受けた件</title><link>https://radicalgrimoire.github.io/post/2021-09-21/</link><pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-09-21/</guid><description>取材を受けた件 開発環境をAzureに移行したらテレワーク中の出社が減りました　「オンプレはもう限界」──ゲーム企業が成し遂げたクラウド移行の舞台裏 https://www.itmedia.co.jp/news/articles/2109/21/news039.html
+当日取材受けてたんですけど。 喋ってなさすぎていない事になりました。</description></item><item><title>再入院 ⇒ 退院した</title><link>https://radicalgrimoire.github.io/post/2021-07-25/</link><pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-07-25/</guid><description>再入院してたが先日退院できた
 今の身体と共に生活していくしかなさそうで
 なんというか何とも言い難い「なぜ自分が」と叫びたくなる気持ちがある
 とはいえ、なってしまったものは仕方がない
 一生付き合っていくしかない。
 この先何を為せるのかはわからんが、
-何かを残すために今後も頑張っていきたい</description></item><item><title>2度目のガン手術から退院した</title><link>https://radicalgrimoire.github.io/post/2021-07-07/</link><pubDate>Wed, 07 Jul 2021 06:30:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-07-07/</guid><description>2度目のガン手術から6日に退院しました
+何かを残すために今後も頑張っていきたい</description></item><item><title>2度目のガン手術から退院した</title><link>https://radicalgrimoire.github.io/post/2021-07-07/</link><pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-07-07/</guid><description>2度目のガン手術から6日に退院しました
 ですが正直「予断は許さないな」と自信でも感じる事があり、
 吐くまでじゃないですが、吐きそう感がヤバいです。腸閉塞の傾向を感じます
 体力も落ち、なかなか継続する事が厳しい状況
 以前は正直3か月～4か月かかったので
 それに近い時間は必要になるのかなと思います
-ぼんやりといきましょう</description></item><item><title>マイクロソフトから取材を受けました</title><link>https://radicalgrimoire.github.io/post/2021-04-28/</link><pubDate>Wed, 28 Apr 2021 18:00:00 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2021-04-28/</guid><description>取材を受けた件 ゲーム開発環境を Microsoft Azure でクラウド化、運用管理負担の軽減に加えビルド スピードの向上にも大きく貢献 https://customers.microsoft.com/ja-jp/story/1364935832890127585-game-studio-gaming-azure-jp-japan
-メルセデスのパーカー着たおっさんがイカした指立てしてて草</description></item><item><title>【エロゲ】俺の彼女は他人棒が気になるようです。</title><link>https://radicalgrimoire.github.io/post/2020-09-28/</link><pubDate>Mon, 28 Sep 2020 08:54:23 +0900</pubDate><guid>https://radicalgrimoire.github.io/post/2020-09-28/</guid><description>俺の彼女は他人棒が気になるようです ちょっと前の話ですが購入しました
+ぼんやりといきましょう</description></item><item><title>マイクロソフトから取材を受けました</title><link>https://radicalgrimoire.github.io/post/2021-04-28/</link><pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2021-04-28/</guid><description>取材を受けた件 ゲーム開発環境を Microsoft Azure でクラウド化、運用管理負担の軽減に加えビルド スピードの向上にも大きく貢献 https://customers.microsoft.com/ja-jp/story/1364935832890127585-game-studio-gaming-azure-jp-japan
+メルセデスのパーカー着たおっさんがイカした指立てしてて草</description></item><item><title>【エロゲ】俺の彼女は他人棒が気になるようです。</title><link>https://radicalgrimoire.github.io/post/2020-09-28/</link><pubDate>Mon, 28 Sep 2020 00:00:00 +0000</pubDate><guid>https://radicalgrimoire.github.io/post/2020-09-28/</guid><description>俺の彼女は他人棒が気になるようです ちょっと前の話ですが購入しました
 パッケージと特典 さすがのanim、なかなかのanim
 すっごくシコれる作品、ストーリーだったと思います
 タイトル画面 教室で堂々とオナる頭のイカれた女がヒロインなのですが
