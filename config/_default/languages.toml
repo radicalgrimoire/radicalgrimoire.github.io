@@ -1,11 +1,11 @@
 [ja]
-title = "My blog"
+title = "GadgetLogs"
 weight = 1
 LanguageName = "JA"
 contentDir = "content/japanese"
 
 [en]
-title = "My blog"
+title = "GadgetLogs"
 weight = 2
 LanguageName = "EN"
 contentDir = "content/english"

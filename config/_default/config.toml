@@ -26,6 +26,9 @@ pygmentsCodefencesGuessSyntax = true
 # Localized dates requires Hugo version 0.87.0
 localizedDates = false
 
+[social]
+  twitter = "radicalgrimoire"
+
 [markup]
     [markup.goldmark]
         [markup.goldmark.renderer]
