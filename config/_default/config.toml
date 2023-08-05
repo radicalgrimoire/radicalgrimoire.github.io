@@ -1,6 +1,7 @@
 baseURL = "https://radicalgrimoire.github.io/"
 languageCode = "ja"
 DefaultContentLanguage = "ja"
+HasCJKLanguage = true
 title = "GadgetLogs"
 
 # theme as hugo module
