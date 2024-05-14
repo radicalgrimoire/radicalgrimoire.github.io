@@ -1,6 +1,0 @@
-[submodule "themes/hugo-theme-stack"]
-	path = themes/hugo-theme-stack
-	url = https://github.com/uzimihsr/hugo-theme-stack.git
-[submodule "themes/anatole"]
-	path = themes/anatole
-	url = git@github.com:lxndrblz/anatole.git
