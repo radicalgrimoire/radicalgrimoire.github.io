@@ -20,9 +20,9 @@ navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {file: "README.md"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
-  - {title: Mail, icon: fab fa-github, url: "mailto:niklasbuschmann@users.noreply.github.com"}
-  - {title: Github, icon: fab fa-instagram, url: "https://www.instagram.com/radicalgrimoire/"}
-  - {title: x.com, icon: fab fa-twitter, url: "https://twitter.com/radicalgrimoire"}  
+  - {title: Mail, icon: github, url: "mailto:niklasbuschmann@users.noreply.github.com"}
+  - {title: Github, icon: instagram, url: "https://www.instagram.com/radicalgrimoire/"}
+  - {title: x.com, icon: twitter, url: "https://twitter.com/radicalgrimoire"}  
   - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
 comments:
