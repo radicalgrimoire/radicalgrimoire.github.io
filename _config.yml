@@ -1,6 +1,6 @@
 title: "GadgetLogs"
 author: "radicalgrimoire"
-description: "Made with <b style=\"color: #f45;\">&lt;3</b>"
+description: "I am the most fucking engineer."
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
@@ -21,7 +21,6 @@ navigation:                # accepts {file, title, url, icon, sidebaricon}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Github, icon: github, url: "https://github.com/radicalgrimoire"}
-  - {title: Github, icon: github, url: "https://github.com/niklasbuschmann/contrast"}
   - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
 comments:
