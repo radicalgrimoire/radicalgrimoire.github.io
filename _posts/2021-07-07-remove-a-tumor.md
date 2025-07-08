@@ -1,10 +1,6 @@
 ---
 title: "2度目のガン手術から退院した"
-author: "radicalgrimoire"
-date: 2021-07-07
-tags: ["Blog"]
-categories: ["Blog"]
-series: ["2021Blog"]
+layout: post
 ---
   
 5月にガンの再発がわかり、
