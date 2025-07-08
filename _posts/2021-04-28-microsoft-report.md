@@ -1,10 +1,6 @@
 ---
 title: "マイクロソフトから取材を受けました"
-author: "radicalgrimoire"
-date: 2021-04-28
-tags: ["Tech", "Microsoft", "Azure"]
-categories: ["Tech"]
-series: ["Tech"]
+layout: post
 ---
 
 # 取材を受けた件
