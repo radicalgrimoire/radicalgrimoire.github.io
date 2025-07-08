@@ -1,10 +1,6 @@
 ---
 title: "東京ドーム　対中日８回戦。リチャードようこそ"
-author: "radicalgrimoire"
-date: 2025-05-18
-tags: ["Blog"]
-categories: ["Blog"]
-series: ["2025Blog","Giants"]
+layout: post
 ---
 
 # 久々に観戦
