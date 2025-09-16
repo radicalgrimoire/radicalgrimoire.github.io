@@ -5,6 +5,9 @@ permalink: /:title/
 lang: "en"
 excerpt_separator: "<!--more-->"
 date_format: "%B %d, %Y"
+paginate: 5 # 1ページあたりの記事数
+paginate_path: "/page:num/"
+
 
 # Layout
 
