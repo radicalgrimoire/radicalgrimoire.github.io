@@ -1,0 +1,23 @@
+---
+title: "ジャパンモビリティーショー"
+layout: post
+---
+
+# ジャパンモビリティショーにいってきた
+
+コロナ禍になって中止になったモーターショー改め、ジャパンモビリティショーにいってきました
+
+{{< figure src="/images/posts/2023/11/20231104_021055353_iOS.jpg" title="ビッグサイト正面" class="center" width="600" >}}
+
+{{< figure src="/images/posts/2023/11/20231104_052601853_iOS.jpg" title="カッコエエ" class="center" width="600" >}}
+
+{{< figure src="/images/posts/2023/11/20231104_053015136_iOS.jpg" title="良かったバイク" class="center" width="600" >}}
+
+{{< figure src="/images/posts/2023/11/20231104_064910362_iOS.jpg" title="マツダの真紅のボディ" class="center" width="600" >}}
+
+
+{{< figure src="/images/posts/2023/11/20231104_053522988_iOS.jpg" title="アフィーラ①" class="center" width="600" >}}
+
+{{< figure src="/images/posts/2023/11/20231104_062235748_iOS.jpg" title="アフィーラ②" class="center" width="600" >}}
+
+
