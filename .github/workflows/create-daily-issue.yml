@@ -1,0 +1,69 @@
+name: Create Issue from Markdown
+on:
+#  schedule:
+#    - cron: '0 21 * * *' # 毎日午前6時(JST)
+  workflow_dispatch:
+    inputs:
+      mdfile:
+        description: 'Markdownファイル（templates/ 配下）'
+        required: true
+        type: choice
+        options:
+          - baseball_watch_sheet.md
+        default: baseball_watch_sheet.md
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Issue
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // JSTでYYYY-MM-DD HH:MM形式（正確なタイムゾーン変換）
+            const now = new Date();
+            const jstTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Tokyo"}));
+            const today = jstTime.getFullYear() + '-' +
+              String(jstTime.getMonth() + 1).padStart(2, '0') + '-' +
+              String(jstTime.getDate()).padStart(2, '0') + ' ' +
+              String(jstTime.getHours()).padStart(2, '0') + ':' +
+              String(jstTime.getMinutes()).padStart(2, '0');
+            
+            const fs = require('fs');
+            let mdfile = 'baseball_watch_sheet.md';
+
+            if (context.eventName === 'workflow_dispatch') {
+              mdfile = context.payload.inputs.mdfile;
+            } else if (context.eventName === 'schedule') {
+              mdfile = 'baseball_watch_sheet.md';
+            } else {
+              throw new Error('Unsupported event');
+            }
+
+            // テンプレートファイルに応じたタイトル設定
+            const titleMap = {
+              'baseball_watch_sheet.md': 'Baseball Watch Sheet'           
+            };
+            let titlemessage = titleMap[mdfile] || 'LifeLogs Issue';
+
+            // ファイル存在チェックとエラーハンドリング
+            const templatePath = `templates/${mdfile}`;
+            let body;
+            try {
+              if (!fs.existsSync(templatePath)) {
+                throw new Error(`Template file not found: ${templatePath}`);
+              }
+              body = fs.readFileSync(templatePath, 'utf8');
+            } catch (error) {
+              console.error('Error reading template file:', error);
+              body = `# ${titlemessage}\n\nTemplate file could not be loaded: ${templatePath}`;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `${titlemessage} for ${today}`,
+              body: body
+            });
