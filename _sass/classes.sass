@@ -24,89 +24,20 @@
   min-height: 1.75em
   margin: 0 .2em
 
-.image__button
-  background: none
-  border: 0
+.image__link
   cursor: zoom-in
   display: block
-  padding: 0
 
-.image__button img
+.image__link img
   display: block
 
-.lightbox
-  background: rgba(12, 14, 18, .94)
-  border: 0
-  height: 100vh
-  max-height: none
-  max-width: none
-  padding: 3rem
-  width: 100vw
-
-.lightbox[open]
-  animation: lightbox-in .22s ease-out
-  display: grid
-  place-items: center
-
-.lightbox::backdrop
-  animation: lightbox-backdrop-in .22s ease-out
-  background: rgba(0, 0, 0, .72)
-
-.lightbox__image
-  animation: lightbox-image-in .26s ease-out
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .45)
-  display: block
-  height: auto
-  margin: auto
-  max-height: min(76vh, 900px)
-  max-width: min(86vw, 1200px)
-  width: auto
-
-.lightbox__close
-  align-items: center
-  background: rgba(255, 255, 255, .12)
-  border: 1px solid rgba(255, 255, 255, .22)
-  border-radius: 50%
-  color: #fff
-  cursor: pointer
-  display: flex
-  height: 2.75rem
-  justify-content: center
-  padding: 0
-  position: fixed
-  right: 1rem
-  top: 1rem
-  transition: background .18s ease-out, transform .18s ease-out
-  width: 2.75rem
-
-.lightbox__close .icon
-  height: 1rem
-  margin: 0
-  width: 1rem
-
-.lightbox__close:hover
-  background: rgba(255, 255, 255, .24)
-  transform: rotate(90deg)
-
-@keyframes lightbox-in
-  from
-    opacity: 0
-  to
-    opacity: 1
-
-@keyframes lightbox-backdrop-in
-  from
-    opacity: 0
-  to
-    opacity: 1
-
-@keyframes lightbox-image-in
-  from
-    opacity: 0
-    transform: scale(.96)
-  to
-    opacity: 1
-    transform: scale(1)
+// Lightbox3 theme overrides
+:root
+  --lb-backdrop-color: rgba(12, 14, 18, .9)
+  --lb-image-border-radius: 12px
+  --lb-image-padding: 48px
+  --lb-chrome-bg: rgba(24, 28, 34, .86)
+  --lb-chrome-border-radius: 14px
 
 .icon
   height: 1em
