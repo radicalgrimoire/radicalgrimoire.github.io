@@ -7,6 +7,8 @@ layout: post
 
 チケット入手ルートは以下の7種類
 
+<!--more-->
+
 - **[クラブジャイアンツ 先行抽選](https://www.giants.jp/ticket/first-team/)**  
 - **[クラブジャイアンツ 一般販売](https://www.giants.jp/ticket/first-team/)**  
 - **e-plus（プレオーダー等）抽選**  

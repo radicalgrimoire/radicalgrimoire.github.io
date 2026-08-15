@@ -7,6 +7,8 @@ layout: post
 
 コロナ禍になって中止になったモーターショー改め、ジャパンモビリティショーにいってきました
 
+<!--more-->
+
 {{< figure src="/images/posts/2023/11/20231104_021055353_iOS.jpg" title="ビッグサイト正面" class="center" width="600" >}}
 
 {{< figure src="/images/posts/2023/11/20231104_052601853_iOS.jpg" title="カッコエエ" class="center" width="600" >}}

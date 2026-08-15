@@ -5,6 +5,8 @@ layout: post
 
 # ゲームショウにいってきた
 
+<!--more-->
+
 {{< figure src="/images/posts/2023/09/20230922_094723.JPG" title="幕張メッセ到着①" class="center" width="600" >}}
 
 {{< figure src="/images/posts/2023/09/20230922_100858.JPG" title="幕張メッセ到着②" class="center" width="600" >}}

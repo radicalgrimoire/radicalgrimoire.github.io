@@ -5,6 +5,10 @@ layout: post
 
 # 東京ディズニーランドにいってきた
 
+
+<!--more-->
+
+
 {{< figure src="/images/posts/2023/10/20231006_093615484_iOS.jpg" title="ちゅうしゃじょう" class="center" width="600" >}}
 
 {{< figure src="/images/posts/2023/10/20231006_134527890_iOS.jpg" title="いりぐち" class="center" width="600" >}}
