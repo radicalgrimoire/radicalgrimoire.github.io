@@ -25,3 +25,14 @@ date: 2026-08-15
 それで十分だと思う。
 
 というわけで、ブログを再々開します
+
+
+最後に新しく作ったインスタとxの引用機能のテストをする。
+まずはInstagramの投稿。
+
+{% include instagram.html url="https://www.instagram.com/p/DcDtd4UEmLC/?hl=ja" %}
+
+次に、Xの投稿。
+
+{% include twitter.html url="https://x.com/radicalgrimoire/status/2088191328060658120?s=20" %}
+
