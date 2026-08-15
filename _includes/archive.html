@@ -1,10 +1,5 @@
 <article>
   <header><h1>{{ include.title | default: page.title }}</h1></header>
-  <nav aria-label="Archive category">
-    <a href="{{ '/archive/' | relative_url }}"{% unless include.category == "tech" %} aria-current="page"{% endunless %}>Blog</a>
-    <span aria-hidden="true"> / </span>
-    <a href="{{ '/tech/' | relative_url }}"{% if include.category == "tech" %} aria-current="page"{% endif %}>Tech</a>
-  </nav>
   {% assign current_month = "" %}
   {% for post in site.posts %}
     {% assign show_post = false %}
