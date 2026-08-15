@@ -4,6 +4,6 @@ layout: post
 ---
 
 
-{{< figure src="/images/posts/2023/07/20230709_154903.JPG" title="前" class="center" width="600" >}}
+{% include image.html src="/assets/images/posts/2023/07/20230709_154903.JPG" title="前" width=600 align="center" %}
 
 sumikaと出会ったのは、「ぐらんぶる」の実写映画

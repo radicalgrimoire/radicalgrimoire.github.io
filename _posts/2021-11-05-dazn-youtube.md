@@ -19,7 +19,7 @@ DAZNは特にサッカーの特別番組がいろいろあり、
 
 そんななかF1でも毎週放映してくれる番組もスタート  
 
-{{< figure src="/images/posts/2021-11-05-01/2021-11-05-01.01.jpg" title="FI TIME" class="center" width="700" >}}
+{% include image.html src="/assets/images/posts/2021-11-05-01/2021-11-05-01.01.jpg" title="FI TIME" width=700 align="center" %}
 
 サッカー番組のノウハウが詰め込まれたのか、これも面白い！  
 毎週DAZNの番組を楽しみに待ってたら一週間が過ぎてしまうあっという間さ！  

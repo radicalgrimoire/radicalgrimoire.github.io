@@ -9,9 +9,9 @@ layout: post
   
 という報告をしたのですが、今回の日記はその結果です。  
 
-{{< figure src="/images/FF14/ffxiv_20220105_080742_932.png" title="" class="center" width="700" >}}
+{% include image.html src="/assets/images/FF14/ffxiv_20220105_080742_932.png" width=700 align="center" %}
 
-{{< figure src="/images/FF14/ffxiv_20220105_223143_380.png" title="" class="center" width="700" >}}
+{% include image.html src="/assets/images/FF14/ffxiv_20220105_223143_380.png" width=700 align="center" %}
   
 結果、新式防具の購入費用を全部賄えて、  
 さらに+の収支になりました。  

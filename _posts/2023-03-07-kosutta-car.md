@@ -8,9 +8,9 @@ layout: post
 
 無念…
 
-{{< figure src="/images/posts/2023/03/20230306_111631.JPG" title="1枚目" class="center" width="700" >}}
+{% include image.html src="/assets/images/posts/2023/03/20230306_111631.JPG" title="1枚目" width=700 align="center" %}
 
-{{< figure src="/images/posts/2023/03/20230306_111634.JPG" title="2枚目" class="center" width="700" >}}
+{% include image.html src="/assets/images/posts/2023/03/20230306_111634.JPG" title="2枚目" width=700 align="center" %}
 
 
 謝りましたが、気を付けましょう

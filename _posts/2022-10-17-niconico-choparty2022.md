@@ -6,9 +6,9 @@ layout: post
 
 ニコニコ超パーティ2022に行ってきました。
 
-{{< figure src="/images/posts/2022-10/20221016_145021.JPG" title="会場前" class="center" width="500" >}}
+{% include image.html src="/assets/images/posts/2022-10/20221016_145021.JPG" title="会場前" width=500 align="center" %}
 
-{{< figure src="/images/posts/2022-10/20221016_145909.JPG" title="浮かれる40代男性" class="center" width="500" >}}
+{% include image.html src="/assets/images/posts/2022-10/20221016_145909.JPG" title="浮かれる40代男性" width=500 align="center" %}
 
 
 
@@ -18,7 +18,7 @@ layout: post
 会場内の撮影が出来ないとの事なので会場通路のみですが…
 
 
-{{< figure src="/images/posts/2022-10/20221016_151703.JPG" title="会場なか" class="center" width="500" >}}
+{% include image.html src="/assets/images/posts/2022-10/20221016_151703.JPG" title="会場なか" width=500 align="center" %}
 
 
 
@@ -30,11 +30,11 @@ layout: post
 
 いろいろ会場には 装花 いっぱいきてました。
 
-{{< figure src="/images/posts/2022-10/20221016_150401.JPG" title="Ado花束" class="center" width="400" >}}
+{% include image.html src="/assets/images/posts/2022-10/20221016_150401.JPG" title="Ado花束" width=400 align="center" %}
 
-{{< figure src="/images/posts/2022-10/20221016_150417.JPG" title="ニコニコ" class="center" width="400" >}}
+{% include image.html src="/assets/images/posts/2022-10/20221016_150417.JPG" title="ニコニコ" width=400 align="center" %}
 
-{{< figure src="/images/posts/2022-10/20221016_161252.JPG" title="うなぎ" class="center" width="400" >}}
+{% include image.html src="/assets/images/posts/2022-10/20221016_161252.JPG" title="うなぎ" width=400 align="center" %}
 
 
 歌はすげー盛り上がりました。

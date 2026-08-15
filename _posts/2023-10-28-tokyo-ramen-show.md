@@ -9,7 +9,7 @@ layout: post
 
 ## 1軒目：八咫鶯
 
-{{< figure src="/images/posts/2023/10/20231028_073810388_iOS.jpg" title="八咫鶯" class="center" width="600" >}}
+{% include image.html src="/assets/images/posts/2023/10/20231028_073810388_iOS.jpg" title="八咫鶯" width=600 align="center" %}
 
 
 一杯目は塩から  
@@ -28,6 +28,6 @@ layout: post
 
 ごちそう様でした
 
-{{< figure src="/images/posts/2023/10/20231028_072329520_iOS.jpg" title="麺屋うるとら" class="center" width="600" >}}
+{% include image.html src="/assets/images/posts/2023/10/20231028_072329520_iOS.jpg" title="麺屋うるとら" width=600 align="center" %}
 
 毎年行っているイベントですが、今年も楽しかったです
