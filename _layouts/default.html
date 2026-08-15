@@ -35,7 +35,9 @@
 {{ content }}
 
 <dialog class="lightbox" aria-label="拡大画像">
-  <button class="lightbox__close" type="button" aria-label="閉じる">&times;</button>
+  <button class="lightbox__close" type="button" aria-label="閉じる">
+    <svg aria-hidden="true" class="icon"><use xlink:href="{{ "/assets/fontawesome/icons.svg" | relative_url }}#times"></use></svg>
+  </button>
   <img class="lightbox__image" src="" alt="">
 </dialog>
 <script>
