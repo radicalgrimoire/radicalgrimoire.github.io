@@ -18,7 +18,7 @@ minimal: false             # use a dark header
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "archive.html"}
+  - {file: "archive.html", icon: archive}
   - {file: "README.md"}
   - {file: "external.cal.md", title: "Calendar", icon: user}
 
