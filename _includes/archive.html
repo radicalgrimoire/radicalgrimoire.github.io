@@ -1,17 +1,33 @@
 <article>
   <header><h1>{{ include.title | default: page.title }}</h1></header>
+  <nav aria-label="Archive category">
+    <a href="{{ '/archive/' | relative_url }}"{% unless include.category == "tech" %} aria-current="page"{% endunless %}>Blog</a>
+    <span aria-hidden="true"> / </span>
+    <a href="{{ '/tech/' | relative_url }}"{% if include.category == "tech" %} aria-current="page"{% endif %}>Tech</a>
+  </nav>
   {% assign current_month = "" %}
   {% for post in site.posts %}
-    {% assign month = post.date | date: "%Y/%m" %}
-    {% if month != current_month %}
-      {% unless current_month == "" %}
-        </ul>
-      {% endunless %}
-      <h2>{{ month }}</h2>
-      <ul class="archive">
-      {% assign current_month = month %}
+    {% assign show_post = false %}
+    {% if include.category == "tech" %}
+      {% if post.categories contains "tech" %}
+        {% assign show_post = true %}
+      {% endif %}
+    {% elsif post.categories contains "tech" %}
+    {% else %}
+      {% assign show_post = true %}
     {% endif %}
-    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+    {% if show_post %}
+      {% assign month = post.date | date: "%Y/%m" %}
+      {% if month != current_month %}
+        {% unless current_month == "" %}
+          </ul>
+        {% endunless %}
+        <h2>{{ month }}</h2>
+        <ul class="archive">
+        {% assign current_month = month %}
+      {% endif %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+    {% endif %}
   {% endfor %}
   {% unless current_month == "" %}
     </ul>
