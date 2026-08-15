@@ -1,4 +1,6 @@
 <figure class="image{% if include.align == "center" %} image--center{% endif %}"{% if include.width %} style="max-width: {{ include.width }}px;"{% endif %}>
-  <img src="{{ include.src | relative_url | escape }}" alt="{{ include.alt | default: include.title | escape }}"{% if include.width %} width="{{ include.width }}"{% endif %}>
+  <button class="image__button" type="button" data-lightbox-src="{{ include.src | relative_url | escape }}" data-lightbox-alt="{{ include.alt | default: include.title | escape }}" aria-label="{{ include.alt | default: include.title | default: "画像" | escape }}を拡大表示">
+    <img src="{{ include.src | relative_url | escape }}" alt="{{ include.alt | default: include.title | escape }}"{% if include.width %} width="{{ include.width }}"{% endif %}>
+  </button>
   {% if include.title %}<figcaption>{{ include.title }}</figcaption>{% endif %}
 </figure>
