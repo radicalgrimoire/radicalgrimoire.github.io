@@ -28,11 +28,20 @@ date: 2026-08-15
 
 
 最後に新しく作ったインスタとxの引用機能のテストをする。
-まずはInstagramの投稿。
+
+Instagramの投稿
 
 {% include instagram.html url="https://www.instagram.com/p/DcDtd4UEmLC/?hl=ja" %}
 
-次に、Xの投稿。
+Xの投稿
 
 {% include twitter.html url="https://x.com/radicalgrimoire/status/2088191328060658120?s=20" %}
+
+ニコニコ動画
+
+{% include niconico.html url="https://www.nicovideo.jp/watch/sm46451410" %}
+
+Threadsの投稿
+
+{% include threads.html url="https://www.threads.com/share/PaCip8uRh/" %}
 
