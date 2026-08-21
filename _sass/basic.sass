@@ -19,8 +19,11 @@ body
 h1, h2, h3, h4, h5, h6
   font-weight: $heading-weight
 
-article > h1::before
-  content: "■ "
+h1.post-title
+  font-weight: bold
+  border-left: 5px solid #4c9ac0
+  border-bottom: 2px dashed #b4b4b4
+  padding: .25em 0 .3em .5em
 
 b, strong, th
   font-weight: $font-weight + 200
