@@ -51,4 +51,4 @@ date: 2026-08-22
 
 ## Threadsの投稿
 
-{% include threads.html url="https://www.threads.com/@radicalgrimoire/post/DcDzpNxicCg?xmt=AQG0T6MANaG0h7c5WOLdJU9SNTOb_M-gIm9ANvJ0uNpTW1zKst72A_-swQjP6IzD-cY80TU" 
+{% include threads.html url="https://www.threads.com/@radicalgrimoire/post/DcDzpNxicCg?xmt=AQG0T6MANaG0h7c5WOLdJU9SNTOb_M-gIm9ANvJ0uNpTW1zKst72A_-swQjP6IzD-cY80TU" %}
