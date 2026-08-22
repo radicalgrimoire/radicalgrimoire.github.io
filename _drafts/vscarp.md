@@ -7,6 +7,8 @@ tags: ["giants"]
 
 # 8月ラストの観戦！橙魂シリーズ！！
 
+{% include image.html src="/assets/images/posts/2026/08/" title="講談社からの謎の封書" width=700 align="center" %}
+
 # 小笠原
 
 # 勝敗
