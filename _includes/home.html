@@ -2,7 +2,7 @@
 {% for post in posts %}
   {% unless post.categories contains "tech" %}
     <article>
-      {% include meta.html post=post preview=true %}
+      {% include meta.html post=post preview=true show_taxonomies=true %}
       {{ post.excerpt }}
       <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
     </article>
