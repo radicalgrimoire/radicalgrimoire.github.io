@@ -19,4 +19,4 @@ BLEACHは、原作が既に何年前に終わっていて、アニメも終わ�
 主演声優たちによるトークショーでは、「これだけじゃない！原作漫画では作品のテンポを重視してカットした要素をいっぱい見せていきますよ！」との事で、  
 死神と滅却師の戦いがどのように描かれるのか楽しみですね  
 
-{% include image.html src="/assets/images/posts/2023/06/20230625_172420.JPG" title="試写会ライブビューイング前" width=700 align="center" %}
+{% include image.html src="/assets/2023/06/20230625_172420.JPG" title="試写会ライブビューイング前" width=700 align="center" %}

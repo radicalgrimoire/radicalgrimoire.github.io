@@ -6,7 +6,7 @@ tags: ["anime"]
 ---
 
 
-{% include image.html src="/assets/images/posts/2022-08/ricorico.png" title="会場前" width=700 align="center" %}
+{% include image.html src="/assets/2022/08/ricorico.png" title="会場前" width=700 align="center" %}
 
 ブルーレイ全巻買いました。
 

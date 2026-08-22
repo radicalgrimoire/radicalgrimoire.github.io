@@ -11,9 +11,9 @@ tags: ["ff14"]
   
 という報告をしたのですが、今回の日記はその結果です。  
 
-{% include image.html src="/assets/images/FF14/ffxiv_20220105_080742_932.png" width=700 align="center" %}
+{% include image.html src="/assets/2022/01/ffxiv_20220105_080742_932.png" width=700 align="center" %}
 
-{% include image.html src="/assets/images/FF14/ffxiv_20220105_223143_380.png" width=700 align="center" %}
+{% include image.html src="/assets/2022/01/ffxiv_20220105_223143_380.png" width=700 align="center" %}
   
 結果、新式防具の購入費用を全部賄えて、  
 さらに+の収支になりました。  

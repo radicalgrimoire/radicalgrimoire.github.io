@@ -13,7 +13,7 @@ tags: ["ff14"]
 クリアーまでに参加した練習は10回じゃくだりません。  
 マジで練習での理解が大変だった。  
   
-{% include image.html src="/assets/images/FF14/ffxiv_20220110_223302_536.png" width=700 align="center" %}
+{% include image.html src="/assets/2022/01/ffxiv_20220110_223302_536.png" width=700 align="center" %}
 
 
 極ゾディアークなんて、覚えなければいけないギミックは極論、空から隕石振ってくるギミックだけ覚れば、  

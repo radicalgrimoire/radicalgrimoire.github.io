@@ -7,17 +7,17 @@ tags: ["movie"]
 
 大分前から映画のチケットを購入していた事もあり、公開初日朝7時からの封切りにいってきました
 
-{% include image.html src="/assets/images/posts/2022-12/20221203_064049.JPG" title="映画館前" width=300 align="center" %}
+{% include image.html src="/assets/2022/12/20221203_064049.JPG" title="映画館前" width=300 align="center" %}
 
 映画館ではスラムダンク公開に合わせたグッズが多数飾られていて既に長蛇の列  
 自分も記念に湘北高校全員のポスター5種とタオル、クリアファイル2種購入
 
-{% include image.html src="/assets/images/posts/2022-12/20221203_095441.JPG" title="購入グッズ（タオル）" width=300 align="center" %}
+{% include image.html src="/assets/2022/12/20221203_095441.JPG" title="購入グッズ（タオル）" width=300 align="center" %}
 
 お決まりのポップコーンセットを購入して準備完了  
 いざ開幕まで待機  
 
-{% include image.html src="/assets/images/posts/2022-12/20221203_070039.JPG" title="ポップコーンセット" width=300 align="center" %}
+{% include image.html src="/assets/2022/12/20221203_070039.JPG" title="ポップコーンセット" width=300 align="center" %}
 
 
 そして映画が始まって、宮城のバックストーリーから物語が始まる  
@@ -36,4 +36,4 @@ tags: ["movie"]
   
 全てが本物でした。ありがとうございました  
 
-{% include image.html src="/assets/images/posts/2022-12/20221203_092345.JPG" title="スチル前" width=300 align="center" %}
+{% include image.html src="/assets/2022/12/20221203_092345.JPG" title="スチル前" width=300 align="center" %}
