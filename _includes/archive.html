@@ -1,6 +1,6 @@
 <article>
   <header><h1>{{ include.title | default: page.title }}</h1></header>
-  {% assign current_month = "" %}
+  {% assign current_year = "" %}
   {% for post in site.posts %}
     {% assign show_post = false %}
     {% if include.category == "tech" %}
@@ -12,19 +12,19 @@
       {% assign show_post = true %}
     {% endif %}
     {% if show_post %}
-      {% assign month = post.date | date: "%Y/%m" %}
-      {% if month != current_month %}
-        {% unless current_month == "" %}
+      {% assign year = post.date | date: "%Y" %}
+      {% if year != current_year %}
+        {% unless current_year == "" %}
           </ul>
         {% endunless %}
-        <h2>{{ month }}</h2>
+        <h2>{{ year }}</h2>
         <ul class="archive">
-        {% assign current_month = month %}
+        {% assign current_year = year %}
       {% endif %}
       <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
     {% endif %}
   {% endfor %}
-  {% unless current_month == "" %}
+  {% unless current_year == "" %}
     </ul>
   {% endunless %}
 </article>

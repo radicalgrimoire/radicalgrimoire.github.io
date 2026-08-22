@@ -1,6 +1,8 @@
 ---
 title: "久しぶりに気持ちいい11対0"
 layout: post
+categories: ["Baseball"]
+tags: ["giants", "dragons"]
 date: 2026-08-17
 ---
 
