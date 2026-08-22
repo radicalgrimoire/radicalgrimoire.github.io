@@ -7,6 +7,8 @@ layout: post
 
 今日は東京ラーメンショウに行ってきました
 
+<!--more-->
+
 ## 1軒目：八咫鶯
 
 {% include image.html src="/assets/images/posts/2023/10/20231028_073810388_iOS.jpg" title="八咫鶯" width=600 align="center" %}
