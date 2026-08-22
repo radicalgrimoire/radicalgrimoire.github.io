@@ -1,6 +1,7 @@
 title: "GadgetLogs"
 author: "radicalgrimoire"
 description: "I am the most fucking engineer."
+timezone: "Asia/Tokyo"
 permalink: /:year:month:day-:title/
 lang: "en"
 excerpt_separator: "<!--more-->"

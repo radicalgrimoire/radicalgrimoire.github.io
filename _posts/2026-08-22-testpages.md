@@ -3,7 +3,7 @@ title: "コンゴのヨテイ"
 layout: post
 categories: ["blog", "baseball"]
 tags: ["sumika", "sophia", "giants"]
-date: 2026-08-23
+date: 2026-08-22
 ---
 
 # サギョウ用のページです
