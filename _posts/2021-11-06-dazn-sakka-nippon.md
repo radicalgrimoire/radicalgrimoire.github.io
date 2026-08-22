@@ -1,6 +1,7 @@
 ---
 title: "【DAZN】森保一監督インタビュー「愛弟子と展望するアウェイ2連戦」 感想"
 layout: post
+categories: ["blog"]
 ---
 
 ## DAZNのインタビュー番組が更新

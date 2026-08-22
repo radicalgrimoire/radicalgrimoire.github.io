@@ -1,6 +1,7 @@
 ---
 title: "野球観戦HOWTO"
 layout: post
+categories: ["baseball"]
 ---
 
 # 1. チケットの入手方法  

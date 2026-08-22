@@ -1,7 +1,8 @@
 ---
 title: "竹丸抹消...いやー、仕方ない！"
 layout: post
-tags: ["baseball", "giants"]
+categories: ["baseball"]
+tags: ["giants"]
 date: 2026-08-16
 ---
 

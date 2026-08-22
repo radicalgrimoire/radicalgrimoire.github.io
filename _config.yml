@@ -8,7 +8,6 @@ date_format: "%B %d, %Y"
 paginate: 5 # 1ページあたりの記事数
 paginate_path: "/page:num/"
 
-
 # Layout
 show_excerpts: true        # show article excerpts on the home page
 show_frame: true           # adds a gray frame to the site

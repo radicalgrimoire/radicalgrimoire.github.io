@@ -1,6 +1,7 @@
 ---
 title: "ひとこと感想 2021年11月10日"
 layout: post
+categories: ["blog"]
 ---
 
 * [人気No.1レースクイーンを決定するMediBang日本レースクイーン大賞2021](https://www.as-web.jp/race-queen/757898)

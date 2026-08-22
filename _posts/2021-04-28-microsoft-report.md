@@ -1,6 +1,7 @@
 ---
 title: "マイクロソフトから取材を受けました"
 layout: post
+categories: ["blog"]
 ---
 
 # 取材を受けた件

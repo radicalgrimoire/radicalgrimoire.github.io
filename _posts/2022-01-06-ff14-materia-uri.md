@@ -1,6 +1,8 @@
 ---
 title: "【FF14】 タンク4ジョブ分の育成で得たマテリア売った結果"
 layout: post
+categories: ["game"]
+tags: ["ff14"]
 ---
 
 前回の日記で  

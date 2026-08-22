@@ -1,6 +1,8 @@
 ---
 title: "Windows アップデートが失敗する際の対応"
 layout: post
+categories: ["tech"]
+tags: ["windows"]
 ---
 
 

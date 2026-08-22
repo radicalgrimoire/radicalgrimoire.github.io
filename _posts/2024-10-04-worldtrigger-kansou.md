@@ -1,6 +1,8 @@
 ---
 title: "今月のワールドトリガーが面白かった件"
 layout: post
+categories: ["manga"]
+tags: ["world trigger"]
 ---
 
 今月のワールドトリガーがとても面白かったので、感想とかを書いていきたい  

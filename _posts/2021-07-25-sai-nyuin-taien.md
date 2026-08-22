@@ -1,6 +1,7 @@
 ---
 title: "再入院 ⇒ 退院した"
 layout: post
+categories: ["blog"]
 ---
 
 結局、苦しい日々が続いたので病院に即駆け込みました  

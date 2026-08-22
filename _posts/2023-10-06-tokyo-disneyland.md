@@ -1,6 +1,7 @@
 ---
 title: "東京ディズニーランド"
 layout: post
+categories: ["blog"]
 ---
 
 # 東京ディズニーランドにいってきた

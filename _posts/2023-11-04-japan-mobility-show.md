@@ -1,6 +1,8 @@
 ---
 title: "ジャパンモビリティーショー"
 layout: post
+categories: ["blog"]
+tags: ["automobile"]
 ---
 
 # ジャパンモビリティショーにいってきた

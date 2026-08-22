@@ -1,6 +1,8 @@
 ---
 title: "【FF14】 極ハイデリンクリア"
 layout: post
+categories: ["game"]
+tags: ["ff14"]
 ---
 
 極ゾディアークと比べて、  

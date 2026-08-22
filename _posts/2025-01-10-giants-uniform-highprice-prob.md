@@ -1,6 +1,8 @@
 ---
 title: "ジャイアンツのユニ高杉問題"
 layout: post
+categories: ["baseball"]
+tags: ["giants"]
 ---
 
 

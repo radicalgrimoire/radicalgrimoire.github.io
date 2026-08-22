@@ -1,6 +1,7 @@
 ---
 title: "sumikaの映画"
 layout: post
+categories: ["blog"]
 ---
 
 

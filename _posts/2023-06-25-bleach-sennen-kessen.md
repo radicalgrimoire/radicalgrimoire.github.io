@@ -1,6 +1,7 @@
 ---
 title: "BLEACH 千年血戦篇 決別譚 イベント"
 layout: post
+categories: ["blog"]
 ---
 
 BLEACH 千年血戦篇 決別譚 先行上映試写会のライブビューイングに行ってきました  

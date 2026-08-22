@@ -1,6 +1,8 @@
 ---
 title: "ひとこと感想 2021年11月12日"
 layout: post
+categories: ["blog"]
+tags: ["manga"]
 ---
 
 * [【Komiflo】快楽天BEAST更新](https://komiflo.com/)

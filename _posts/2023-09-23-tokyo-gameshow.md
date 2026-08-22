@@ -1,6 +1,7 @@
 ---
 title: "東京ゲームショウ"
 layout: post
+categories: ["blog"]
 ---
 
 # ゲームショウにいってきた

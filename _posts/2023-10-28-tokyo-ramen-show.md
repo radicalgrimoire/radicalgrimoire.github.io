@@ -1,6 +1,7 @@
 ---
 title: "東京ラーメンショウ"
 layout: post
+categories: ["blog"]
 ---
 
 # 東京ラーメンショウ

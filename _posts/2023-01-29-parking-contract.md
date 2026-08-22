@@ -1,6 +1,7 @@
 ---
 title: "駐車場契約"
 layout: post
+categories: ["blog"]
 ---
 
 先月、新車を購入したのですが、  

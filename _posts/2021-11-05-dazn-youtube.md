@@ -1,6 +1,7 @@
 ---
 title: "六魔辞典氏のYoutube離れ"
 layout: post
+categories: ["blog"]
 ---
 
 2019年の大腸ガンでの入院の時、入院中に **きまぐれでDAZNを契約** しました  

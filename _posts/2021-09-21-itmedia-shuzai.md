@@ -1,6 +1,7 @@
 ---
 title: "ITMediaから取材受けた件"
 layout: post
+categories: ["blog"]
 ---
 
 # 取材を受けた件

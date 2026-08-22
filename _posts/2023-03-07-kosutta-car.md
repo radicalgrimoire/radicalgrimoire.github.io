@@ -1,6 +1,7 @@
 ---
 title: "コスった……"
 layout: post
+categories: ["blog"]
 ---
 
 親の車の運転をしていたら、

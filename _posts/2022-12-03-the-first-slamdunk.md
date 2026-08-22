@@ -1,6 +1,8 @@
 ---
 title: "(ネタバレ有り)THE FIRST SLAM DUNK"
 layout: post
+categories: ["blog"]
+tags: ["movie"]
 ---
 
 大分前から映画のチケットを購入していた事もあり、公開初日朝7時からの封切りにいってきました

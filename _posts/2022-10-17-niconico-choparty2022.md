@@ -1,6 +1,8 @@
 ---
 title: "ニコニコ超パーティー2022 に行ってきました"
 layout: post
+categories: ["blog"]
+tags: ["niconico"]
 ---
 
 

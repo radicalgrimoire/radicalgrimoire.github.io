@@ -1,6 +1,8 @@
 ---
 title: "今年も東京オートサロン"
 layout: post
+categories: ["blog"]
+tags: ["automobile"]
 ---
 
 ## 今年も開催

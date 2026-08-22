@@ -1,6 +1,8 @@
 ---
 title: "リコリス・リコイル面白い"
 layout: post
+categories: ["blog"]
+tags: ["anime"]
 ---
 
 

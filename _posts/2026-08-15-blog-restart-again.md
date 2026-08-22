@@ -1,7 +1,7 @@
 ---
 title: "ブログ、再々開します"
 layout: post
-categories: ["Blog"]
+categories: ["blog"]
 date: 2026-08-15
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "2度目のガン手術から退院した"
 layout: post
+categories: ["blog"]
 ---
   
 5月にガンの再発がわかり、

@@ -1,6 +1,8 @@
 ---
 title: "【試乗】ダイハツ　タントファンクロス試乗してきました。"
 layout: post
+categories: ["blog"]
+tags: ["automobile"]
 ---
 
 # 乗ってきた

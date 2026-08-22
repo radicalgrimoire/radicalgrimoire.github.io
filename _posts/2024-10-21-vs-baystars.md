@@ -1,6 +1,8 @@
 ---
 title: "最高だったクライマックスシリーズ"
 layout: post
+categories: ["baseball"]
+tags: ["giants"]
 ---
 
 # ジャイアンツ敗戦
