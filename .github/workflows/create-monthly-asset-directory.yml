@@ -2,9 +2,20 @@ name: Create monthly asset directory
 
 on:
   workflow_dispatch:
+    inputs:
+      YYYY:
+        description: Year of the asset directory
+        required: true
+        default: "2026"
+        type: string
+      MM:
+        description: Month of the asset directory
+        required: true
+        default: "01"
+        type: string
   schedule:
-    # 15:00 UTC on the previous day is 00:00 JST on the first day of the month.
-    - cron: "0 15 28-31 * *"
+    # 01:00 UTC is 10:00 JST on the first day of the month.
+    - cron: "0 1 1 * *"
 
 permissions:
   contents: write
@@ -15,14 +26,29 @@ jobs:
     steps:
       - name: Check whether it is the first day in Japan
         id: date
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_YEAR: ${{ inputs.YYYY }}
+          INPUT_MONTH: ${{ inputs.MM }}
         run: |
-          if [ "$(TZ=Asia/Tokyo date +%d)" != "01" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+          if [ "$EVENT_NAME" = "schedule" ] && [ "$(TZ=Asia/Tokyo date +%d)" != "01" ]; then
             echo "should_create=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           echo "should_create=true" >> "$GITHUB_OUTPUT"
-          echo "year=$(TZ=Asia/Tokyo date +%Y)" >> "$GITHUB_OUTPUT"
-          echo "month=$(TZ=Asia/Tokyo date +%m)" >> "$GITHUB_OUTPUT"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            year="$INPUT_YEAR"
+            month="$INPUT_MONTH"
+          else
+            year="$(TZ=Asia/Tokyo date +%Y)"
+            month="$(TZ=Asia/Tokyo date +%m)"
+          fi
+          if ! [[ "$year" =~ ^[0-9]{4}$ ]] || ! [[ "$month" =~ ^(0[1-9]|1[0-2])$ ]]; then
+            echo "YYYY must be four digits and MM must be between 01 and 12." >&2
+            exit 1
+          fi
+          echo "year=$year" >> "$GITHUB_OUTPUT"
+          echo "month=$month" >> "$GITHUB_OUTPUT"
 
       - name: Check out repository
         if: steps.date.outputs.should_create == 'true'
