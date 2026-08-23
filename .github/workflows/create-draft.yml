@@ -1,36 +1,20 @@
-name: Create baseball draft
+name: Create draft
 
 on:
   workflow_dispatch:
     inputs:
       year:
-        description: "観戦年（年・月・日をすべて空欄にすると実行日の日本時間を使用）"
+        description: "記事の年（年・月・日をすべて空欄にすると実行日の日本時間を使用）"
         required: false
         type: string
       month:
-        description: "観戦月（年・月・日をすべて空欄にすると実行日の日本時間を使用）"
+        description: "記事の月（年・月・日をすべて空欄にすると実行日の日本時間を使用）"
         required: false
         type: string
       day:
-        description: "観戦日（年・月・日をすべて空欄にすると実行日の日本時間を使用）"
+        description: "記事の日（年・月・日をすべて空欄にすると実行日の日本時間を使用）"
         required: false
         type: string
-      team_number:
-        description: "相手球団の番号 (1=阪神, 2=中日, 3=DeNA, 4=ヤクルト, 5=広島, 6=西武, 7=日本ハム, 8=ロッテ, 9=オリックス, 10=楽天, 11=ソフトバンク)"
-        required: true
-        type: choice
-        options:
-          - "1"
-          - "2"
-          - "3"
-          - "4"
-          - "5"
-          - "6"
-          - "7"
-          - "8"
-          - "9"
-          - "10"
-          - "11"
 
 permissions:
   contents: write
@@ -42,21 +26,20 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v7
 
-      - name: Create baseball draft
+      - name: Create draft
         env:
           INPUT_YEAR: ${{ inputs.year }}
           INPUT_MONTH: ${{ inputs.month }}
           INPUT_DAY: ${{ inputs.day }}
-          TEAM_NUMBER: ${{ inputs.team_number }}
         shell: pwsh
         run: |
           $japanDate = [TimeZoneInfo]::ConvertTimeBySystemTimeZoneId((Get-Date), "Tokyo Standard Time")
           $dateInputs = @($env:INPUT_YEAR, $env:INPUT_MONTH, $env:INPUT_DAY)
           $providedDateInputs = @($dateInputs | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
           if ($providedDateInputs.Count -eq 3) {
-            ./.github/create-baseball-draft.ps1 -Year $env:INPUT_YEAR -Month $env:INPUT_MONTH -Day $env:INPUT_DAY -TeamNumber $env:TEAM_NUMBER
+            ./.github/create-draft.ps1 -Year $env:INPUT_YEAR -Month $env:INPUT_MONTH -Day $env:INPUT_DAY
           } elseif ($providedDateInputs.Count -eq 0) {
-            ./.github/create-baseball-draft.ps1 -Year $japanDate.Year -Month $japanDate.Month -Day $japanDate.Day -TeamNumber $env:TEAM_NUMBER
+            ./.github/create-draft.ps1 -Year $japanDate.Year -Month $japanDate.Month -Day $japanDate.Day
           } else {
             throw "年・月・日はすべて入力するか、すべて空欄にしてください。"
           }
@@ -67,5 +50,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add _drafts
-          git commit -m "Create baseball draft"
+          git commit -m "Create draft"
           git push
