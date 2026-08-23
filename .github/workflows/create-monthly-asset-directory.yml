@@ -1,0 +1,50 @@
+name: Create monthly asset directory
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 15:00 UTC on the previous day is 00:00 JST on the first day of the month.
+    - cron: "0 15 28-31 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  create-directory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check whether it is the first day in Japan
+        id: date
+        run: |
+          if [ "$(TZ=Asia/Tokyo date +%d)" != "01" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "should_create=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "should_create=true" >> "$GITHUB_OUTPUT"
+          echo "year=$(TZ=Asia/Tokyo date +%Y)" >> "$GITHUB_OUTPUT"
+          echo "month=$(TZ=Asia/Tokyo date +%m)" >> "$GITHUB_OUTPUT"
+
+      - name: Check out repository
+        if: steps.date.outputs.should_create == 'true'
+        uses: actions/checkout@v7
+
+      - name: Create asset directory
+        if: steps.date.outputs.should_create == 'true'
+        run: mkdir -p "assets/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}"
+
+      - name: Add .gitkeep file
+        if: steps.date.outputs.should_create == 'true'
+        run: touch "assets/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/.gitkeep"
+
+      - name: Commit asset directory
+        if: steps.date.outputs.should_create == 'true'
+        run: |
+          asset_directory="assets/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}"
+          if [ -z "$(git status --porcelain -- "$asset_directory")" ]; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$asset_directory/.gitkeep"
+          git commit -m "Create asset directory for ${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}"
+          git push
