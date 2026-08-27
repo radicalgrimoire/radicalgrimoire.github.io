@@ -1,13 +1,10 @@
 ---
-title: "2度目のガン手術から退院した"
+title: "WSL2 + Ubuntu + Docker Engine 構築メモ"
 layout: post
 categories: ["blog","tech"]
 tags: ["wsl", "docker"]
 date: 2026-08-27
 ---
-
-
-# WSL2 + Ubuntu + Docker Engine 構築メモ
 
 ## 目的
 
