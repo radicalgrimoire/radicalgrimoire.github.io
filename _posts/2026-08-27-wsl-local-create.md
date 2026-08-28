@@ -6,12 +6,12 @@ tags: ["wsl", "docker"]
 date: 2026-08-27
 ---
 
-## 目的
+# 目的
 
 WSL2 上の Ubuntu に Docker Engine を導入し、Windows から Docker コマンドを使えるようにするための手順メモ  
 また、WSL2 上で動作する SSH や Docker コンテナを Windows 経由で外部公開するための基本手順もまとめる  
 
-## 前提
+# 前提
 
 - Windows で WSL2 が利用できる状態
 - 管理者権限で PowerShell を起動できる状態
@@ -19,7 +19,7 @@ WSL2 上の Ubuntu に Docker Engine を導入し、Windows から Docker コマ
 
 <!--more-->
 
-## WSL を起動
+# WSL を起動
 
 PowerShell から WSL の Ubuntu を起動  
 
