@@ -20,3 +20,7 @@ I work on the systems that keep development moving: Perforce / Helix Core operat
 - Things that happen in everyday life
 
 My technical documentation and public repositories are collected on [GitHub](https://github.com/radicalgrimoire).
+
+## Design
+
+The design is based on [Contrast](https://github.com/niklasbuschmann/Contrast) by niklasbuschmann.
