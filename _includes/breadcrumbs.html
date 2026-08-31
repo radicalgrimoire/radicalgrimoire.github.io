@@ -1,0 +1,13 @@
+{% if page.collection == "docs" %}
+  {% assign parent_category = page.categories | first %}
+  {% assign parent = site.docs | where_exp: "doc", "doc.categories.size == 1 and doc.categories[0] == parent_category" | first %}
+  <nav class="docs-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ "/documents/" | relative_url }}">Documents</a></li>
+      {% if parent and parent.url != page.url %}
+        <li class="breadcrumb-item"><a href="{{ parent.url | relative_url }}">{{ parent_category | capitalize }}</a></li>
+      {% endif %}
+      <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+    </ol>
+  </nav>
+{% endif %}
