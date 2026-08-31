@@ -1,12 +1,25 @@
 ---
 title: "コンゴのヨテイ"
-layout: post
-categories: ["blog", "baseball"]
-tags: ["sumika", "sophia", "giants"]
-date: 2026-08-22
+layout: page
+order: 999
 ---
 
 sample pages
+
+> [!NOTE]
+> NOTEだよ
+
+> [!TIP]
+> TIPだよ
+
+> [!IMPORTANT]
+> IMPORTANTだよ
+
+> [!WARNING]
+> WARNINGだよ
+
+> [!CAUTION]
+> CAUTIONだよ
 
 ## Instagramの投稿
 
