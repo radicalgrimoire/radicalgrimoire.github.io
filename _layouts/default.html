@@ -49,7 +49,7 @@
     CAUTION: { label: "Caution", icon: "bi-exclamation-circle-fill" }
   };
 
-  const alertPattern = /^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][ \t]*(?=\r?\n|$)/;
+  const alertPattern = /^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][ \t]*(?=\r?\n|$)/i;
 
   function replaceAlertMarker(paragraph, marker) {
     for (const node of paragraph.childNodes) {
@@ -61,13 +61,15 @@
   }
 
   document.querySelectorAll("blockquote").forEach((blockquote) => {
+    if (blockquote.parentElement.closest("blockquote")) return;
+
     const firstParagraph = blockquote.querySelector(":scope > p:first-child");
     const match = firstParagraph?.textContent.match(alertPattern);
 
     if (!match) return;
 
     const alert = document.createElement("div");
-    const type = match[1];
+    const type = match[1].toUpperCase();
     const alertType = githubAlertTypes[type];
     const title = document.createElement("p");
 
