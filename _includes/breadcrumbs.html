@@ -1,6 +1,12 @@
 {% if page.collection == "docs" %}
   {% assign parent_category = page.categories | first %}
-  {% assign parent = site.docs | where_exp: "doc", "doc.categories.size == 1 and doc.categories[0] == parent_category" | first %}
+  {% for doc in site.docs %}
+    {% assign doc_category = doc.categories | first %}
+    {% if doc.categories.size == 1 and doc_category == parent_category %}
+      {% assign parent = doc %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
   <nav class="docs-breadcrumbs" aria-label="Breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ "/documents/" | relative_url }}">Documents</a></li>
