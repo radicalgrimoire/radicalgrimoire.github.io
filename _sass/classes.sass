@@ -39,6 +39,48 @@
 .image__link img
   display: block
 
+.github-alert
+  --github-alert-color: #0969da
+  background: transparent
+  border-left: .25em solid var(--github-alert-color)
+  margin: 1em 0
+  padding: .5em 1em
+
+.github-alert-title
+  align-items: center
+  color: var(--github-alert-color)
+  display: flex
+  font-weight: 600
+  gap: .5em
+  margin: 0 0 .5em
+
+.github-alert-title + p
+  margin-top: 0
+
+.github-alert-tip
+  --github-alert-color: #1a7f37
+
+.github-alert-important
+  --github-alert-color: #8250df
+
+.github-alert-warning
+  --github-alert-color: #9a6700
+
+.github-alert-caution
+  --github-alert-color: #cf222e
+
+@media (prefers-color-scheme: dark)
+  .github-alert
+    --github-alert-color: #4493f8
+  .github-alert-tip
+    --github-alert-color: #3fb950
+  .github-alert-important
+    --github-alert-color: #ab7df8
+  .github-alert-warning
+    --github-alert-color: #d29922
+  .github-alert-caution
+    --github-alert-color: #f85149
+
 // Lightbox3 theme overrides
 \:root
   --lb-backdrop-color: rgba(12, 14, 18, .9)
