@@ -2,6 +2,8 @@
 title: "コンゴのヨテイ"
 layout: page
 order: 999
+categories: [test]
+category_index: true
 ---
 
 sample pages
