@@ -49,23 +49,36 @@
     CAUTION: { label: "Caution", icon: "bi-exclamation-circle-fill" }
   };
 
+  const alertPattern = /^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][ \t]*(?=\r?\n|$)/;
+
+  function replaceAlertMarker(paragraph, marker) {
+    for (const node of paragraph.childNodes) {
+      if (node.nodeType !== Node.TEXT_NODE) continue;
+
+      node.textContent = node.textContent.replace(marker, "");
+      return;
+    }
+  }
+
   document.querySelectorAll("blockquote").forEach((blockquote) => {
     const firstParagraph = blockquote.querySelector(":scope > p:first-child");
-    const match = firstParagraph?.textContent.match(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/);
+    const match = firstParagraph?.textContent.match(alertPattern);
 
     if (!match) return;
 
     const alert = document.createElement("div");
     const type = match[1];
-  const alertType = githubAlertTypes[type];
-  const title = document.createElement("p");
-  title.className = "github-alert-title";
-  title.innerHTML = `<i class="bi ${alertType.icon}" aria-hidden="true"></i>${alertType.label}`;
-  alert.className = `github-alert github-alert-${type.toLowerCase()}`;
-    alert.setAttribute("role", "alert");
-    firstParagraph.firstChild.textContent = firstParagraph.firstChild.textContent.replace(match[0], "");
-  if (!firstParagraph.textContent.trim()) firstParagraph.remove();
-  alert.append(title);
+    const alertType = githubAlertTypes[type];
+    const title = document.createElement("p");
+
+    title.className = "github-alert-title";
+    title.innerHTML = `<i class="bi ${alertType.icon}" aria-hidden="true"></i>${alertType.label}`;
+    alert.className = `github-alert github-alert-${type.toLowerCase()}`;
+
+    replaceAlertMarker(firstParagraph, match[0]);
+    if (!firstParagraph.textContent.trim()) firstParagraph.remove();
+
+    alert.append(title);
     alert.append(...blockquote.childNodes);
     blockquote.replaceWith(alert);
   });
