@@ -36,9 +36,13 @@
   margin-bottom: .75em
 
 .docs-breadcrumbs .breadcrumb
-  --bs-breadcrumb-divider: "/"
-  --bs-breadcrumb-item-padding-x: .3rem
+  --bs-breadcrumb-divider-color: currentColor
+  --bs-breadcrumb-item-padding-x: .1rem
+  --bs-breadcrumb-item-active-color: currentColor
   margin: 0
+
+.docs-breadcrumbs .breadcrumb-item + .breadcrumb-item::before
+  content: "/"
 
 .image__link
   cursor: zoom-in
