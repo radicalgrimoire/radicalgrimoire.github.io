@@ -1,11 +1,13 @@
 ---
-title: "Perforce ユーザーガイド"
+title: "Perforce"
 layout: page
 order: 1
 categories: [perforce]
 category_index: true
 permalink: /1-perforce/
 ---
+
+# Documents
 
 {% assign docs = site.docs | sort: "order" %}
 {% if docs.size > 0 %}
