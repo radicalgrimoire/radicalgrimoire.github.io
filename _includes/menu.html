@@ -1,17 +1,19 @@
 <nav>
 {%- for item in include.menu -%}
   {%- if item.children -%}
-    <details class="menu-accordion">
-      <summary>{{ item.title }}</summary>
-      <div class="menu-accordion-items">
+    <div class="dropdown menu-dropdown">
+      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ item.title }}
+      </a>
+      <ul class="dropdown-menu">
         {%- for child in item.children -%}
           {%- assign node = site.pages | where: "name", child.file | first -%}
           {%- assign url = child.url | default: node.url -%}
           {%- assign title = child.title | default: node.title -%}
-          <a href="{{ url | relative_url }}" {% if url == page.url %}class="selected"{% endif %}>{{ title }}</a>
+          <li><a class="dropdown-item{% if url == page.url %} selected{% endif %}" href="{{ url | relative_url }}">{{ title }}</a></li>
         {%- endfor -%}
-      </div>
-    </details>
+      </ul>
+    </div>
   {%- else -%}
     {%- assign node = site.pages | where: "name", item.file | first -%}
     {%- assign url = item.url | default: node.url -%}
