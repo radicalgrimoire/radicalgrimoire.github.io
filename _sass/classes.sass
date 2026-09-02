@@ -93,6 +93,55 @@
   --github-alert-color: #cf222e
   --github-alert-background: #ffebe9
 
+.github-code-view
+  background: rgba(lighten($dark, 6%), .9)
+  border: 1px solid reduce(24)
+  border-radius: 2px
+  color: #f8f8f2
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
+  font-size: .8em
+  margin: 1.5em 0
+  overflow-x: auto
+
+.github-code-view-header
+  background: rgba($dark, .5)
+  border-bottom: 1px solid reduce(24)
+  padding: .65em 1em
+
+.github-code-view-header a
+  color: inherit
+
+.github-code-view-content
+  background: transparent
+  border-radius: 0
+  margin: 0
+  padding: .6em 0
+  overflow: visible
+
+.github-code-view-line
+  display: grid
+  grid-template-columns: max-content minmax(max-content, 1fr)
+  min-height: 1.5em
+
+.github-code-view-line.is-highlighted
+  background: rgba(#66d9ef, .24)
+
+.github-code-view-line-number
+  color: #a29f90
+  padding: 0 1em
+  text-align: right
+  user-select: none
+
+.github-code-view-line-number:hover
+  background: rgba(white, .1)
+  color: white
+  text-decoration: none
+
+.github-code-view-line-content
+  min-width: max-content
+  padding-right: 1em
+  white-space: pre
+
 @media (prefers-color-scheme: dark)
   .github-alert
     --github-alert-color: #4493f8
