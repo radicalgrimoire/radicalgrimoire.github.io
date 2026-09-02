@@ -1,6 +1,7 @@
 ---
 title: "GitHub Code View"
 layout: page
+categories: [test]
 ---
 
 公開リポジトリのファイルを、特定コミットに固定して表示します。行番号をクリックすると行へのリンクを作成し、Shift を押しながら別の行番号をクリックすると範囲を選択できます。
