@@ -1,6 +1,7 @@
 {% assign code_view_id = include.id | default: "github-code" %}
 {% assign code_view_start = include.start | default: 1 %}
 {% assign code_view_end = include.end | default: 0 %}
+{% assign code_view_wrap = include.wrap | default: false %}
 {% assign github_blob_url = "https://github.com/" | append: include.repo | append: "/blob/" | append: include.commit | append: "/" | append: include.path %}
 {% assign github_raw_url = "https://raw.githubusercontent.com/" | append: include.repo | append: "/" | append: include.commit | append: "/" | append: include.path %}
 <section
@@ -9,6 +10,7 @@
   data-source-url="{{ github_raw_url }}"
   data-start-line="{{ code_view_start }}"
   data-end-line="{{ code_view_end }}"
+  data-wrap="{{ code_view_wrap }}"
   aria-label="{{ include.repo }} の {{ include.path }}"
 >
   <header class="github-code-view-header">
