@@ -19,10 +19,7 @@
           {% if post.categories.size > 0 %}
             <span class="archive-card-categories">
               {% for category in post.categories %}
-                {% assign category_color = "other" %}
-                {% if category == "tech" or category == "baseball" or category == "game" %}
-                  {% assign category_color = category %}
-                {% endif %}
+                {% capture category_color %}{% include archive-category-color.html category=category %}{% endcapture %}
                 <span class="archive-category archive-color-{{ category_color }}">{{ category | escape }}</span>
               {% endfor %}
             </span>

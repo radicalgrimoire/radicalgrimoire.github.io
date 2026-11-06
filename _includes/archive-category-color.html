@@ -1,5 +1,13 @@
-{%- if include.categories contains "tech" -%}tech
-{%- elsif include.categories contains "baseball" -%}baseball
-{%- elsif include.categories contains "game" -%}game
-{%- else -%}other
-{%- endif -%}
+{%- assign color_key = "other" -%}
+{%- for color_entry in site.category_colors.categories -%}
+  {%- if include.category -%}
+    {%- if include.category == color_entry.name -%}
+      {%- capture color_key -%}configured-{{ forloop.index0 }}{%- endcapture -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- elsif include.categories contains color_entry.name -%}
+    {%- capture color_key -%}configured-{{ forloop.index0 }}{%- endcapture -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{{- color_key -}}

@@ -6,10 +6,7 @@
       <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%Y.%m.%d" }}</time>
       {% if include.show_taxonomies %}
         {% for category in include.post.categories %}
-          {% assign category_color = "other" %}
-          {% if category == "tech" or category == "baseball" or category == "game" %}
-            {% assign category_color = category %}
-          {% endif %}
+          {% capture category_color %}{% include archive-category-color.html category=category %}{% endcapture %}
           <span class="archive-category archive-color-{{ category_color }}">{{ category | escape }}</span>
         {% endfor %}
         {% for tag in include.post.tags %}<span class="post-tag">#{{ tag | escape }}</span>{% endfor %}

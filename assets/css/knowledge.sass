@@ -334,24 +334,16 @@ body
   padding: 0
 
 .archive-color-other
-  --archive-accent: #64788e
-  --archive-label-background: #e8edf3
-  --archive-label-color: #3e5268
+  --archive-accent: {{ site.category_colors.fallback.light.accent }}
+  --archive-label-background: {{ site.category_colors.fallback.light.label_background }}
+  --archive-label-color: {{ site.category_colors.fallback.light.label_text }}
 
-.archive-color-tech
-  --archive-accent: #3775ba
-  --archive-label-background: #dceaf9
-  --archive-label-color: #245388
-
-.archive-color-baseball
-  --archive-accent: #ba691c
-  --archive-label-background: #f9e9d8
-  --archive-label-color: #894a12
-
-.archive-color-game
-  --archive-accent: #8a5aad
-  --archive-label-background: #eee2f7
-  --archive-label-color: #653d83
+{% for color_entry in site.category_colors.categories %}
+.archive-color-configured-{{ forloop.index0 }}
+  --archive-accent: {{ color_entry.light.accent }}
+  --archive-label-background: {{ color_entry.light.label_background }}
+  --archive-label-color: {{ color_entry.light.label_text }}
+{% endfor %}
 
 .site-main > .post-article
   max-width: 820px
@@ -912,21 +904,15 @@ body
     &:hover, &:focus-visible
       border-color: var(--archive-accent)
   .archive-color-other
-    --archive-accent: #a7b9cd
-    --archive-label-background: #344656
-    --archive-label-color: #e1eaf2
-  .archive-color-tech
-    --archive-accent: #79baff
-    --archive-label-background: #254760
-    --archive-label-color: #cae5ff
-  .archive-color-baseball
-    --archive-accent: #f3ad69
-    --archive-label-background: #60432f
-    --archive-label-color: #ffddbb
-  .archive-color-game
-    --archive-accent: #d1a5ef
-    --archive-label-background: #49365c
-    --archive-label-color: #f0d9ff
+    --archive-accent: {{ site.category_colors.fallback.dark.accent }}
+    --archive-label-background: {{ site.category_colors.fallback.dark.label_background }}
+    --archive-label-color: {{ site.category_colors.fallback.dark.label_text }}
+{% for color_entry in site.category_colors.categories %}
+  .archive-color-configured-{{ forloop.index0 }}
+    --archive-accent: {{ color_entry.dark.accent }}
+    --archive-label-background: {{ color_entry.dark.label_background }}
+    --archive-label-color: {{ color_entry.dark.label_text }}
+{% endfor %}
   .archive-pagination button
     border-color: #71859b
   .archive-mobile-filters .archive-filter-option, .archive-mobile-filters .archive-filter-clear

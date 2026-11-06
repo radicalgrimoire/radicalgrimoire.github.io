@@ -14,6 +14,25 @@ show_excerpts: true        # show the latest notes on the home page
 show_frame: true           # use the original dark header and footer styles
 minimal: false             # use a dark header
 
+# DailyLogs category colors. The first matching entry takes priority when a post
+# has multiple categories. Unlisted categories use fallback.
+# Quote hex colors and specify accent, label_background, and label_text for
+# both light and dark modes. Add an entry to assign colors to a new category.
+category_colors:
+  fallback:
+    light: { accent: "#64788e", label_background: "#e8edf3", label_text: "#3e5268" }
+    dark:  { accent: "#a7b9cd", label_background: "#344656", label_text: "#e1eaf2" }
+  categories:
+    - name: tech
+      light: { accent: "#3775ba", label_background: "#dceaf9", label_text: "#245388" }
+      dark:  { accent: "#79baff", label_background: "#254760", label_text: "#cae5ff" }
+    - name: baseball
+      light: { accent: "#ba691c", label_background: "#f9e9d8", label_text: "#894a12" }
+      dark:  { accent: "#f3ad69", label_background: "#60432f", label_text: "#ffddbb" }
+    - name: game
+      light: { accent: "#8a5aad", label_background: "#eee2f7", label_text: "#653d83" }
+      dark:  { accent: "#d1a5ef", label_background: "#49365c", label_text: "#f0d9ff" }
+
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
