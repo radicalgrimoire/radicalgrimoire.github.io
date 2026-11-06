@@ -1,0 +1,34 @@
+{% comment %}Navigation requires numeric order values; ties are skipped and category index pages are excluded.{% endcomment %}
+{% assign ordered_docs = site.docs | sort: "order" %}
+{% assign current_category = page.categories | first %}
+{% assign previous_doc = nil %}
+{% assign next_doc = nil %}
+{% if page.order and current_category %}
+  {% for doc in ordered_docs %}
+    {% assign doc_category = doc.categories | first %}
+    {% if doc_category == current_category and doc.category_index != true and doc.order %}
+      {% if doc.order < page.order %}
+        {% assign previous_doc = doc %}
+      {% elsif doc.order > page.order %}
+        {% assign next_doc = doc %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if previous_doc or next_doc %}
+  <nav class="docs-pagination" aria-label="資料の前後">
+    {% if previous_doc %}
+      <a class="docs-pagination-previous" href="{{ previous_doc.url | relative_url }}">
+        <span class="docs-pagination-label">← 前の記事</span>
+        <span class="docs-pagination-title">{{ previous_doc.title | escape }}</span>
+      </a>
+    {% endif %}
+    {% if next_doc %}
+      <a class="docs-pagination-next" href="{{ next_doc.url | relative_url }}">
+        <span class="docs-pagination-label">次の記事 →</span>
+        <span class="docs-pagination-title">{{ next_doc.title | escape }}</span>
+      </a>
+    {% endif %}
+  </nav>
+{% endif %}

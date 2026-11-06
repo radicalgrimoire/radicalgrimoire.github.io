@@ -1,7 +1,7 @@
 ---
 title: "排他的ロックのファイルを移動できない時の対処"
 layout: page
-order: 105
+order: 790
 categories: [perforce, p4v]
 section: "トラブル対応"
 permalink: /1-perforce/105-move-file-with-lock/
