@@ -1,26 +1,40 @@
-<link rel="stylesheet" href="{{ "/assets/css/sidebar.css" | relative_url }}" media="screen and (min-width: 70em)">
-<aside style="display: none">
-  <nav>
-  {%- for item in site.navigation -%}
-    {%- assign node = site.pages | where: "name", item.file | first -%}
-    {%- assign url = item.url | default: node.url -%}
-    {%- assign title = item.title | default: node.title -%}
-    {%- assign icon = item.icon | default: item.sidebaricon -%}
-    <a aria-label="{{ title }}" href="{{ url | relative_url }}" {% if url == page.url %}class="selected"{% endif %}>
-      <svg aria-hidden="true" class="icon"><use xlink:href="{{ "/assets/fontawesome/icons.svg" | relative_url }}#{{ icon }}"></use></svg>
-      <span aria-hidden="true">{{ title }}</span>
+<aside class="site-sidebar">
+  <a class="sidebar-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+  <p class="sidebar-subtitle">A Personal Knowledge Base</p>
+
+  <nav class="sidebar-nav" aria-label="Main navigation">
+    <a href="{{ "/" | relative_url }}"{% if page.url == "/" %} aria-current="page"{% endif %}>
+      <i class="bi bi-house" aria-hidden="true"></i> Home
     </a>
-  {%- endfor -%}
-  {%- for item in site.external -%}
-    {%- assign node = site.pages | where: "name", item.file | first -%}
-    {%- assign url = item.url | default: node.url -%}
-    {%- assign title = item.title | default: node.title -%}
-    {%- assign icon = item.icon | default: item.sidebaricon -%}
-    <a aria-label="{{ title }}" href="{{ url | relative_url }}" {% if url == page.url %}class="selected"{% endif %}>
-      <svg aria-hidden="true" class="icon"><use xlink:href="{{ "/assets/fontawesome/icons.svg" | relative_url }}#{{ icon }}"></use></svg>
-      <span aria-hidden="true">{{ title }}</span>
-    </a>
-  {%- endfor -%}
+    {% for item in include.menu %}
+      {% if item.children %}
+        <span class="sidebar-nav-label">{{ item.title | escape }}</span>
+        {% for child in item.children %}
+          {% assign node = site.pages | where: "name", child.file | first %}
+          {% assign url = child.url | default: node.url %}
+          {% assign title = child.title | default: node.title %}
+          <a href="{{ url | relative_url }}"{% if url == page.url %} aria-current="page"{% elsif child.file == "documents.md" and page.collection == "docs" %} class="is-section"{% endif %}>
+            <i class="bi bi-journal-text" aria-hidden="true"></i> {{ title | escape }}
+          </a>
+        {% endfor %}
+      {% else %}
+        {% assign node = site.pages | where: "name", item.file | first %}
+        {% assign url = item.url | default: node.url %}
+        {% assign title = item.title | default: node.title %}
+        <a href="{{ url | relative_url }}"{% if url == page.url %} aria-current="page"{% endif %}>
+          <i class="bi bi-file-text" aria-hidden="true"></i> {{ title | escape }}
+        </a>
+      {% endif %}
+    {% endfor %}
   </nav>
-  <div class="description">{{ site.description }}</div>
+
+  {% if site.external %}
+    <nav class="sidebar-external" aria-label="External links">
+      {% for item in site.external %}
+        <a href="{{ item.url | relative_url }}" aria-label="{{ item.title | escape }}">
+          <svg class="icon" aria-hidden="true"><use xlink:href="{{ "/assets/fontawesome/icons.svg" | relative_url }}#{{ item.icon }}"></use></svg>
+        </a>
+      {% endfor %}
+    </nav>
+  {% endif %}
 </aside>

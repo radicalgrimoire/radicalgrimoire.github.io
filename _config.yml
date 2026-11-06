@@ -10,9 +10,8 @@ paginate: 5 # 1ページあたりの記事数
 paginate_path: "/page:num/"
 
 # Layout
-show_excerpts: true        # show article excerpts on the home page
-show_frame: true           # adds a gray frame to the site
-show_sidebar: false        # show a sidebar instead of the usual header
+show_excerpts: true        # show the latest notes on the home page
+show_frame: true           # use the original dark header and footer styles
 minimal: false             # use a dark header
 
 # Menu

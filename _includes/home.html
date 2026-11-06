@@ -1,16 +1,43 @@
 {%- assign posts = paginator.posts | default: site.posts -%}
-{% for post in posts %}
-  <article>
-    {% include meta.html post=post preview=true show_taxonomies=true %}
-    {{ post.excerpt }}
-    <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
-  </article>
-{% endfor %}
+<section class="home-list" aria-labelledby="latest-notes">
+  <div class="home-heading">
+    <div>
+      <p class="home-eyebrow">GadgetLogs</p>
+      <h1 id="latest-notes">Latest Notes</h1>
+      <p class="home-intro">技術、野球、日々の記録。</p>
+    </div>
+    <a class="home-archive-link" href="{{ "/archive/" | relative_url }}">All logs <span aria-hidden="true">→</span></a>
+  </div>
 
-{% if paginator.total_pages > 1 %}
-  <footer>
-    {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">« newer posts</a>{% else %}<span></span>{% endif %}
-    <span>page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-    {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">older posts »</a>{% else %}<span></span>{% endif %}
-  </footer>
-{% endif %}
+  <ol class="note-list">
+    {% for post in posts %}
+      <li class="note-item">
+        <a class="note-link" href="{{ post.url | relative_url }}">
+          <time class="note-date" datetime="{{ post.date | date_to_xmlschema }}">
+            <span>{{ post.date | date: "%b" }}</span>
+            <strong>{{ post.date | date: "%d" }}</strong>
+            <span>{{ post.date | date: "%Y" }}</span>
+          </time>
+          <span class="note-content">
+            <span class="note-title">{{ post.title | escape }}</span>
+            {% if post.categories.size > 0 or post.tags.size > 0 %}
+              <span class="note-taxonomies">
+                {% for category in post.categories %}<span>{{ category | escape }}</span>{% endfor %}
+                {% for tag in post.tags %}<span>{{ tag | escape }}</span>{% endfor %}
+              </span>
+            {% endif %}
+          </span>
+          <span class="note-arrow" aria-hidden="true">›</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
+
+  {% if paginator.total_pages > 1 %}
+    <nav class="home-pagination" aria-label="Pagination">
+      {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">« newer posts</a>{% else %}<span></span>{% endif %}
+      <span>page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">older posts »</a>{% else %}<span></span>{% endif %}
+    </nav>
+  {% endif %}
+</section>

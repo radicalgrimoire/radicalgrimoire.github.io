@@ -23,4 +23,4 @@ My technical documentation and public repositories are collected on [GitHub](htt
 
 ## Design
 
-The design is based on [Contrast](https://github.com/niklasbuschmann/Contrast) by niklasbuschmann.
+The design builds on [Contrast](https://github.com/niklasbuschmann/Contrast) by niklasbuschmann, with a knowledge-base-style navigation and a compact list of recent posts.
