@@ -35,11 +35,12 @@ category_colors:
 
 # Menu
 
-navigation:                # accepts {file, title, url, icon, sidebaricon}
+navigation:                # accepts {file, title, url, icon}; children use Bootstrap Icons for the sidebar
   - title: "Logs"
     children:
       - {file: "archive.html", title: "DailyLogs"}
       - {file: "documents.md", title: "Documents"}
+      - {file: "giants-calendar.md", title: "Giants Calendar", icon: "calendar3"}
   - {file: "README.md"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons

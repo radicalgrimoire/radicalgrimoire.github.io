@@ -14,7 +14,7 @@
           {% assign url = child.url | default: node.url %}
           {% assign title = child.title | default: node.title %}
           <a href="{{ url | relative_url }}"{% if url == page.url %} aria-current="page"{% elsif child.file == "documents.md" and page.collection == "docs" %} class="is-section"{% elsif child.file == "archive.html" and page.layout == "post" %} class="is-section"{% endif %}>
-            <i class="bi bi-journal-text" aria-hidden="true"></i> {{ title | escape }}
+            <i class="bi bi-{{ child.icon | default: 'journal-text' | escape }}" aria-hidden="true"></i> {{ title | escape }}
           </a>
           {% if child.file == "archive.html" and page.url == url %}
             {% include archive-filters.html popover_id="sidebar-archive-filters" %}
