@@ -36,3 +36,25 @@ nav a
 
 .menu-dropdown .dropdown-menu a
   margin: 0
+
+.menu-dropdown .dropdown-menu
+  opacity: 0
+  scale: .96
+  translate: 0 -.4rem
+  transform-origin: top left
+  transition: opacity .2s ease, scale .2s cubic-bezier(.2, .8, .2, 1), translate .2s cubic-bezier(.2, .8, .2, 1), display .2s allow-discrete
+
+.menu-dropdown .dropdown-menu.show
+  opacity: 1
+  scale: 1
+  translate: 0 0
+
+@starting-style
+  .menu-dropdown .dropdown-menu.show
+    opacity: 0
+    scale: .96
+    translate: 0 -.4rem
+
+@media (prefers-reduced-motion: reduce)
+  .menu-dropdown .dropdown-menu
+    transition: none
