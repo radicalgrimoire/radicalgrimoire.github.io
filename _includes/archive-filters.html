@@ -1,0 +1,21 @@
+<div class="archive-filters" data-archive-filters hidden>
+  <div class="archive-filter-group">
+    <p class="archive-filter-label">Categories</p>
+    <div class="archive-filter-options">
+      {% assign categories = site.categories | sort %}
+      {% for category in categories %}
+        <button type="button" class="archive-filter-option" data-filter-type="category" data-filter-value="{{ category[0] | escape }}" aria-pressed="false">{{ category[0] | escape }} <span>{{ category[1].size }}</span></button>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="archive-filter-group">
+    <p class="archive-filter-label">Tags</p>
+    <div class="archive-filter-options">
+      {% assign tags = site.tags | sort %}
+      {% for tag in tags %}
+        <button type="button" class="archive-filter-option" data-filter-type="tag" data-filter-value="{{ tag[0] | escape }}" aria-pressed="false">{{ tag[0] | escape }} <span>{{ tag[1].size }}</span></button>
+      {% endfor %}
+    </div>
+  </div>
+  <button type="button" class="archive-filter-clear" data-filter-clear>Clear filters</button>
+</div>

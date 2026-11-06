@@ -147,6 +147,53 @@ body > footer
   margin: 0
   color: #315fa8
 
+.archive-filters[hidden], .archive-filter-status[hidden], .archive-year-group[hidden], [data-archive-post][hidden]
+  display: none
+
+.archive-mobile-filters
+  margin-bottom: 1.5rem
+  summary
+    cursor: pointer
+    font-weight: 600
+
+.archive-filters
+  padding: .5rem 0 1rem
+
+.archive-filter-group
+  margin-bottom: .75rem
+
+.archive-filter-label
+  margin: .5rem 0
+  font-size: .75rem
+  font-weight: 700
+  text-align: left
+  text-transform: uppercase
+
+.archive-filter-options
+  display: flex
+  flex-wrap: wrap
+  gap: .35rem
+
+.archive-filter-option, .archive-filter-clear
+  border: 1px solid #b9c9dc
+  border-radius: .35rem
+  padding: .25rem .5rem
+  background: transparent
+  color: inherit
+  font-size: .8rem
+  text-align: left
+  span
+    opacity: .7
+  &:hover, &[aria-pressed="true"]
+    background: #d7e6f8
+    color: #1d416d
+  &:focus-visible
+    outline: 2px solid #2867cc
+    outline-offset: 2px
+
+.archive-filter-status
+  font-size: .9rem
+
 @media (min-width: 48em)
   body
     display: grid
@@ -207,6 +254,37 @@ body > footer
     letter-spacing: .08em
     text-transform: uppercase
 
+  .sidebar-nav .archive-filters
+    margin: 0 0 .5rem .65rem
+    padding: .25rem 0 .5rem .65rem
+    border-left: 1px solid #52677e
+
+  .sidebar-nav .archive-filter-label
+    color: #aab9ca
+
+  .sidebar-nav .archive-filter-options
+    display: block
+
+  .sidebar-nav .archive-filter-option
+    display: block
+    width: 100%
+    border: 0
+    padding: .3rem .5rem
+    color: #d3deeb
+    &:hover, &[aria-pressed="true"]
+      background: #38536d
+      color: #fff
+
+  .sidebar-nav .archive-filter-clear
+    border-color: #52677e
+    color: #d3deeb
+    &:hover
+      background: #38536d
+      color: #fff
+
+  .archive-mobile-filters
+    display: none
+
   .sidebar-external
     display: flex
     gap: 1rem
@@ -244,6 +322,11 @@ body > footer
   .note-taxonomies span
     background: #2c4056
     color: #c1d9f3
+  .archive-mobile-filters .archive-filter-option, .archive-mobile-filters .archive-filter-clear
+    border-color: #52677e
+    &:hover, &[aria-pressed="true"]
+      background: #38536d
+      color: #fff
 
 @media (prefers-reduced-motion: reduce)
   .note-link

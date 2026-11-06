@@ -16,6 +16,9 @@
           <a href="{{ url | relative_url }}"{% if url == page.url %} aria-current="page"{% elsif child.file == "documents.md" and page.collection == "docs" %} class="is-section"{% endif %}>
             <i class="bi bi-journal-text" aria-hidden="true"></i> {{ title | escape }}
           </a>
+          {% if child.file == "archive.html" and page.url == url %}
+            {% include archive-filters.html %}
+          {% endif %}
         {% endfor %}
       {% else %}
         {% assign node = site.pages | where: "name", item.file | first %}
