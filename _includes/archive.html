@@ -1,6 +1,6 @@
 {% if page.archive_filters %}
 <article class="archive-page">
-  <header><h1>{{ include.title | default: page.title }}</h1></header>
+  <header><h1 tabindex="-1">{{ include.title | default: page.title }}</h1></header>
   <div class="archive-mobile-filters">
     {% include archive-filters.html popover_id="mobile-archive-filters" %}
   </div>
@@ -39,6 +39,13 @@
     <button type="button" data-archive-next>Older →</button>
   </nav>
 </article>
+<section class="archive-reader" id="archive-reader" aria-label="記事プレビュー" data-archive-reader hidden>
+  <div class="archive-reader-toolbar">
+    <a data-archive-reader-link>記事ページを直接開く ↗</a>
+    <button type="button" data-archive-reader-close>✕ 閉じる</button>
+  </div>
+  <div class="archive-reader-content" data-archive-reader-content></div>
+</section>
 {% else %}
 <article>
   <header><h1>{{ include.title | default: page.title }}</h1></header>

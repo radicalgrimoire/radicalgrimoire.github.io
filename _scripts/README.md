@@ -31,6 +31,16 @@ After building the site, check the generated pages with:
 bundle exec ruby _scripts/test_asset_loading.rb
 ```
 
+## Archive article preview
+
+Archive cards open a non-modal article panel without losing the current filter
+or page. The panel loads the existing post in an iframe so post-specific assets
+continue to run; its direct link and ordinary card links still work independently.
+Without JavaScript, cards continue to navigate to their post pages. The panel can
+be closed with its button or Escape, including from inside the article.
+After building the site, check the generated markup with
+`bundle exec ruby _scripts/test_archive_reader.rb`.
+
 ## Giants Calendar
 
 The Giants Calendar page fetches `giants.ics` from the public

@@ -332,6 +332,53 @@ body
   margin: 0
   padding: 0
 
+.archive-reader[hidden]
+  display: none
+
+.archive-reader
+  position: fixed
+  z-index: 100
+  inset: 10vh 0 0
+  display: flex
+  flex-direction: column
+  overflow: hidden
+  border: 1px solid #d2dce7
+  border-radius: .8rem .8rem 0 0
+  background: #f5f7fb
+  box-shadow: 0 1rem 3.5rem rgba(20, 35, 52, .25)
+
+.archive-reader-toolbar
+  display: flex
+  flex: 0 0 auto
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  padding: .8rem 1rem
+  border-bottom: 1px solid #d2dce7
+  background: #fff
+  font-size: .8rem
+  a
+    color: #315fa8
+  button
+    padding: .35rem .7rem
+    border: 1px solid #d2dce7
+    border-radius: .35rem
+    background: transparent
+    color: inherit
+    white-space: nowrap
+  a:focus-visible, button:focus-visible
+    outline: 2px solid #2867cc
+    outline-offset: 2px
+
+.archive-reader-content
+  flex: 1
+  min-height: 0
+  iframe
+    display: block
+    width: 100%
+    height: 100%
+    border: 0
+
 .archive-color-other
   --archive-accent: {{ site.category_colors.fallback.light.accent }}
   --archive-label-background: {{ site.category_colors.fallback.light.label_background }}
@@ -526,7 +573,7 @@ body
   background: #fff
   color: inherit
   transition: border-color .15s ease, box-shadow .15s ease
-  &:hover, &:focus-visible
+  &:hover, &:focus-visible, &.is-previewing
     border-color: var(--archive-accent)
     box-shadow: 0 0 0 1px var(--archive-accent)
     color: inherit
@@ -711,6 +758,11 @@ body
     grid-template-columns: 1fr
 
 @media (min-width: 48em)
+  .archive-reader
+    inset: 1rem 1rem 1rem auto
+    width: unquote("min(740px, calc(100vw - 17rem))")
+    border-radius: .65rem
+
   body
     display: grid
     grid-template-columns: 15rem minmax(0, 1fr)
@@ -850,7 +902,35 @@ body
   .archive-grid
     grid-template-columns: repeat(4, minmax(0, 1fr))
 
+html.archive-preview body
+  display: block
+  min-height: 100vh
+  background: #fff
+
+html.archive-preview .site-sidebar, html.archive-preview body > header, html.archive-preview .post-back
+  display: none
+
+html.archive-preview .site-main
+  width: 100%
+
+html.archive-preview .site-main > .post-article
+  padding: 2rem 1.5rem 3rem
+
 @media (prefers-color-scheme: dark)
+  html.archive-preview body
+    background: #1c232c
+
+  .archive-reader
+    border-color: #405165
+    background: #1c232c
+  .archive-reader-toolbar
+    border-color: #405165
+    background: #202c38
+    a
+      color: #a9c5e1
+    button
+      border-color: #52677e
+
   html, body
     background: #1c232c
     color: #e4eaf2
@@ -917,7 +997,7 @@ body
   .archive-card-link
     background: #202c38
     border-color: #405165
-    &:hover, &:focus-visible
+    &:hover, &:focus-visible, &.is-previewing
       border-color: var(--archive-accent)
   .archive-color-other
     --archive-accent: {{ site.category_colors.fallback.dark.accent }}
