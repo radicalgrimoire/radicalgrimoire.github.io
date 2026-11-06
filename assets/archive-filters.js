@@ -50,9 +50,8 @@
 
     const activeFilters = [category, tag].filter(Boolean);
     for (const trigger of filterTriggers) {
-      trigger.querySelector("[data-filter-count]").textContent = activeFilters.length
-        ? `(${activeFilters.length})`
-        : "";
+      const selected = trigger.dataset.filterTrigger === "category" ? category : tag;
+      trigger.querySelector("[data-filter-count]").textContent = selected ? "(1)" : "";
     }
     status.hidden = activeFilters.length === 0;
     status.textContent = activeFilters.length

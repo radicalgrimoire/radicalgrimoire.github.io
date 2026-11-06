@@ -17,7 +17,6 @@
             <i class="bi bi-journal-text" aria-hidden="true"></i> {{ title | escape }}
           </a>
           {% if child.file == "archive.html" and page.url == url %}
-            <button type="button" class="archive-filter-trigger" popovertarget="sidebar-archive-filters" data-filter-trigger hidden>Categories / Tags <span data-filter-count></span></button>
             {% include archive-filters.html popover_id="sidebar-archive-filters" %}
           {% endif %}
         {% endfor %}

@@ -10,18 +10,18 @@ html
 body
   box-shadow: 0 0 .3em lighten($dark, 65%)
 
-body > header, body > footer
+body > header
   background: lighten($dark, 5%)
   color: $light
 
 @media (min-width: 32em)
-  body > header, body > article, body > footer
+  body > header, body > article
     padding: 1.75em calc(22% - 6em)
 
 @media (prefers-color-scheme: dark)
   html
     background: darken($dark, 4%)
-  body > header, body > footer
+  body > header
     background: $dark
-  body, body > header, body > footer
+  body, body > header
     box-shadow: 0 0 0 1px lighten($dark, 8%)

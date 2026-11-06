@@ -4,7 +4,7 @@
 @import index, font, basic, layout, classes
 
 @media (min-width: 40em)
-  body > header, body > article, body > footer
+  body > header, body > article
     padding: 1.75em calc(40% - 17em)
 
 {% if site.minimal %}
@@ -21,8 +21,3 @@ body > header
   border-bottom: 1px solid reduce(14)
 
 {% endif %}
-
-body > footer
-  box-shadow: 0 0 .6em rgba($dark, 0.04) inset
-  border-top: 1px solid reduce(14)
-  opacity: .9

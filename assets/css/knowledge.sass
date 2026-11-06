@@ -384,8 +384,8 @@ body
   text-transform: uppercase
 
 .archive-filter-options
-  display: flex
-  flex-wrap: wrap
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
   gap: .35rem
 
 .archive-filter-option, .archive-filter-clear
@@ -404,13 +404,18 @@ body
     outline-offset: 2px
 
 .archive-filter-option
-  display: inline-flex
-  align-items: baseline
-  gap: .3rem
-  max-width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  gap: .2rem
+  min-width: 0
+  aspect-ratio: 1
+  text-align: center
 
 .archive-filter-name
   min-width: 0
+  max-width: 100%
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
@@ -534,10 +539,15 @@ body
     border: 1px solid #52677e
 
   @supports (left: anchor(right))
-    .sidebar-nav .archive-filter-trigger
-      anchor-name: --archive-filter-trigger
+    .sidebar-nav [data-filter-trigger="category"]
+      anchor-name: --archive-category-trigger
+    .sidebar-nav [data-filter-trigger="tag"]
+      anchor-name: --archive-tag-trigger
+    .sidebar-nav [data-filter-panel-type="category"]
+      position-anchor: --archive-category-trigger
+    .sidebar-nav [data-filter-panel-type="tag"]
+      position-anchor: --archive-tag-trigger
     .sidebar-nav .archive-filters[popover]
-      position-anchor: --archive-filter-trigger
       inset: auto
       left: anchor(right)
       top: unquote("clamp(.5rem, anchor(top), max(.5rem, 100vh - 18.5rem))")
@@ -545,9 +555,6 @@ body
 
   .sidebar-nav .archive-filter-label
     color: #aab9ca
-
-  .sidebar-nav .archive-filter-options
-    display: flex
 
   .sidebar-nav .archive-filter-option
     color: #d3deeb
