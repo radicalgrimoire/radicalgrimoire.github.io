@@ -32,7 +32,7 @@
 {% include sidebar.html menu=pages %}
 
 <header>
-  <a href="{{ "/" | relative_url }}" class="title">{{ site.title | escape }}</a>
+  <a href="{{ "/" | relative_url }}" class="title">{% include site-title.html %}</a>
   {% include menu.html menu=pages %}
 </header>
 

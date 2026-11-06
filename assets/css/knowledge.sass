@@ -13,6 +13,9 @@ body
   background: #f5f7fb
   color: #202b3b
 
+.site-title-accent
+  color: #70b4ff
+
 .site-sidebar
   display: none
 
@@ -147,8 +150,131 @@ body > footer
   margin: 0
   color: #315fa8
 
-.archive-filters[hidden], .archive-filter-status[hidden], .archive-year-group[hidden], [data-archive-post][hidden]
+.archive-filters[hidden], .archive-filter-status[hidden], .archive-pagination[hidden], [data-archive-post][hidden]
   display: none
+
+.site-main > .archive-page
+  max-width: 76rem
+
+.archive-overview
+  display: flex
+  flex-wrap: wrap
+  align-items: baseline
+  justify-content: space-between
+  gap: .5rem 1rem
+  margin-bottom: .75rem
+
+.archive-years
+  margin: 0
+  color: #53677e
+  font-size: .9rem
+  font-weight: 700
+
+.archive-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .75rem
+  list-style: none
+  margin: 0
+  padding: 0
+
+.archive-color-other
+  --archive-accent: #64788e
+  --archive-label-background: #e8edf3
+  --archive-label-color: #3e5268
+
+.archive-color-tech
+  --archive-accent: #3775ba
+  --archive-label-background: #dceaf9
+  --archive-label-color: #245388
+
+.archive-color-baseball
+  --archive-accent: #ba691c
+  --archive-label-background: #f9e9d8
+  --archive-label-color: #894a12
+
+.archive-color-game
+  --archive-accent: #8a5aad
+  --archive-label-background: #eee2f7
+  --archive-label-color: #653d83
+
+.archive-card
+  min-width: 0
+  margin: 0
+
+.archive-card-link
+  display: flex
+  flex-direction: column
+  height: 100%
+  min-height: 10rem
+  padding: 1rem
+  border: 1px solid #d2dce7
+  border-left: 3px solid #c1cedc
+  border-radius: .5rem
+  background: #fff
+  color: inherit
+  transition: border-color .15s ease, box-shadow .15s ease
+  &:hover, &:focus-visible
+    border-color: var(--archive-accent)
+    box-shadow: 0 0 0 1px var(--archive-accent)
+    color: inherit
+    text-decoration: none
+  &:focus-visible
+    outline: 2px solid var(--archive-accent)
+    outline-offset: 3px
+
+.archive-card-date
+  color: #63758a
+  font-size: .75rem
+  font-variant-numeric: tabular-nums
+
+.archive-card-title
+  display: block
+  margin: .4rem 0 .75rem
+  font-weight: 700
+  line-height: 1.45
+  overflow-wrap: anywhere
+
+.archive-card-categories, .archive-card-tags
+  display: flex
+  flex-wrap: wrap
+  gap: .3rem
+
+.archive-card-categories
+  margin-top: auto
+
+.archive-category
+  padding: .12rem .4rem
+  border-radius: .25rem
+  background: var(--archive-label-background)
+  color: var(--archive-label-color)
+  font-size: .72rem
+  overflow-wrap: anywhere
+
+.archive-card-tags
+  margin-top: .5rem
+  color: #63758a
+  font-size: .72rem
+  overflow-wrap: anywhere
+
+.archive-pagination
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 1rem
+  margin-top: 1.5rem
+  font-size: .85rem
+  button
+    padding: .4rem .65rem
+    border: 1px solid #b9c9dc
+    border-radius: .35rem
+    background: transparent
+    color: inherit
+    &:disabled
+      opacity: .5
+    &:focus-visible
+      outline: 2px solid #2867cc
+      outline-offset: 2px
 
 .archive-mobile-filters
   margin-bottom: 1.5rem
@@ -192,7 +318,12 @@ body > footer
     outline-offset: 2px
 
 .archive-filter-status
+  margin: 0
   font-size: .9rem
+
+@media (max-width: 25em)
+  .archive-grid
+    grid-template-columns: 1fr
 
 @media (min-width: 48em)
   body
@@ -304,6 +435,10 @@ body > footer
   body > footer
     padding: 1.5rem 3rem
 
+@media (min-width: 76em)
+  .archive-grid
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+
 @media (prefers-color-scheme: dark)
   html, body
     background: #1c232c
@@ -322,6 +457,31 @@ body > footer
   .note-taxonomies span
     background: #2c4056
     color: #c1d9f3
+  .archive-years, .archive-card-date, .archive-card-tags
+    color: #b0bfce
+  .archive-card-link
+    background: #202c38
+    border-color: #405165
+    &:hover, &:focus-visible
+      border-color: var(--archive-accent)
+  .archive-color-other
+    --archive-accent: #a7b9cd
+    --archive-label-background: #344656
+    --archive-label-color: #e1eaf2
+  .archive-color-tech
+    --archive-accent: #79baff
+    --archive-label-background: #254760
+    --archive-label-color: #cae5ff
+  .archive-color-baseball
+    --archive-accent: #f3ad69
+    --archive-label-background: #60432f
+    --archive-label-color: #ffddbb
+  .archive-color-game
+    --archive-accent: #d1a5ef
+    --archive-label-background: #49365c
+    --archive-label-color: #f0d9ff
+  .archive-pagination button
+    border-color: #71859b
   .archive-mobile-filters .archive-filter-option, .archive-mobile-filters .archive-filter-clear
     border-color: #52677e
     &:hover, &[aria-pressed="true"]
@@ -329,5 +489,5 @@ body > footer
       color: #fff
 
 @media (prefers-reduced-motion: reduce)
-  .note-link
+  .note-link, .archive-card-link
     transition: none
