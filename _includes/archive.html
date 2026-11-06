@@ -12,14 +12,7 @@
   </div>
   <ul class="archive-grid">
     {% for post in site.posts %}
-      {% assign card_category = "other" %}
-      {% if post.categories contains "tech" %}
-        {% assign card_category = "tech" %}
-      {% elsif post.categories contains "baseball" %}
-        {% assign card_category = "baseball" %}
-      {% elsif post.categories contains "game" %}
-        {% assign card_category = "game" %}
-      {% endif %}
+      {% capture card_category %}{% include archive-category-color.html categories=post.categories %}{% endcapture %}
       <li class="archive-card archive-color-{{ card_category }}" data-archive-post data-year="{{ post.date | date: "%Y" }}" data-categories="{{ post.categories | jsonify | escape }}" data-tags="{{ post.tags | jsonify | escape }}">
         <a class="archive-card-link" href="{{ post.url | relative_url }}">
           <time class="archive-card-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>

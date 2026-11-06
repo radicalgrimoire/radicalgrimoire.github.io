@@ -2,9 +2,12 @@
 layout: default
 ---
 
-<article>
+<article class="post-article">
+  <a class="post-back" href="{{ "/archive/" | relative_url }}">← DailyLogs</a>
   {% include meta.html post=page show_taxonomies=true %}
-  {{ content }}
+  <div class="post-content">
+    {{ content }}
+  </div>
   {% if page.comments != false and site.comments.isso or site.comments.disqus %}
     <hr>
     {% if site.comments.isso_domain %}<div id="isso-thread"></div>{% endif %}

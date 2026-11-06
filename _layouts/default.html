@@ -32,8 +32,13 @@
 {% include sidebar.html menu=pages %}
 
 <header>
-  <a href="{{ "/" | relative_url }}" class="title">{% include site-title.html %}</a>
-  {% include menu.html menu=pages %}
+  <div class="site-brand">
+    <span class="title">{% include site-title.html %}</span>
+    <p class="site-description">{{ site.description | default: site.title | escape }}</p>
+  </div>
+  {% assign header_menu = pages %}
+  {% if site.external %}{% assign header_menu = pages | concat: site.external %}{% endif %}
+  {% include menu.html menu=header_menu show_home=true %}
 </header>
 
 <main class="site-main" id="main-content">
@@ -103,12 +108,5 @@
   mermaid.initialize({ startOnLoad: false });
   mermaid.run({ querySelector: ".mermaid" });
 </script>
-
-{% if site.external %}
-<footer>
-  <div>{{ site.description | default: site.title }}</div>
-  {% include menu.html menu=site.external %}
-</footer>
-{% endif %}
 
 </html>

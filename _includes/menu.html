@@ -1,4 +1,7 @@
-<nav>
+<nav aria-label="Main navigation">
+{%- if include.show_home -%}
+  <a href="{{ "/" | relative_url }}"{% if page.url == "/" %} class="selected" aria-current="page"{% endif %}>Home</a>
+{%- endif -%}
 {%- for item in include.menu -%}
   {%- if item.children -%}
     <div class="dropdown menu-dropdown">
