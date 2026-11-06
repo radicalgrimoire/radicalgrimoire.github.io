@@ -12,6 +12,7 @@
   const pageLabel = document.querySelector("[data-archive-page]");
   const previous = document.querySelector("[data-archive-previous]");
   const next = document.querySelector("[data-archive-next]");
+  const filterTriggers = document.querySelectorAll("[data-filter-trigger]");
   const pageSize = 16;
 
   function render() {
@@ -48,6 +49,11 @@
     }
 
     const activeFilters = [category, tag].filter(Boolean);
+    for (const trigger of filterTriggers) {
+      trigger.querySelector("[data-filter-count]").textContent = activeFilters.length
+        ? `(${activeFilters.length})`
+        : "";
+    }
     status.hidden = activeFilters.length === 0;
     status.textContent = activeFilters.length
       ? `${activeFilters.join(" / ")}: ${matches.length}件`
@@ -78,6 +84,7 @@
     document.querySelector(".archive-page").scrollIntoView();
   }
 
+  const supportsPopover = "showPopover" in HTMLElement.prototype;
   for (const panel of filterPanels) {
     panel.addEventListener("click", (event) => {
       const option = event.target.closest("[data-filter-type]");
@@ -87,9 +94,13 @@
         setFilter(null);
       }
     });
+    if (!supportsPopover) panel.removeAttribute("popover");
     panel.hidden = false;
   }
 
+  if (supportsPopover) {
+    for (const trigger of filterTriggers) trigger.hidden = false;
+  }
   previous.addEventListener("click", () => changePage(-1));
   next.addEventListener("click", () => changePage(1));
   window.addEventListener("popstate", render);

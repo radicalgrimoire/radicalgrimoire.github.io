@@ -1,10 +1,10 @@
-<div class="archive-filters" data-archive-filters hidden>
+<div class="archive-filters" data-archive-filters{% if include.popover_id %} id="{{ include.popover_id }}" popover="auto" aria-label="Categories and tags"{% endif %} hidden>
   <div class="archive-filter-group">
     <p class="archive-filter-label">Categories</p>
     <div class="archive-filter-options">
       {% assign categories = site.categories | sort %}
       {% for category in categories %}
-        <button type="button" class="archive-filter-option" data-filter-type="category" data-filter-value="{{ category[0] | escape }}" aria-pressed="false">{{ category[0] | escape }} <span>{{ category[1].size }}</span></button>
+        <button type="button" class="archive-filter-option" data-filter-type="category" data-filter-value="{{ category[0] | escape }}" title="{{ category[0] | escape }}" aria-pressed="false"><span class="archive-filter-name">{{ category[0] | escape }}</span> <span class="archive-filter-count">{{ category[1].size }}</span></button>
       {% endfor %}
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class="archive-filter-options">
       {% assign tags = site.tags | sort %}
       {% for tag in tags %}
-        <button type="button" class="archive-filter-option" data-filter-type="tag" data-filter-value="{{ tag[0] | escape }}" aria-pressed="false">{{ tag[0] | escape }} <span>{{ tag[1].size }}</span></button>
+        <button type="button" class="archive-filter-option" data-filter-type="tag" data-filter-value="{{ tag[0] | escape }}" title="{{ tag[0] | escape }}" aria-pressed="false"><span class="archive-filter-name">{{ tag[0] | escape }}</span> <span class="archive-filter-count">{{ tag[1].size }}</span></button>
       {% endfor %}
     </div>
   </div>

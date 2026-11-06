@@ -1,10 +1,10 @@
 {% if page.archive_filters %}
 <article class="archive-page">
   <header><h1>{{ include.title | default: page.title }}</h1></header>
-  <details class="archive-mobile-filters">
-    <summary>Categories &amp; Tags</summary>
-    {% include archive-filters.html %}
-  </details>
+  <div class="archive-mobile-filters">
+    <button type="button" class="archive-filter-trigger" popovertarget="mobile-archive-filters" data-filter-trigger hidden>Categories / Tags <span data-filter-count></span></button>
+    {% include archive-filters.html popover_id="mobile-archive-filters" %}
+  </div>
   <noscript><p>絞り込みとページ送りにはJavaScriptが必要です。すべての記事を表示しています。</p></noscript>
   <div class="archive-overview">
     <p class="archive-years" data-archive-years>All years</p>
