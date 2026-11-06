@@ -15,9 +15,9 @@
       <div class="archive-filter-options">
         {% for item in filter_items %}
           <button type="button" class="archive-filter-option" data-filter-type="{{ filter_type }}" data-filter-value="{{ item[0] | escape }}" title="{{ item[0] | escape }}" aria-pressed="false"><span class="archive-filter-name">{{ item[0] | escape }}</span><span class="archive-filter-count">{{ item[1].size }}</span></button>
-        {% endfor %}
+                {% endfor %}
       </div>
     </div>
-    <button type="button" class="archive-filter-clear" data-filter-clear>Clear all filters</button>
   </div>
 {% endfor %}
+<button type="button" class="archive-filter-clear" data-filter-clear hidden>Clear all filters</button>

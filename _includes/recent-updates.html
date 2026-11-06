@@ -1,0 +1,45 @@
+{%- assign documents = site.posts | concat: site.docs -%}
+{%- assign shown = 0 -%}
+{%- assign current_timestamp = site.time | date: "%s" | plus: 0 -%}
+<section class="home-list" aria-labelledby="latest-notes">
+  <div class="home-heading">
+    <div>
+      <p class="home-eyebrow">GadgetLogs</p>
+      <h1 id="latest-notes">Latest Notes</h1>
+      <p class="home-intro">技術、野球、日々の記録。更新順に表示しています。</p>
+    </div>
+  </div>
+
+  <ol class="note-list recent-updates" aria-label="更新順の一覧">
+    {% for update in site.data.recent_updates %}
+      {% assign note = documents | where: "path", update.path | first %}
+      {% assign show_note = true %}
+      {% if note.date and site.future != true %}
+        {% assign note_timestamp = note.date | date: "%s" | plus: 0 %}
+        {% if note_timestamp > current_timestamp %}{% assign show_note = false %}{% endif %}
+      {% endif %}
+      {% if note and show_note %}
+        {% assign shown = shown | plus: 1 %}
+        <li class="note-item">
+          <a class="note-link" href="{{ note.url | relative_url }}">
+            <time class="note-date" datetime="{{ update.updated_at | escape }}" aria-label="最終更新日 {{ update.updated_at | date: "%Y年%m月%d日" }}">
+              <span>{{ update.updated_at | date: "%b" }}</span>
+              <strong>{{ update.updated_at | date: "%d" }}</strong>
+              <span>{{ update.updated_at | date: "%Y" }}</span>
+            </time>
+            <span class="note-content">
+              <span class="note-title">{{ note.title | escape }}</span>
+              <span class="note-taxonomies">
+                {% if update.path contains "_posts/" %}<span class="note-type">Posts</span>{% else %}<span class="note-type">Documents</span>{% endif %}
+                {% for category in note.categories %}<span>{{ category | escape }}</span>{% endfor %}
+                {% for tag in note.tags %}<span>#{{ tag | escape }}</span>{% endfor %}
+              </span>
+            </span>
+            <span class="note-arrow" aria-hidden="true">›</span>
+          </a>
+        </li>
+        {% if shown == 50 %}{% break %}{% endif %}
+      {% endif %}
+    {% endfor %}
+  </ol>
+</section>

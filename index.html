@@ -4,7 +4,14 @@ title: "Home"
 ---
 
 {% if site.show_excerpts %}
-  {% include home.html %}
+  {% if paginator.page > 1 %}
+    {% include home.html %}
+  {% elsif site.data.recent_updates %}
+    {% include recent-updates.html %}
+  {% else %}
+    <p>更新履歴を表示するには、ビルド前に <code>ruby _scripts/generate_recent_updates.rb</code> を実行してください。</p>
+    {% include home.html %}
+  {% endif %}
 {% else %}
   {% include archive.html title="Posts" %}
 {% endif %}

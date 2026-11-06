@@ -1,6 +1,7 @@
 (() => {
   const filterPanels = document.querySelectorAll("[data-archive-filters]");
   const status = document.querySelector("[data-filter-status]");
+  const clearButtons = document.querySelectorAll("[data-filter-clear]");
   const posts = Array.from(document.querySelectorAll("[data-archive-post]"), (element) => ({
     element,
     categories: JSON.parse(element.dataset.categories),
@@ -17,11 +18,11 @@
 
   function render() {
     const params = new URLSearchParams(window.location.search);
-    const category = params.get("category");
-    const tag = params.get("tag");
+    const categories = [...new Set(params.getAll("category").filter(Boolean))];
+    const tags = [...new Set(params.getAll("tag").filter(Boolean))];
     const matches = posts.filter((post) =>
-      (!category || post.categories.includes(category)) &&
-      (!tag || post.tags.includes(tag))
+      (!categories.length || categories.some((category) => post.categories.includes(category))) &&
+      (!tags.length || tags.some((tag) => post.tags.includes(tag)))
     );
     const totalPages = Math.max(1, Math.ceil(matches.length / pageSize));
     const pageParam = params.get("page");
@@ -44,16 +45,17 @@
     pageLabel.textContent = `${page} / ${totalPages}`;
 
     for (const button of document.querySelectorAll("[data-filter-type]")) {
-      const selected = button.dataset.filterType === "category" ? category : tag;
-      button.setAttribute("aria-pressed", String(button.dataset.filterValue === selected));
+      const selected = button.dataset.filterType === "category" ? categories : tags;
+      button.setAttribute("aria-pressed", String(selected.includes(button.dataset.filterValue)));
     }
 
-    const activeFilters = [category, tag].filter(Boolean);
+    const activeFilters = [categories.join(", "), tags.join(", ")].filter(Boolean);
     for (const trigger of filterTriggers) {
-      const selected = trigger.dataset.filterTrigger === "category" ? category : tag;
-      trigger.querySelector("[data-filter-count]").textContent = selected ? "(1)" : "";
+      const selected = trigger.dataset.filterTrigger === "category" ? categories : tags;
+      trigger.querySelector("[data-filter-count]").textContent = selected.length ? `(${selected.length})` : "";
     }
     status.hidden = activeFilters.length === 0;
+    for (const button of clearButtons) button.hidden = activeFilters.length === 0;
     status.textContent = activeFilters.length
       ? `${activeFilters.join(" / ")}: ${matches.length}件`
       : "";
@@ -64,10 +66,16 @@
     if (type === null) {
       url.searchParams.delete("category");
       url.searchParams.delete("tag");
-    } else if (url.searchParams.get(type) === value) {
-      url.searchParams.delete(type);
     } else {
-      url.searchParams.set(type, value);
+      const selected = [...new Set(url.searchParams.getAll(type).filter(Boolean))];
+      url.searchParams.delete(type);
+      if (selected.includes(value)) {
+        for (const item of selected) {
+          if (item !== value) url.searchParams.append(type, item);
+        }
+      } else {
+        for (const item of [...selected, value]) url.searchParams.append(type, item);
+      }
     }
     url.searchParams.delete("page");
     window.history.pushState(null, "", url);
@@ -89,8 +97,6 @@
       const option = event.target.closest("[data-filter-type]");
       if (option && panel.contains(option)) {
         setFilter(option.dataset.filterType, option.dataset.filterValue);
-      } else if (event.target.closest("[data-filter-clear]")) {
-        setFilter(null);
       }
     });
     if (!supportsPopover) panel.removeAttribute("popover");
@@ -100,6 +106,7 @@
   if (supportsPopover) {
     for (const trigger of filterTriggers) trigger.hidden = false;
   }
+  for (const button of clearButtons) button.addEventListener("click", () => setFilter(null));
   previous.addEventListener("click", () => changePage(-1));
   next.addEventListener("click", () => changePage(1));
   window.addEventListener("popstate", render);

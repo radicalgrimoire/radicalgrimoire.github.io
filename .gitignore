@@ -4,4 +4,5 @@
 .sass-cache
 Gemfile.lock
 _site
+_data/recent_updates.json
 *.gem

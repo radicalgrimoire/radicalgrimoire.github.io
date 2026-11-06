@@ -66,12 +66,6 @@ body
   margin: .35rem 0 0
   text-align: left
 
-.home-archive-link
-  flex-shrink: 0
-  color: #315fa8
-  font-size: .9rem
-  font-weight: 600
-
 .note-list
   list-style: none
   margin: 0
@@ -137,6 +131,11 @@ body
     background: #e2ecfa
     color: #37699f
     font-size: .72rem
+
+.note-taxonomies .note-type
+  background: #d7e1ed
+  color: #344f6d
+  font-weight: 700
 
 .note-arrow
   color: #8192a8
@@ -305,7 +304,7 @@ body
   letter-spacing: .1em
   text-transform: uppercase
 
-.archive-filters[hidden], .archive-filter-trigger[hidden], .archive-filter-status[hidden], .archive-pagination[hidden], [data-archive-post][hidden]
+.archive-filters[hidden], .archive-filter-trigger[hidden], .archive-filter-status[hidden], .archive-filter-clear[hidden], .archive-pagination[hidden], [data-archive-post][hidden]
   display: none
 
 .site-main > .archive-page
@@ -624,7 +623,7 @@ body
   grid-template-columns: repeat(3, minmax(0, 1fr))
   gap: .35rem
 
-.archive-filter-option, .archive-filter-clear
+.archive-filter-option
   border: 1px solid #b9c9dc
   border-radius: .35rem
   padding: .25rem .5rem
@@ -676,7 +675,7 @@ body
   box-shadow: 0 .75rem 2rem rgba(0, 0, 0, .3)
   .archive-filter-label
     color: #aab9ca
-  .archive-filter-option, .archive-filter-clear
+  .archive-filter-option
     border-color: #52677e
     color: #d3deeb
     &:hover, &[aria-pressed="true"]
@@ -691,6 +690,21 @@ body
 .archive-filter-status
   margin: 0
   font-size: .9rem
+
+.archive-filter-clear
+  display: block
+  margin-top: .4rem
+  padding: 0
+  border: 0
+  background: none
+  color: #315fa8
+  font-size: .8rem
+  text-decoration: underline
+  &:hover
+    color: #1d416d
+  &:focus-visible
+    outline: 2px solid #2867cc
+    outline-offset: 2px
 
 @media (max-width: 25em)
   .archive-grid
@@ -769,6 +783,12 @@ body
     &:hover
       background: #293d51
 
+  .sidebar-nav .archive-filter-clear
+    margin: .15rem 0 .75rem .65rem
+    color: #a6c8ff
+    &:hover
+      color: #fff
+
   .sidebar-nav .archive-filters[popover]
     margin: auto
     padding: 1rem
@@ -795,13 +815,6 @@ body
   .sidebar-nav .archive-filter-option
     color: #d3deeb
     &:hover, &[aria-pressed="true"]
-      background: #38536d
-      color: #fff
-
-  .sidebar-nav .archive-filter-clear
-    border-color: #52677e
-    color: #d3deeb
-    &:hover
       background: #38536d
       color: #fff
 
@@ -855,7 +868,7 @@ body
     color: #a6c8ff
   .home-intro, .home-eyebrow
     color: #aab9ca
-  .home-archive-link, .home-pagination a
+  .home-pagination a
     color: #a6c8ff
   .note-list, .note-item
     border-color: #394858
@@ -867,6 +880,9 @@ body
   .note-taxonomies span
     background: #2c4056
     color: #c1d9f3
+  .note-taxonomies .note-type
+    background: #49627c
+    color: #fff
   .archive-years, .archive-card-date, .archive-card-tags
     color: #b0bfce
   .post-back
@@ -915,7 +931,11 @@ body
 {% endfor %}
   .archive-pagination button
     border-color: #71859b
-  .archive-mobile-filters .archive-filter-option, .archive-mobile-filters .archive-filter-clear
+  .archive-filter-clear
+    color: #a6c8ff
+    &:hover
+      color: #fff
+  .archive-mobile-filters .archive-filter-option
     border-color: #52677e
     &:hover, &[aria-pressed="true"]
       background: #38536d

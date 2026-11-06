@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -29,6 +31,8 @@ jobs:
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v6
+      - name: Generate recent updates
+        run: ruby _scripts/generate_recent_updates.rb
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
