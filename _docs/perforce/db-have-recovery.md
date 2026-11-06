@@ -3,6 +3,7 @@ title: "db.have の復旧"
 layout: page
 order: 810
 categories: [perforce, administrator, recovery, troubleshooting]
+section: "トラブル対応"
 permalink: /1-perforce/810-db-have-recovery/
 ---
 

@@ -1,0 +1,18 @@
+<ul class="docs-list">
+  {% for doc in include.docs %}
+    {% assign list_doc_category = doc.categories | first %}
+    {% assign show_doc = false %}
+    {% if list_doc_category == include.category and doc.category_index != true %}
+      {% if include.mode == "all" %}
+        {% assign show_doc = true %}
+      {% elsif include.mode == "section" and doc.section == include.section %}
+        {% assign show_doc = true %}
+      {% elsif include.mode == "other" %}
+        {% unless include.sections contains doc.section %}{% assign show_doc = true %}{% endunless %}
+      {% endif %}
+    {% endif %}
+    {% if show_doc %}
+      <li><a href="{{ doc.url | relative_url }}"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span class="docs-list-text"><span>{{ doc.title | escape }}</span>{% if doc.description %}<span class="docs-list-description">{{ doc.description | escape }}</span>{% endif %}</span><span class="docs-list-arrow" aria-hidden="true">›</span></a></li>
+    {% endif %}
+  {% endfor %}
+</ul>

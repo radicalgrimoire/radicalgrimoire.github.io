@@ -3,6 +3,7 @@ title: "サーバー上のリビジョンで復元する"
 layout: page
 order: 110
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/110-force-get-revision/
 ---
 

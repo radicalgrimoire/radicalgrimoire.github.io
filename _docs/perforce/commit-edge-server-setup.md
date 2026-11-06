@@ -3,6 +3,7 @@ title: "P4 Server コミット/エッジサーバー構成"
 layout: page
 order: 220
 categories: [perforce, administrator, commit-edge]
+section: "サーバー管理"
 permalink: /1-perforce/220-commit-edge-server/
 ---
 

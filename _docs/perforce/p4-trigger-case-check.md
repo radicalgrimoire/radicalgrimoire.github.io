@@ -3,6 +3,7 @@ title: "大文字・小文字チェック用トリガー"
 layout: page
 order: 240
 categories: [perforce, administrator, trigger]
+section: "サーバー管理"
 permalink: /1-perforce/240-trigger-case-check/
 ---
 

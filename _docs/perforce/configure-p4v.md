@@ -3,6 +3,7 @@ title: "P4V の設定"
 layout: page
 order: 10
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/010-configure-p4v/
 ---
 

@@ -3,6 +3,7 @@ title: "最新リビジョンを取得する"
 layout: page
 order: 50
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/050-get-latest/
 ---
 

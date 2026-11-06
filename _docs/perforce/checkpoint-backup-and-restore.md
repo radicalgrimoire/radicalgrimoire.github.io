@@ -3,6 +3,7 @@ title: "Helix Core のチェックポイントと復旧"
 layout: page
 order: 250
 categories: [perforce, administrator, backup, recovery]
+section: "サーバー管理"
 permalink: /1-perforce/250-checkpoint-backup-and-restore/
 ---
 

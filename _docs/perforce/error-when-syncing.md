@@ -3,6 +3,7 @@ title: "同期時の文字コードエラー"
 layout: page
 order: 900
 categories: [perforce, p4v, troubleshooting]
+section: "トラブル対応"
 permalink: /1-perforce/900-sync-encoding-error/
 ---
 

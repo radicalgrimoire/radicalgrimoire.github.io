@@ -3,6 +3,7 @@ title: "helix-p4d SSL 証明書更新手順"
 layout: page
 order: 260
 categories: [perforce, administrator, ssl, certificate]
+section: "サーバー管理"
 permalink: /1-perforce/260-ssl-certificate-renewal/
 ---
 

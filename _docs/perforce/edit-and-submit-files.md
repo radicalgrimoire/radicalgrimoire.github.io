@@ -3,6 +3,7 @@ title: "ファイルを編集してサブミットする"
 layout: page
 order: 60
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/060-edit-and-submit/
 ---
 

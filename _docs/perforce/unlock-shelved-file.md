@@ -3,6 +3,7 @@ title: "shelve に起因するロックを解除する"
 layout: page
 order: 830
 categories: [perforce, administrator, recovery, lock, shelve]
+section: "トラブル対応"
 permalink: /1-perforce/830-unlock-shelved-file/
 ---
 

@@ -3,6 +3,7 @@ title: "Helix Core 障害対応の判断フロー"
 layout: page
 order: 800
 categories: [perforce, administrator, incident-response, troubleshooting]
+section: "トラブル対応"
 permalink: /1-perforce/800-incident-response/
 ---
 

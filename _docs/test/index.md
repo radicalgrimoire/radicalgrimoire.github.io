@@ -1,22 +1,10 @@
 ---
 title: "実装機能テスト"
-layout: page
+layout: docs-index
 order: 999
 categories: [test]
 category_index: true
+description: "サイトの表示や埋め込みの確認"
 ---
 
-{% assign docs = site.docs | sort: "order" %}
-{% if docs.size > 0 %}
-<ul class="archive">
-{% for doc in docs %}
-	{% assign category = doc.categories | first %}
-	{% if category == "test" and doc.url != page.url %}
-	<li>
-		<a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
-		{% if doc.description %}<span class="archive-taxonomies">{{ doc.description }}</span>{% endif %}
-	</li>
-	{% endif %}
-{% endfor %}
-</ul>
-{% endif %}
+{% include docs-category-list.html %}

@@ -3,6 +3,7 @@ title: "他ユーザーのチェックアウトを解除する"
 layout: page
 order: 820
 categories: [perforce, administrator, recovery, lock]
+section: "トラブル対応"
 permalink: /1-perforce/820-revoke-other-user-checkout/
 ---
 

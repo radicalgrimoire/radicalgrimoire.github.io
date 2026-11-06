@@ -154,6 +154,157 @@ body
   margin: 0
   color: #315fa8
 
+.docs-index-header .docs-eyebrow
+  margin: 0 0 .65rem
+  color: #617b96
+  font-size: .7rem
+  font-weight: 700
+  letter-spacing: .14em
+  text-align: left
+  text-transform: uppercase
+
+.site-main > .docs-index > .docs-index-header h1
+  margin: 0
+  color: #1d2b3c
+  font-size: 2rem
+  font-weight: 700
+  letter-spacing: -.025em
+
+.docs-intro
+  margin: .65rem 0 0
+  color: #637489
+  font-size: .91rem
+  text-align: left
+
+.docs-overview
+  margin-top: 3rem
+
+.docs-section-label, .docs-group-heading
+  display: flex
+  align-items: baseline
+  gap: .75rem
+  padding-bottom: .7rem
+  border-bottom: 1px solid #b9c9d9
+  span
+    color: #718297
+    font-size: .75rem
+    white-space: nowrap
+
+.docs-section-label
+  justify-content: space-between
+  h2
+    margin: 0
+    padding: 0
+    border: 0
+    background: none
+    color: #40576e
+    font-size: .76rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+.docs-directory, .docs-list
+  list-style: none
+  margin: .9rem 0 0
+  padding: 0
+  li
+    margin: 0
+  a
+    text-decoration: none
+    &:focus-visible
+      outline: 2px solid #2867cc
+      outline-offset: 2px
+
+.docs-directory
+  border-left: 1px solid #c5d2df
+  a
+    display: flex
+    align-items: center
+    gap: .8rem
+    margin-left: -1px
+    padding: 1rem 1rem 1rem 1.4rem
+    border-left: 2px solid transparent
+    color: inherit
+    &:hover
+      border-left-color: #4b83bb
+      background: #edf3fa
+  .bi
+    flex: none
+    color: #6684a4
+    font-size: 1.3rem
+
+.docs-category-text
+  flex: 1
+  min-width: 0
+  strong, span
+    display: block
+  strong
+    font-size: .96rem
+  span
+    margin-top: .25rem
+    color: #66798d
+    font-size: .82rem
+    line-height: 1.65
+
+.docs-count
+  color: #718297
+  font-size: .75rem
+  white-space: nowrap
+
+.docs-list-arrow
+  margin-left: auto
+  color: #7892ad
+  font-size: 1.2rem
+
+.docs-group
+  margin-top: 2rem
+
+.docs-group-heading
+  border-color: #cbd7e3
+  h3
+    margin: 0
+    color: #273f57
+    font-size: .98rem
+    font-weight: 700
+
+.docs-list
+  margin-top: .4rem
+  li
+    border-bottom: 1px solid #d8e1eb
+  a
+    display: flex
+    align-items: center
+    gap: .75rem
+    padding: .8rem .35rem
+    color: #315f91
+    font-size: .91rem
+    &:hover
+      background: #edf3fa
+  .bi
+    flex: none
+    color: #7892ad
+
+.docs-list-text
+  min-width: 0
+  overflow-wrap: anywhere
+
+.docs-list-description
+  display: block
+  margin-top: .2rem
+  color: #66798d
+  font-size: .82rem
+
+.docs-index > h1
+  margin: 3rem 0 1rem
+  padding: 0 0 .7rem
+  border: 0
+  border-bottom: 1px solid #b9c9d9
+  background: none
+  color: #40576e
+  font-size: .76rem
+  letter-spacing: .1em
+  text-transform: uppercase
+
 .archive-filters[hidden], .archive-filter-trigger[hidden], .archive-filter-status[hidden], .archive-pagination[hidden], [data-archive-post][hidden]
   display: none
 
@@ -605,6 +756,18 @@ body
   html, body
     background: #1c232c
     color: #e4eaf2
+  .site-main > .docs-index > .docs-index-header h1, .docs-group-heading h3
+    color: #e4eaf2
+  .docs-index-header .docs-eyebrow, .docs-intro, .docs-category-text span, .docs-list-description, .docs-count, .docs-section-label span, .docs-group-heading span
+    color: #aab9ca
+  .docs-section-label h2, .docs-index > h1
+    color: #c1d9f3
+  .docs-section-label, .docs-group-heading, .docs-index > h1, .docs-directory, .docs-list li
+    border-color: #405165
+  .docs-directory a:hover, .docs-list a:hover
+    background: #293747
+  .docs-list a
+    color: #a6c8ff
   .home-intro, .home-eyebrow
     color: #aab9ca
   .home-archive-link, .home-pagination a

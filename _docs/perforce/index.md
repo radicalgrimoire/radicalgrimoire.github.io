@@ -1,28 +1,15 @@
 ---
 title: "Perforce"
-layout: page
+layout: docs-index
 order: 1
 categories: [perforce]
 category_index: true
 permalink: /1-perforce/
+description: "運用・設定・トラブル対応の資料"
+sections: ["ユーザー操作", "サーバー管理", "トラブル対応"]
 ---
 
-# Documents
-
-{% assign docs = site.docs | sort: "order" %}
-{% if docs.size > 0 %}
-<ul class="archive">
-{% for doc in docs %}
-  {% assign category = doc.categories | first %}
-  {% if category == "perforce" and doc.url != page.url %}
-  <li>
-    <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
-    {% if doc.description %}<span class="archive-taxonomies">{{ doc.description }}</span>{% endif %}
-  </li>
-  {% endif %}
-{% endfor %}
-</ul>
-{% endif %}
+{% include docs-category-list.html %}
 
 # Official Documentation
 

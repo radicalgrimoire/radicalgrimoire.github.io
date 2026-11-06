@@ -3,6 +3,7 @@ title: "P4V のインストール"
 layout: page
 order: 10
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/001-install/
 ---
 

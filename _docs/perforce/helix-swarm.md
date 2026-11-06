@@ -3,6 +3,7 @@ title: "Helix Swarm"
 layout: page
 order: 270
 categories: [perforce, administrator, swarm]
+section: "サーバー管理"
 permalink: /1-perforce/270-helix-swarm/
 ---
 

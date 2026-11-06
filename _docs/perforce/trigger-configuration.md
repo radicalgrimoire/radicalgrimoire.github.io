@@ -3,6 +3,7 @@ title: "Perforce トリガーの公式ドキュメント"
 layout: page
 order: 230
 categories: [perforce, administrator, trigger]
+section: "サーバー管理"
 permalink: /1-perforce/230-trigger-configuration/
 ---
 

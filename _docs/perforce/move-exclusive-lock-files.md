@@ -3,6 +3,7 @@ title: "排他的ロックのファイルを移動する"
 layout: page
 order: 100
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/100-move-exclusive-lock-files/
 ---
 

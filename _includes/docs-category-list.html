@@ -1,0 +1,41 @@
+{% comment %}Each document's section must match an entry in the category index's sections; unmatched documents appear under その他.{% endcomment %}
+{% assign docs = site.docs | sort: "order" %}
+{% assign category = page.categories | first %}
+{% assign doc_count = 0 %}
+{% for doc in docs %}
+  {% assign doc_category = doc.categories | first %}
+  {% if doc_category == category and doc.category_index != true %}{% assign doc_count = doc_count | plus: 1 %}{% endif %}
+{% endfor %}
+<section class="docs-overview" aria-labelledby="docs-list-heading">
+  <div class="docs-section-label"><h2 id="docs-list-heading">Documents</h2><span>{{ doc_count }} docs</span></div>
+  {% if page.sections %}
+    {% for section in page.sections %}
+      {% assign section_count = 0 %}
+      {% for doc in docs %}
+        {% assign doc_category = doc.categories | first %}
+        {% if doc_category == category and doc.category_index != true and doc.section == section %}{% assign section_count = section_count | plus: 1 %}{% endif %}
+      {% endfor %}
+      {% if section_count > 0 %}
+        <section class="docs-group">
+          <div class="docs-group-heading"><h3>{{ section | escape }}</h3><span>{{ section_count }} docs</span></div>
+          {% include docs-list.html docs=docs category=category mode="section" section=section %}
+        </section>
+      {% endif %}
+    {% endfor %}
+    {% assign other_count = 0 %}
+    {% for doc in docs %}
+      {% assign doc_category = doc.categories | first %}
+      {% if doc_category == category and doc.category_index != true %}
+        {% unless page.sections contains doc.section %}{% assign other_count = other_count | plus: 1 %}{% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% if other_count > 0 %}
+      <section class="docs-group">
+        <div class="docs-group-heading"><h3>その他</h3><span>{{ other_count }} docs</span></div>
+        {% include docs-list.html docs=docs category=category mode="other" sections=page.sections %}
+      </section>
+    {% endif %}
+  {% else %}
+    {% include docs-list.html docs=docs category=category mode="all" %}
+  {% endif %}
+</section>

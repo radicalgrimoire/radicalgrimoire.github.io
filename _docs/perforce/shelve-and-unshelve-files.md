@@ -3,6 +3,7 @@ title: "Shelve でファイルを共有する"
 layout: page
 order: 80
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/080-shelve/
 ---
 

@@ -3,6 +3,7 @@ title: "サブミット済みチェンジリストを確認する"
 layout: page
 order: 120
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/120-submitted-changelists/
 ---
 

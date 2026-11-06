@@ -3,6 +3,7 @@ title: "P4V でサーバーに接続する"
 layout: page
 order: 20
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/020-connect/
 ---
 

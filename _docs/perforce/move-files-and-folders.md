@@ -3,6 +3,7 @@ title: "ファイルとフォルダを移動する"
 layout: page
 order: 90
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/090-move-files/
 ---
 

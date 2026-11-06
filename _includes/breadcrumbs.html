@@ -2,7 +2,7 @@
   {% assign parent_category = page.categories | first %}
   {% for doc in site.docs %}
     {% assign doc_category = doc.categories | first %}
-    {% if doc.categories.size == 1 and doc_category == parent_category %}
+    {% if doc.category_index == true and doc_category == parent_category %}
       {% assign parent = doc %}
       {% break %}
     {% endif %}

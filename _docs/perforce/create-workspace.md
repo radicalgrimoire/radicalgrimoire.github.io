@@ -3,6 +3,7 @@ title: "ワークスペースを作成する"
 layout: page
 order: 30
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/030-create-workspace/
 ---
 

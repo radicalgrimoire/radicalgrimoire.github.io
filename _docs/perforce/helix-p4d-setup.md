@@ -3,6 +3,7 @@ title: "Helix p4d のコンテナ構築"
 layout: page
 order: 210
 categories: [perforce, administrator, p4d, docker]
+section: "サーバー管理"
 permalink: /1-perforce/210-helix-p4d-setup/
 ---
 

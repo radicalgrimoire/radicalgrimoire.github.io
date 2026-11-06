@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<article class="docs-index">
+  {% include breadcrumbs.html %}
+  <header class="docs-index-header">
+    <p class="docs-eyebrow">{% if page.category_index %}Category{% else %}Knowledge base{% endif %}</p>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.description %}<p class="docs-intro">{{ page.description | escape }}</p>{% endif %}
+  </header>
+  {{ content }}
+</article>

@@ -3,6 +3,7 @@ title: "ワークスペースを切り替える"
 layout: page
 order: 40
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/040-switch-workspace/
 ---
 

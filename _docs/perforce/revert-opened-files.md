@@ -3,6 +3,7 @@ title: "編集中のファイルを戻す"
 layout: page
 order: 70
 categories: [perforce, p4v]
+section: "ユーザー操作"
 permalink: /1-perforce/070-revert/
 ---
 
