@@ -381,6 +381,27 @@ body
   letter-spacing: .01em
   overflow-wrap: anywhere
 
+.docs-article
+  --archive-accent: #3775ba
+
+.docs-article .docs-breadcrumbs
+  margin: 0
+  color: #63758a
+  font-size: .85rem
+  overflow-wrap: anywhere
+  a
+    color: #315fa8
+
+.docs-article .post-header h1.post-title:last-child
+  margin-bottom: 0
+
+.docs-article-section
+  color: #63758a
+  font-size: .85rem
+
+.docs-article .post-content > :first-child
+  margin-top: 0
+
 .post-meta
   display: flex
   flex-wrap: wrap
@@ -424,6 +445,20 @@ body
     margin: 2em 0 .75em
     color: inherit
     font-size: 1.05rem
+    line-height: 1.5
+
+.docs-article .post-content
+  > h1
+    padding: 0 0 0 .8rem
+    border-bottom: 0
+    border-left: 3px solid #7096b8
+  > h2
+    padding: 0 0 .45em
+    border-bottom: 1px solid #d2dce7
+  > h4
+    margin: 1.5em 0 .65em
+    color: #53677e
+    font-size: .95rem
     line-height: 1.5
 
 .archive-card
@@ -786,6 +821,12 @@ body
     color: #b0bfce
   .post-back
     color: #a9c5e1
+  .docs-article
+    --archive-accent: #79baff
+  .docs-article .docs-breadcrumbs, .docs-article-section
+    color: #aab9ca
+  .docs-article .docs-breadcrumbs a
+    color: #a9c5e1
   .post-meta time, .post-tag
     color: #aab9ca
   .site-main > .post-article > .post-header, .post-content > h1
@@ -794,6 +835,11 @@ body
     color: #dce5ed
     > h1, > h2, > h3
       color: #f2f6fa
+  .docs-article .post-content
+    > h2
+      border-color: #3b4b5c
+    > h4
+      color: #aab9ca
   .archive-card-link
     background: #202c38
     border-color: #405165
