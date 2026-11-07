@@ -1,0 +1,15 @@
+{% assign sidebar_docs = site.docs | sort: "order" %}
+{% assign sidebar_current_category = page.categories | first %}
+<ul class="sidebar-docs-categories" aria-label="Documents categories">
+  {% for sidebar_doc in sidebar_docs %}
+    {% if sidebar_doc.category_index == true %}
+      {% assign sidebar_category = sidebar_doc.categories | first %}
+      {% capture sidebar_doc_count %}{% include docs-category-count.html docs=sidebar_docs category=sidebar_category %}{% endcapture %}
+      <li><a href="{{ sidebar_doc.url | relative_url }}"{% if page.url == sidebar_doc.url %} aria-current="page"{% elsif page.collection == "docs" and sidebar_current_category == sidebar_category %} class="is-section"{% endif %}>
+        <i class="bi bi-folder2" aria-hidden="true"></i>
+        <span class="sidebar-docs-category-name">{{ sidebar_doc.title | escape }}</span>
+        <span class="sidebar-docs-count">{{ sidebar_doc_count }} docs</span>
+      </a></li>
+    {% endif %}
+  {% endfor %}
+</ul>

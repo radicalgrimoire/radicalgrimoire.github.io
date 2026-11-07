@@ -5,33 +5,20 @@
   --giants-muted: #6d625a;
   color: #29231f;
 }
-.giants-calendar-intro {
-  padding: 1.4rem 1.6rem;
-  border-left: 4px solid #ee7826;
-  border-radius: .4rem;
-  background: #27221f;
-  color: #fff;
-}
-.giants-calendar-eyebrow, .giants-calendar-label {
-  color: #f48b3a;
+.giants-calendar-label {
+  color: var(--giants-orange);
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .13em;
 }
-.giants-calendar-intro p {
-  margin: .5rem 0;
-  text-align: left;
-}
-.giants-calendar-intro a { color: #ffbf8b; font-size: .85rem; }
 .giants-calendar-toolbar {
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 1rem;
-  margin: 2rem 0 .75rem;
+  margin: 0 0 .75rem;
 }
 .giants-calendar-toolbar h2 { margin: .2rem 0 0; font-size: 1.6rem; }
-.giants-calendar-label { color: var(--giants-orange); }
 .giants-calendar-controls { display: flex; gap: .35rem; }
 .giants-calendar-controls button {
   min-width: 2.5rem;

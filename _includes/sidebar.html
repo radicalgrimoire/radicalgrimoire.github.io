@@ -19,6 +19,11 @@
           {% if child.file == "archive.html" and page.url == url %}
             {% include archive-filters.html popover_id="sidebar-archive-filters" %}
           {% endif %}
+          {% if child.file == "documents.md" %}
+            {% if page.url == url or page.collection == "docs" %}
+              {% include sidebar-docs-categories.html %}
+            {% endif %}
+          {% endif %}
         {% endfor %}
       {% else %}
         {% assign node = site.pages | where: "name", item.file | first %}

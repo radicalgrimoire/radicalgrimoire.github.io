@@ -14,11 +14,7 @@ description: "技術に関する手順や資料をまとめています。"
     {% for doc in docs %}
       {% if doc.category_index == true %}
         {% assign category = doc.categories | first %}
-        {% assign doc_count = 0 %}
-        {% for item in docs %}
-          {% assign item_category = item.categories | first %}
-          {% if item_category == category and item.category_index != true %}{% assign doc_count = doc_count | plus: 1 %}{% endif %}
-        {% endfor %}
+        {% capture doc_count %}{% include docs-category-count.html docs=docs category=category %}{% endcapture %}
         <li><a href="{{ doc.url | relative_url }}">
           <i class="bi bi-folder2" aria-hidden="true"></i>
           <span class="docs-category-text"><strong>{{ doc.title | escape }}</strong>{% if doc.description %}<span>{{ doc.description | escape }}</span>{% endif %}</span>

@@ -8,15 +8,9 @@ lang: ja
 <link rel="stylesheet" href="{{ '/assets/css/giants-calendar.css' | relative_url }}">
 
 <div class="giants-calendar" id="giants-calendar">
-  <div class="giants-calendar-intro">
-    <span class="giants-calendar-eyebrow">GIANTS SCHEDULE</span>
-    <p>読売ジャイアンツの試合日程。予定は ICS データから読み込んでいます。</p>
-    <a href="https://raw.githubusercontent.com/radicalgrimoire/giants-calendar/main/giants.ics">ICS データを見る</a>
-  </div>
-
   <div class="giants-calendar-toolbar">
     <div>
-      <span class="giants-calendar-label">SCHEDULE</span>
+      <span class="giants-calendar-label">GAME SCHEDULE</span>
       <h2 id="giants-calendar-month"></h2>
     </div>
     <div class="giants-calendar-controls" aria-label="月の移動">
@@ -55,6 +49,6 @@ lang: ja
       <i class="bi bi-calendar-plus" aria-hidden="true"></i> Google カレンダーに追加
     </a>
   </dialog>
-  <noscript><p>日程の表示には JavaScript が必要です。上のリンクから ICS データを確認できます。</p></noscript>
+  <noscript><p>日程の表示には JavaScript が必要です。</p></noscript>
 </div>
 <script defer src="{{ '/assets/giants-calendar.js' | relative_url }}"></script>

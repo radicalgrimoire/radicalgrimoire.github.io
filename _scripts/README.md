@@ -41,6 +41,13 @@ be closed with its button or Escape, including from inside the article.
 After building the site, check the generated markup with
 `bundle exec ruby _scripts/test_archive_reader.rb`.
 
+## Documents sidebar
+
+On desktop, Documents and its category and article pages show category links
+and document counts in the sidebar. Counts use the same category-index rules
+as the Documents directory. After building, verify the generated navigation
+with `bundle exec ruby _scripts/test_docs_sidebar.rb`.
+
 ## Giants Calendar
 
 The Giants Calendar page fetches `giants.ics` from the public

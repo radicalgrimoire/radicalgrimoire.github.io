@@ -1,0 +1,8 @@
+{%- assign docs_category_count = 0 -%}
+{%- for count_doc in include.docs -%}
+  {%- assign count_doc_category = count_doc.categories | first -%}
+  {%- if count_doc_category == include.category and count_doc.category_index != true -%}
+    {%- assign docs_category_count = docs_category_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+{{- docs_category_count -}}

@@ -263,6 +263,6 @@
     })
     .catch(error => {
       console.error("Giants Calendar: failed to load calendar data", error);
-      status.textContent = "日程を読み込めませんでした。時間をおいて再読み込みするか、ICS データをご確認ください。";
+      status.textContent = "日程を読み込めませんでした。時間をおいて再読み込みしてください。";
     });
 }());
