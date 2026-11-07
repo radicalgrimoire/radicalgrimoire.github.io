@@ -2,7 +2,7 @@
 title: "Documents"
 permalink: "/documents/"
 layout: docs-index
-description: "技術に関する手順や資料をまとめています。"
+description: "資料や読み物をまとめています。"
 ---
 
 {% assign docs = site.docs | sort: "order" %}

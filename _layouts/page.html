@@ -11,7 +11,13 @@ layout: default
     </div>
   </header>
   <div class="post-content">
+    {% if page.source_url %}
+      {% assign source_path = page.path | remove_first: "_docs/" | prepend: "generated-source-docs/" %}
+      {% capture source_content %}{% include {{ source_path }} %}{% endcapture %}
+      {{ source_content | markdownify }}
+    {% else %}
     {{ content }}
+    {% endif %}
   </div>
   {% include docs-pagination.html %}
 </article>

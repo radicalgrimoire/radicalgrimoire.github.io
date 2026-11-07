@@ -4,6 +4,7 @@ Before a local Jekyll build or preview, run:
 
 ```sh
 ruby _scripts/generate_recent_updates.rb
+ruby _scripts/generate_source_markdown.rb
 bundle exec jekyll build
 ```
 
@@ -18,6 +19,44 @@ The list is ordered by each tracked file's latest Git commit date, with paths
 breaking ties. Uncommitted edits and changes to related assets do not count.
 The home page includes only documents Jekyll publishes, up to 50 entries; files
 under both `_posts` and `_docs`, including category and test pages, are eligible.
+
+## Source Markdown
+
+Use an ordinary Markdown file under `_docs/`, with the usual front matter and
+an additional `source_url`:
+
+```markdown
+---
+title: "Article title"
+layout: page
+order: 1
+categories: [nsfw-ish]
+source_url: "https://raw.githubusercontent.com/OWNER/REPOSITORY/main/path/article.md"
+---
+```
+
+`source_url` must be a public HTTPS URL on `raw.githubusercontent.com`. The
+title and other front matter follow normal docs conventions, including optional
+`section` and `permalink`. The document must use `layout: page` and must not
+have a local body. The source must begin with a non-empty level-one heading;
+that heading is omitted because the docs layout already renders `title`.
+Changing the original heading does not change the page title.
+
+The generator stores the remaining Markdown in ignored files under
+`_includes/generated-source-docs/`, and removes obsolete generated files when
+their docs no longer declare `source_url`. Do not edit these generated files.
+The Pages workflow runs the generator before Jekyll; run it before each local
+build or preview too. Generation requires network access and fails if a source
+is invalid or a fetch fails. A plain Jekyll build without generation can use
+stale generated content, or fail if it has not been generated yet.
+
+Changes to the source repository appear after the Pages site is rebuilt;
+source repository pushes do not automatically trigger a rebuild. Run the Pages
+workflow manually or push a change to this repository to update the site. Jekyll
+and GitHub may render some Markdown differently; relative links and images in
+the source need paths suitable for the published site.
+
+Run the focused tests with `bundle exec ruby _scripts/test_source_markdown.rb`.
 
 ## Page-specific assets
 

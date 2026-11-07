@@ -33,6 +33,8 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Generate recent updates
         run: ruby _scripts/generate_recent_updates.rb
+      - name: Generate source Markdown document
+        run: ruby _scripts/generate_source_markdown.rb
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:

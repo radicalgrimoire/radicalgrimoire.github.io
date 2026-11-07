@@ -5,4 +5,5 @@
 Gemfile.lock
 _site
 _data/recent_updates.json
+_includes/generated-source-docs/
 *.gem

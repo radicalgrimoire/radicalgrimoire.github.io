@@ -39,7 +39,7 @@ navigation:                # children use Bootstrap Icons; mobile_icon and descr
   - title: "Logs"
     children:
       - {file: "archive.html", title: "DailyLogs", description: "日記・ブログ記事"}
-      - {file: "documents.md", title: "Documents", mobile_icon: "folder2", description: "技術資料・手順"}
+      - {file: "documents.md", title: "Documents", mobile_icon: "folder2", description: "資料・読み物"}
       - {file: "giants-calendar.md", title: "Giants Calendar", icon: "calendar3", description: "ジャイアンツの試合日程"}
   - {file: "README.md"}
 
