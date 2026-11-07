@@ -39,6 +39,19 @@
       character === "n" || character === "N" ? "\n" : character);
   }
 
+  function descriptionParts(text) {
+    const parts = [];
+    const pattern = /https?:\/\/[^\s<>"']+/g;
+    let last = 0;
+    for (const match of text.matchAll(pattern)) {
+      if (match.index > last) parts.push({ text: text.slice(last, match.index) });
+      parts.push({ text: match[0], href: match[0] });
+      last = match.index + match[0].length;
+    }
+    if (last < text.length) parts.push({ text: text.slice(last) });
+    return parts;
+  }
+
   function parseCalendar(text) {
     const lines = text.replace(/\r\n[ \t]|\n[ \t]/g, "").split(/\r?\n/);
     if (!lines.includes("BEGIN:VCALENDAR") || !lines.includes("END:VCALENDAR")) {
@@ -142,7 +155,7 @@
   }
 
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { parseCalendar, parseDate, occursOnDate, formatEventDate, isFutureEvent, googleCalendarUrl };
+    module.exports = { parseCalendar, parseDate, occursOnDate, formatEventDate, isFutureEvent, googleCalendarUrl, descriptionParts };
   }
   if (typeof document === "undefined") return;
 
@@ -175,7 +188,19 @@
     eventTitle.textContent = (event.status === "CANCELLED" ? "【中止】" : "") + event.summary;
     eventDate.textContent = formatEventDate(event);
     eventLocation.textContent = event.location || "";
-    eventDescription.textContent = event.description || "";
+    eventDescription.replaceChildren();
+    for (const part of descriptionParts(event.description || "")) {
+      if (!part.href) {
+        eventDescription.append(document.createTextNode(part.text));
+      } else {
+        const link = document.createElement("a");
+        link.textContent = part.text;
+        link.href = part.href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        eventDescription.append(link);
+      }
+    }
     locationRow.hidden = !event.location;
     descriptionRow.hidden = !event.description;
     eventAdd.hidden = !isFutureEvent(event, new Date());

@@ -124,6 +124,9 @@ and all-day events on or after the current date in Tokyo offer a Google Calendar
 link that opens a prefilled event; saved events do not automatically sync with
 later ICS updates.
 
+HTTP and HTTPS URLs in event descriptions are displayed as links that open in
+a new tab. Other description text remains plain text.
+
 The parser supports the source's all-day, Asia/Tokyo, floating, and UTC event
 dates. Recurring events and other named time zones are not supported and result
 in an error rather than an incomplete calendar. Run the focused tests with:

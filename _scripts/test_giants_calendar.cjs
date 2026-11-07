@@ -1,6 +1,15 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { parseCalendar, parseDate, occursOnDate, formatEventDate, isFutureEvent, googleCalendarUrl } = require("../assets/giants-calendar.js");
+const { parseCalendar, parseDate, occursOnDate, formatEventDate, isFutureEvent, googleCalendarUrl, descriptionParts } = require("../assets/giants-calendar.js");
+
+test("extracts web links without interpreting description text as HTML", () => {
+  assert.deepEqual(descriptionParts('詳細： https://www.giants.jp/game/123/\n<script>alert(1)</script>'), [
+    { text: '詳細： ' },
+    { text: 'https://www.giants.jp/game/123/', href: 'https://www.giants.jp/game/123/' },
+    { text: '\n<script>alert(1)</script>' }
+  ]);
+  assert.deepEqual(descriptionParts('javascript:alert(1)'), [{ text: 'javascript:alert(1)' }]);
+});
 
 function calendar(event) {
   return `BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\n${event}\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n`;
