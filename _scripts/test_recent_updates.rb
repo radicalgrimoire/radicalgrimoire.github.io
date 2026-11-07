@@ -74,4 +74,28 @@ class RecentUpdatesTest < Minitest::Test
       assert_equal "2020-01-01T00:00:00+09:00", items.first.at_css("time")["datetime"]
     end
   end
+
+  def test_home_display_setting_selects_recent_updates_or_archive
+    Dir.mktmpdir do |dir|
+      FileUtils.mkdir_p(["#{dir}/_data", "#{dir}/_includes"])
+      template = File.read("#{ROOT}/index.html", encoding: "UTF-8")
+      File.write("#{dir}/index.html", template.sub("layout: default\n", ""), encoding: "UTF-8")
+      File.write("#{dir}/_includes/recent-updates.html", "RECENT_UPDATES")
+      File.write("#{dir}/_includes/archive.html", "POSTS_ARCHIVE")
+      File.write("#{dir}/_includes/home.html", "POSTS_LIST")
+      File.write("#{dir}/_data/recent_updates.json", "[]")
+
+      [true, false].each do |enabled|
+        destination = "#{dir}/output-#{enabled}"
+        config = Jekyll.configuration(
+          "source" => dir, "destination" => destination, "quiet" => true,
+          "show_recent_updates" => enabled
+        )
+        Jekyll::Site.new(config).process
+        output = File.read("#{destination}/index.html")
+        assert_includes output, enabled ? "RECENT_UPDATES" : "POSTS_ARCHIVE"
+        refute_includes output, enabled ? "POSTS_ARCHIVE" : "RECENT_UPDATES"
+      end
+    end
+  end
 end

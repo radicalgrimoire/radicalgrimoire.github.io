@@ -5,14 +5,14 @@ timezone: "Asia/Tokyo"
 permalink: /:year:month:day-:title/
 lang: "en"
 excerpt_separator: "<!--more-->"
-date_format: "%B %d, %Y"
+# date_format: "%B %d, %Y"
 paginate: 5 # 1ページあたりの記事数
 paginate_path: "/page:num/"
 
 # Layout
-show_excerpts: true        # show the latest notes on the home page
+# Show recent updates on the home page; false displays the posts archive.
+show_recent_updates: true
 show_frame: true           # use the original dark header and footer styles
-minimal: false             # use a dark header
 
 # DailyLogs category colors. The first matching entry takes priority when a post
 # has multiple categories. Unlisted categories use fallback.

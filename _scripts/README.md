@@ -14,6 +14,8 @@ The Pages workflow runs the generator automatically after fetching the full Git
 history. It writes ignored build data to `_data/recent_updates.json`; it does not
 commit that file. Run it again after committing changes to refresh the list.
 Without that data, the home page shows a notice and the original posts list.
+Set `show_recent_updates: false` in `_config.yml` to show the posts archive
+instead of the recent-updates home page.
 
 The list is ordered by each tracked file's latest Git commit date, with paths
 breaking ties. Uncommitted edits and changes to related assets do not count.
