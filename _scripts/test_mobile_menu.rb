@@ -4,8 +4,8 @@ require "nokogiri"
 class MobileMenuTest < Minitest::Test
   SITE = File.expand_path("../_site", __dir__)
   ITEMS = [
-    ["/archive/", "DailyLogs", "日記・ブログ記事", "bi-journal-text"],
-    ["/documents/", "Documents", "技術資料・手順", "bi-folder2"],
+    ["/archive/", "DailyLogs", "日記・ブログ記事", "bi-chat-left-text"],
+    ["/documents/", "Documents", "資料・読み物", "bi-folder2"],
     ["/giants-calendar/", "Giants Calendar", "ジャイアンツの試合日程", "bi-calendar3"]
   ].freeze
 
@@ -46,6 +46,13 @@ class MobileMenuTest < Minitest::Test
       else
         assert_nil selected.first["aria-current"], path
       end
+
     end
+  end
+
+  def test_sidebar_icons
+    sidebar = html("index.html").at_css(".sidebar-nav")
+    assert sidebar.at_css('a[href="/archive/"] .bi-chat-left-text')
+    assert sidebar.at_css('a[href="/documents/"] .bi-journal-text')
   end
 end
