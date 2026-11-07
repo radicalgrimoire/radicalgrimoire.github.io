@@ -48,6 +48,14 @@ and document counts in the sidebar. Counts use the same category-index rules
 as the Documents directory. After building, verify the generated navigation
 with `bundle exec ruby _scripts/test_docs_sidebar.rb`.
 
+## Mobile navigation
+
+The mobile Logs dropdown uses the configured child navigation entries. Set a
+child's `description` and optional Bootstrap `mobile_icon` in `_config.yml`;
+otherwise its sidebar `icon` or the default journal icon is used. After building,
+check the generated links and selected states with
+`bundle exec ruby _scripts/test_mobile_menu.rb`.
+
 ## Giants Calendar
 
 The Giants Calendar page fetches `giants.ics` from the public

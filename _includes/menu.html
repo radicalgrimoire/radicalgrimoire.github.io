@@ -5,15 +5,19 @@
 {%- for item in include.menu -%}
   {%- if item.children -%}
     <div class="dropdown menu-dropdown">
-      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ item.title }}
-      </a>
+      <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ item.title | escape }}
+      </button>
       <ul class="dropdown-menu">
         {%- for child in item.children -%}
           {%- assign node = site.pages | where: "name", child.file | first -%}
           {%- assign url = child.url | default: node.url -%}
           {%- assign title = child.title | default: node.title -%}
-          <li><a class="dropdown-item{% if url == page.url %} selected{% endif %}" href="{{ url | relative_url }}">{{ title }}</a></li>
+          <li><a class="dropdown-item{% if url == page.url %} selected{% elsif child.file == "documents.md" and page.collection == "docs" %} selected{% elsif child.file == "archive.html" and page.layout == "post" %} selected{% endif %}" href="{{ url | relative_url }}"{% if url == page.url %} aria-current="page"{% endif %}>
+            <span class="menu-dropdown-icon" aria-hidden="true"><i class="bi bi-{{ child.mobile_icon | default: child.icon | default: 'journal-text' | escape }}"></i></span>
+            <span class="menu-dropdown-text"><span class="menu-dropdown-title">{{ title | escape }}</span>{% if child.description %}<span class="menu-dropdown-description" lang="ja">{{ child.description | escape }}</span>{% endif %}</span>
+            <i class="bi bi-chevron-right menu-dropdown-arrow" aria-hidden="true"></i>
+          </a></li>
         {%- endfor -%}
       </ul>
     </div>

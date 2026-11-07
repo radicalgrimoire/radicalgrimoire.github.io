@@ -33,16 +33,82 @@ nav a
 
 .menu-dropdown > .dropdown-toggle
   margin: 0
+  padding: 0
+  border: 0
+  background: transparent
+  color: inherit
+  font: inherit
+  cursor: pointer
+  &:focus-visible
+    outline: 2px solid #70b4ff
+    outline-offset: 4px
 
 .menu-dropdown .dropdown-menu a
   margin: 0
 
 .menu-dropdown .dropdown-menu
+  --bs-dropdown-min-width: 0
+  width: unquote("min(290px, calc(100vw - 2rem))")
+  padding: .55rem
+  border: 1px solid #52677e
+  border-radius: .6rem
+  background: #172432
+  box-shadow: 0 .8rem 2rem rgba(12, 21, 34, .3)
   opacity: 0
   scale: .96
   translate: 0 -.4rem
   transform-origin: top left
   transition: opacity .2s ease, scale .2s cubic-bezier(.2, .8, .2, 1), translate .2s cubic-bezier(.2, .8, .2, 1), display .2s allow-discrete
+
+.menu-dropdown .dropdown-menu li
+  margin: 0
+
+.menu-dropdown .dropdown-menu .dropdown-item
+  display: flex
+  align-items: center
+  gap: .6rem
+  min-height: 3.65rem
+  padding: .7rem
+  border-radius: .3rem
+  color: #d3deeb
+  white-space: normal
+  &:hover, &:focus, &.selected
+    background: #293d51
+    color: #fff
+    text-decoration: none
+  &:focus-visible
+    outline: 2px solid #70b4ff
+    outline-offset: -2px
+
+.menu-dropdown-icon
+  display: grid
+  flex: 0 0 2.2rem
+  place-items: center
+  height: 2.2rem
+  border-radius: .45rem
+  background: #293f54
+  color: #a7d1ff
+  font-size: 1rem
+
+.menu-dropdown-text
+  min-width: 0
+  overflow-wrap: anywhere
+
+.menu-dropdown-title
+  display: block
+  font-size: .83rem
+  font-weight: 600
+
+.menu-dropdown-description
+  display: block
+  margin-top: .15rem
+  color: #acbbcb
+  font-size: .68rem
+
+.menu-dropdown-arrow
+  margin-left: auto
+  color: #8fa5bc
+  font-size: .7rem
 
 .menu-dropdown .dropdown-menu.show
   opacity: 1
