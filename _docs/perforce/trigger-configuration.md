@@ -2,15 +2,7 @@
 title: "Perforce トリガーの公式ドキュメント"
 layout: page
 order: 230
-categories: [perforce, administrator, trigger]
-section: "サーバー管理"
-permalink: /1-perforce/230-trigger-configuration/
+categories: [perforce, server-management]
+permalink: /perforce/trigger-configuration/
+source_url: "https://raw.githubusercontent.com/radicalgrimoire/radicalgrimoire/main/perforce/administrator-manual/trigger-configuration.md"
 ---
-
-* [Change-submit triggers](https://help.perforce.com/helix-core/server-apps/p4sag/current/Content/P4SAG/scripting.triggers.submits.submit.html)
-
-* [Change-content triggers](https://help.perforce.com/helix-core/server-apps/p4sag/current/Content/P4SAG/scripting.triggers.submits.content.html)
-
-* [Change-commit triggers](https://help.perforce.com/helix-core/server-apps/p4sag/current/Content/P4SAG/scripting.triggers.submits.commit.html)
-
-* [Change-failed triggers](https://help.perforce.com/helix-core/server-apps/p4sag/current/Content/P4SAG/change-failed-trigger.html)

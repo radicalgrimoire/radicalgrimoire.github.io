@@ -56,10 +56,10 @@ class AssetLoadingTest < Minitest::Test
     end
     code = html("docs/test/github-code-view/index.html")
     assert_equal 1, code.css(RESOURCES.fetch("GitHub code view").last).size
-    images = html("1-perforce/010-configure-p4v/index.html")
+    images = html("20221203-the-first-slamdunk/index.html")
     assert_equal 1, images.css(RESOURCES.fetch("lightbox script").last).size
     assert_equal 1, images.css(RESOURCES.fetch("lightbox stylesheet").last).size
-    diagram = html("1-perforce/800-incident-response/index.html")
+    diagram = html("perforce/incident-response/index.html")
     assert diagram.at_css("main code.language-mermaid")
     assert diagram.css("script[type='module']").any? { |script| script.text.include?("mermaid.esm.min.mjs") }
     alerts = html("docs/test/github-alert-blocks/index.html")

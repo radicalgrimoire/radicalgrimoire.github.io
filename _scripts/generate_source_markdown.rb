@@ -2,6 +2,8 @@ require "fileutils"
 require "net/http"
 require "uri"
 require "yaml"
+require "kramdown"
+require "kramdown-parser-gfm"
 
 module SourceMarkdown
   DOCUMENTS = File.expand_path("../_docs", __dir__)
@@ -45,20 +47,64 @@ module SourceMarkdown
       unless INCLUDE_PATH.match?(relative) && !relative.match?(%r{[./]{2,}})
         raise "Unsupported source document path: #{path}"
       end
-      [relative, metadata["source_url"]]
+      [relative, metadata]
     end
   end
 
-  def self.render(content, url)
-    heading = /\A# ([^\r\n]+)\r?\n/.match(content)
-    raise "Source Markdown must start with a non-empty level-one heading: #{url}" unless heading && !heading[1].strip.empty?
+  def self.resolve_link(target, source_url, urls, image: false)
+    return target if target.nil? || target.empty? || target.start_with?("#", "/", "//")
+    uri = URI.parse(target)
+    return target if uri.scheme
 
-    MARKER + content[heading.end(0)..]
+    absolute = URI.join(source_url, target)
+    base = absolute.dup
+    base.query = nil
+    base.fragment = nil
+    if !image && (local = urls[base.to_s])
+      suffix = ""
+      suffix += "?#{absolute.query}" if absolute.query
+      suffix += "##{absolute.fragment}" if absolute.fragment
+      return "{{ '#{local}' | relative_url }}#{suffix}"
+    end
+    return absolute.to_s if image
+
+    parts = absolute.path.split("/")
+    raise "Invalid source URL for relative link: #{source_url}" if parts.length < 5
+
+    absolute.host = "github.com"
+    absolute.path = "/#{parts[1]}/#{parts[2]}/blob/#{parts[3..].join('/')}"
+    absolute.to_s
+  end
+
+  def self.rewrite_links(element, source_url, urls)
+    if element.type == :a || element.type == :img
+      key = element.type == :a ? "href" : "src"
+      element.attr[key] = resolve_link(element.attr[key], source_url, urls, image: element.type == :img)
+    end
+    element.children.each { |child| rewrite_links(child, source_url, urls) }
+  end
+
+  def self.render(content, metadata, urls)
+    content = content.delete_prefix("\uFEFF")
+    raise "Source Markdown is empty: #{metadata['source_url']}" if content.strip.empty?
+    heading = /\A# ([^\r\n]+)\r?\n/.match(content)
+    content = content[heading.end(0)..] if heading && heading[1].strip == metadata["title"]
+    document = Kramdown::Document.new(content, input: "GFM", hard_wrap: false,
+      gfm_quirks: "paragraph_end", syntax_highlighter: "rouge",
+      syntax_highlighter_opts: { default_lang: "plaintext" })
+    rewrite_links(document.root, metadata["source_url"], urls)
+    MARKER + document.to_html
   end
 
   def self.generate(document_dir: DOCUMENTS, output_dir: OUTPUT, fetcher: method(:fetch))
-    generated = documents(document_dir).to_h do |relative, url|
-      [File.join(output_dir, relative), render(fetcher.call(url), url)]
+    sources = documents(document_dir)
+    urls = sources.to_h do |relative, metadata|
+      url = metadata["permalink"] || "/docs/#{relative.delete_suffix('.md')}/"
+      raise "Unsafe permalink in #{relative}: #{url}" unless url.is_a?(String) && url.match?(%r{\A/[\w/.\-]+\z})
+      [metadata["source_url"], url]
+    end
+    generated = sources.to_h do |relative, metadata|
+      [File.join(output_dir, relative), render(fetcher.call(metadata["source_url"]), metadata, urls)]
     end
 
     existing = Dir.glob(File.join(output_dir, "**", "*.md"))

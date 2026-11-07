@@ -1,14 +1,19 @@
 <ul class="docs-list">
   {% for doc in include.docs %}
     {% assign list_doc_category = doc.categories | first %}
+    {% assign list_doc_section = doc.categories[1] %}
     {% assign show_doc = false %}
     {% if list_doc_category == include.category and doc.category_index != true %}
       {% if include.mode == "all" %}
         {% assign show_doc = true %}
-      {% elsif include.mode == "section" and doc.section == include.section %}
+      {% elsif include.mode == "section" and list_doc_section == include.section %}
         {% assign show_doc = true %}
       {% elsif include.mode == "other" %}
-        {% unless include.sections contains doc.section %}{% assign show_doc = true %}{% endunless %}
+        {% assign section_matched = false %}
+        {% for section in include.sections %}
+          {% if section.id == list_doc_section %}{% assign section_matched = true %}{% break %}{% endif %}
+        {% endfor %}
+        {% unless section_matched %}{% assign show_doc = true %}{% endunless %}
       {% endif %}
     {% endif %}
     {% if show_doc %}

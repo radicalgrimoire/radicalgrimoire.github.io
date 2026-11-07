@@ -1,18 +1,8 @@
 ---
 title: "編集中のファイルを戻す"
 layout: page
-order: 70
-categories: [perforce, p4v]
-section: "ユーザー操作"
-permalink: /1-perforce/070-revert/
+order: 80
+categories: [perforce, user-guide]
+permalink: /perforce/revert/
+source_url: "https://raw.githubusercontent.com/radicalgrimoire/radicalgrimoire/main/perforce/user-guide/p4v/revert-opened-files.md"
 ---
-
-# 編集中のファイルを元に戻したい
-
-主に編集中のファイルを元に戻したい場合は、主にRevertを使って元に戻します
-
-# 編集中のチェンジリストを選択　→　Revert Files を押す
-
-{% include image.html src="/assets/docs/perforce/revert-opened-files/01_Revert01.png" alt="Revert Files の操作" %}
-
-戻したいファイルを選択して元に戻す

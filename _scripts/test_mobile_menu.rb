@@ -34,7 +34,7 @@ class MobileMenuTest < Minitest::Test
       "archive/index.html" => ["/archive/", true],
       "20260731-202607-giants-watch/index.html" => ["/archive/", false],
       "documents/index.html" => ["/documents/", true],
-      "1-perforce/index.html" => ["/documents/", false],
+      "perforce/index.html" => ["/documents/", false],
       "docs/test/social-embeds/index.html" => ["/documents/", false],
       "giants-calendar/index.html" => ["/giants-calendar/", true]
     }.each do |path, (url, current)|

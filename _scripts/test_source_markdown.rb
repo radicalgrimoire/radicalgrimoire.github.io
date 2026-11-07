@@ -39,9 +39,29 @@ class SourceMarkdownTest < Minitest::Test
       original = File.read(path)
       generate(docs, output) { |url| "# Source title\n\nBody from #{url}\n" }
       result = File.read(File.join(output, "nsfw-ish", "first.md"))
-      assert_equal SourceMarkdown::MARKER + "\nBody from https://raw.githubusercontent.com/user/repo/main/first.md\n", result
+      assert_includes result, "<h1"
+      assert_includes result, "Source title"
+      assert_includes result, "<p>Body from https://raw.githubusercontent.com/user/repo/main/first.md</p>"
       assert_equal original, File.read(path)
     end
+  end
+
+  def test_removes_matching_title_but_preserves_other_first_blocks_and_bom
+    metadata = { "title" => "Test title", "source_url" => "https://raw.githubusercontent.com/user/repo/main/first.md" }
+    refute_includes SourceMarkdown.render("\uFEFF# Test title\n\nBody\n", metadata, {}), "<h1"
+    assert_includes SourceMarkdown.render("# First step\n\nBody\n", metadata, {}), "First step</h1>"
+    assert_includes SourceMarkdown.render("> [!NOTE]\n> Body\n", metadata, {}), "<blockquote>"
+  end
+
+  def test_rewrites_relative_links_and_images_without_changing_code
+    metadata = { "title" => "Test title", "source_url" => "https://raw.githubusercontent.com/user/repo/main/dir/first.md" }
+    urls = { "https://raw.githubusercontent.com/user/repo/main/dir/second.md" => "/custom/second/" }
+    source = "[Site](second.md#part) [GitHub](other.md) ![Image](../image.png)\n\n```text\n[Code](other.md)\n```\n"
+    html = SourceMarkdown.render(source, metadata, urls)
+    assert_includes html, "{{ '/custom/second/' | relative_url }}#part"
+    assert_includes html, "https://github.com/user/repo/blob/main/dir/other.md"
+    assert_includes html, "https://raw.githubusercontent.com/user/repo/main/image.png"
+    assert_includes html, "[Code](other.md)"
   end
 
   def test_updates_body_and_removes_obsolete_generated_files
@@ -62,7 +82,7 @@ class SourceMarkdownTest < Minitest::Test
       generate(docs, output) { "# Old\n\nOld body\n" }
       file = File.join(output, "nsfw-ish", "first.md")
       previous = File.read(file)
-      ["No heading\n", "#   \n"].each do |source|
+      ["", "  \n"].each do |source|
         assert_raises(RuntimeError) { generate(docs, output) { source } }
         assert_equal previous, File.read(file)
       end

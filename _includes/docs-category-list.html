@@ -1,4 +1,4 @@
-{% comment %}Each document's section must match an entry in the category index's sections; unmatched documents appear under その他.{% endcomment %}
+{% comment %}The second category must match a section ID in the category index; unmatched documents appear under その他.{% endcomment %}
 {% assign docs = site.docs | sort: "order" %}
 {% assign category = page.categories | first %}
 {% assign doc_count = 0 %}
@@ -13,20 +13,26 @@
       {% assign section_count = 0 %}
       {% for doc in docs %}
         {% assign doc_category = doc.categories | first %}
-        {% if doc_category == category and doc.category_index != true and doc.section == section %}{% assign section_count = section_count | plus: 1 %}{% endif %}
+        {% assign doc_section = doc.categories[1] %}
+        {% if doc_category == category and doc.category_index != true and doc_section == section.id %}{% assign section_count = section_count | plus: 1 %}{% endif %}
       {% endfor %}
       {% if section_count > 0 %}
         <section class="docs-group">
-          <div class="docs-group-heading"><h3>{{ section | escape }}</h3><span>{{ section_count }} docs</span></div>
-          {% include docs-list.html docs=docs category=category mode="section" section=section %}
+          <div class="docs-group-heading"><h3>{{ section.title | escape }}</h3><span>{{ section_count }} docs</span></div>
+          {% include docs-list.html docs=docs category=category mode="section" section=section.id %}
         </section>
       {% endif %}
     {% endfor %}
     {% assign other_count = 0 %}
     {% for doc in docs %}
       {% assign doc_category = doc.categories | first %}
+      {% assign doc_section = doc.categories[1] %}
       {% if doc_category == category and doc.category_index != true %}
-        {% unless page.sections contains doc.section %}{% assign other_count = other_count | plus: 1 %}{% endunless %}
+        {% assign section_matched = false %}
+        {% for section in page.sections %}
+          {% if section.id == doc_section %}{% assign section_matched = true %}{% break %}{% endif %}
+        {% endfor %}
+        {% unless section_matched %}{% assign other_count = other_count | plus: 1 %}{% endunless %}
       {% endif %}
     {% endfor %}
     {% if other_count > 0 %}

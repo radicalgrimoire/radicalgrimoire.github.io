@@ -4,7 +4,7 @@ Before a local Jekyll build or preview, run:
 
 ```sh
 ruby _scripts/generate_recent_updates.rb
-ruby _scripts/generate_source_markdown.rb
+bundle exec ruby _scripts/generate_source_markdown.rb
 bundle exec jekyll build
 ```
 
@@ -37,12 +37,12 @@ source_url: "https://raw.githubusercontent.com/OWNER/REPOSITORY/main/path/articl
 
 `source_url` must be a public HTTPS URL on `raw.githubusercontent.com`. The
 title and other front matter follow normal docs conventions, including optional
-`section` and `permalink`. The document must use `layout: page` and must not
-have a local body. The source must begin with a non-empty level-one heading;
-that heading is omitted because the docs layout already renders `title`.
+`permalink`. The document must use `layout: page` and must not
+have a local body. If the source's first heading matches `title`, it is omitted
+to avoid displaying the title twice; otherwise its first heading is preserved.
 Changing the original heading does not change the page title.
 
-The generator stores the remaining Markdown in ignored files under
+The generator renders the Markdown as HTML in ignored files under
 `_includes/generated-source-docs/`, and removes obsolete generated files when
 their docs no longer declare `source_url`. Do not edit these generated files.
 The Pages workflow runs the generator before Jekyll; run it before each local
@@ -52,11 +52,14 @@ stale generated content, or fail if it has not been generated yet.
 
 Changes to the source repository appear after the Pages site is rebuilt;
 source repository pushes do not automatically trigger a rebuild. Run the Pages
-workflow manually or push a change to this repository to update the site. Jekyll
-and GitHub may render some Markdown differently; relative links and images in
-the source need paths suitable for the published site.
+workflow manually or push a change to this repository to update the site.
+Relative Markdown links to imported articles point to their site pages; other
+relative links point to GitHub and relative images to the raw source repository.
+Jekyll and GitHub may render some Markdown differently.
 
 Run the focused tests with `bundle exec ruby _scripts/test_source_markdown.rb`.
+After a build, check the Perforce imports with
+`bundle exec ruby _scripts/test_perforce_source_docs.rb`.
 
 ## Page-specific assets
 
@@ -86,6 +89,20 @@ On desktop, Documents and its category and article pages show category links
 and document counts in the sidebar. Counts use the same category-index rules
 as the Documents directory. After building, verify the generated navigation
 with `bundle exec ruby _scripts/test_docs_sidebar.rb`.
+
+The first entry in a document's `categories` identifies its Documents category.
+For categories whose index declares `sections`, the second entry is a section
+ID. The index maps each ID to a display title, for example:
+
+```yaml
+sections:
+  - { id: server-management, title: "サーバー管理" }
+```
+
+Documents with no matching section appear under その他. Category index pages
+themselves need only the first category; categories without sections do not
+require a second entry.
+Test section grouping with `bundle exec ruby _scripts/test_docs_sections.rb`.
 
 ## Mobile navigation
 

@@ -2,19 +2,31 @@
 layout: default
 ---
 {% if page.collection == "docs" %}
+{% assign docs_section = nil %}
+{% assign docs_category = page.categories | first %}
+{% for doc in site.docs %}
+  {% assign doc_category = doc.categories | first %}
+  {% if doc.category_index == true and doc_category == docs_category and doc.sections %}
+    {% assign docs_section_id = page.categories[1] %}
+    {% assign docs_section = "その他" %}
+    {% for section in doc.sections %}
+      {% if section.id == docs_section_id %}{% assign docs_section = section.title %}{% break %}{% endif %}
+    {% endfor %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 <article class="post-article docs-article">
   {% include breadcrumbs.html %}
   <header class="post-header">
     <div class="post-header-content">
       <h1 class="post-title">{{ page.title | escape }}</h1>
-      {% if page.section %}<div class="post-meta"><span class="docs-article-section">{{ page.section | escape }}</span></div>{% endif %}
+      {% if docs_section %}<div class="post-meta"><span class="docs-article-section">{{ docs_section | escape }}</span></div>{% endif %}
     </div>
   </header>
   <div class="post-content">
     {% if page.source_url %}
       {% assign source_path = page.path | remove_first: "_docs/" | prepend: "generated-source-docs/" %}
-      {% capture source_content %}{% include {{ source_path }} %}{% endcapture %}
-      {{ source_content | markdownify }}
+      {% include {{ source_path }} %}
     {% else %}
     {{ content }}
     {% endif %}

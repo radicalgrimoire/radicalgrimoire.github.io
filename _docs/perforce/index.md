@@ -4,9 +4,12 @@ layout: docs-index
 order: 1
 categories: [perforce]
 category_index: true
-permalink: /1-perforce/
+permalink: /perforce/
 description: "運用・設定・トラブル対応の資料"
-sections: ["ユーザー操作", "サーバー管理", "トラブル対応"]
+sections:
+  - { id: user-guide, title: "ユーザー操作" }
+  - { id: server-management, title: "サーバー管理" }
+  - { id: troubleshooting, title: "トラブル対応" }
 ---
 
 {% include docs-category-list.html %}
