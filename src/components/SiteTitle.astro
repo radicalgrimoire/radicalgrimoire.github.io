@@ -1,0 +1,8 @@
+---
+import { siteConfig } from '../lib/site-config';
+
+const accent = siteConfig.title_accent;
+const prefix = accent ? siteConfig.title.slice(0, -accent.length) : siteConfig.title;
+---
+
+{prefix}{accent && <span class="site-title-accent">{accent}</span>}

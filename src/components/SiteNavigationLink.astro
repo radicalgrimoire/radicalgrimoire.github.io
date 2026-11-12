@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { NavigationLink } from '../lib/site-config-schema';
+import { categoryDocs, docUrl } from '../lib/docs';
+import ArchiveFilters from './ArchiveFilters.astro';
+import { getCollection } from 'astro:content';
+import { postUrl } from '../lib/posts';
+
+interface Props {
+	item: NavigationLink;
+	variant: 'sidebar' | 'mobile' | 'dropdown';
+	categories: CollectionEntry<'docs'>[];
+	docs: CollectionEntry<'docs'>[];
+	currentDoc: CollectionEntry<'docs'> | undefined;
+}
+
+const { item, variant, categories, docs, currentDoc } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const target = item.url.replace(/\/$/, '') || '/';
+const isDocs = path === '/documents' || !!currentDoc;
+const isPosts = item.section === 'posts' && (await getCollection('posts')).some((post) => postUrl(post).replace(/\/$/, '') === path);
+const isCurrent = item.section === 'posts'
+	? path === target
+	: item.section === 'documents'
+		? isDocs && (variant === 'sidebar' ? !currentDoc : path === target)
+		: path === target;
+const isSection = variant !== 'mobile' && (
+	(item.section === 'posts' && isPosts) ||
+	(item.section === 'documents' && !!currentDoc && isDocs)
+);
+---
+
+<a href={item.url} aria-current={isCurrent ? 'page' : undefined} class:list={[{ 'is-section': variant === 'sidebar' && isSection, 'dropdown-item': variant === 'dropdown', selected: variant === 'dropdown' && (isCurrent || isSection) }]} title={variant === 'dropdown' ? undefined : item.description}>
+	{variant === 'dropdown' ? (
+		<>
+			<span class="menu-dropdown-icon" aria-hidden="true"><i class:list={['bi', `bi-${item.mobile_icon ?? item.icon}`]}></i></span>
+			<span class="menu-dropdown-text">
+				<span class="menu-dropdown-title">{item.title}</span>
+				{item.description && <span class="menu-dropdown-description">{item.description}</span>}
+			</span>
+			<i class="bi bi-chevron-right menu-dropdown-arrow" aria-hidden="true"></i>
+		</>
+	) : (
+		<>
+			{variant === 'sidebar' && <i class:list={['bi', `bi-${item.icon}`]} aria-hidden="true"></i>}
+			{variant === 'mobile' && item.mobile_icon && <i class:list={['bi', `bi-${item.mobile_icon}`]} aria-hidden="true"></i>}
+			{item.title}
+		</>
+	)}
+</a>
+{variant === 'sidebar' && item.section === 'posts' && isCurrent && <ArchiveFilters idPrefix="sidebar-archive-filters" />}
+{variant === 'sidebar' && item.section === 'documents' && isDocs && (
+	<ul class="sidebar-docs-categories" aria-label="Documents categories">
+		{categories.map((category) => (
+			<li>
+				<a href={docUrl(category)} aria-current={currentDoc?.id === category.id ? 'page' : undefined} class:list={[{ 'is-section': !!currentDoc && currentDoc.id !== category.id && currentDoc.data.categories[0] === category.data.categories[0] }]}>
+					<i class="bi bi-folder2" aria-hidden="true"></i>
+					<span class="sidebar-docs-category-name">{category.data.title}</span>
+					<span class="sidebar-docs-count">{categoryDocs(docs, category.data.categories[0]).length} docs</span>
+				</a>
+			</li>
+		))}
+	</ul>
+)}

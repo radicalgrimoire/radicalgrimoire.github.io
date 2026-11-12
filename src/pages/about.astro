@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Content } from '../content/about.md';
+import { siteConfig } from '../lib/site-config';
+---
+
+<BaseLayout title={`About | ${siteConfig.title}`}>
+	<article class="post-article about-article archive-color-other">
+		<header class="post-header">
+			<div class="post-header-content">
+				<h1 class="post-title">About</h1>
+			</div>
+		</header>
+		<div class="post-content" lang="en">
+			<Content />
+		</div>
+	</article>
+</BaseLayout>

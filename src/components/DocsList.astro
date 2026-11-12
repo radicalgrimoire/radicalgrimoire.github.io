@@ -1,0 +1,24 @@
+---
+import { docUrl, type Doc } from '../lib/docs';
+
+interface Props {
+	docs: Doc[];
+}
+
+const { docs } = Astro.props;
+---
+
+<ul class="docs-list">
+	{docs.map((doc) => (
+		<li>
+			<a href={docUrl(doc)}>
+				<i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+				<span class="docs-list-text">
+					<span>{doc.data.title}</span>
+					{doc.data.description && <span class="docs-list-description">{doc.data.description}</span>}
+				</span>
+				<span class="docs-list-arrow" aria-hidden="true">›</span>
+			</a>
+		</li>
+	))}
+</ul>

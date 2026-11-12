@@ -1,0 +1,37 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ImageLightbox from '../components/ImageLightbox';
+import type { CollectionEntry } from 'astro:content';
+import { hasContentImages } from '../lib/content-images';
+import { categoryColor, formattedDate, postDate } from '../lib/posts';
+import { siteConfig } from '../lib/site-config';
+
+interface Props {
+	post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const date = postDate(post);
+---
+
+<BaseLayout title={`${post.data.title} | ${siteConfig.title}`} postPreview>
+	<article class="post-article">
+		<a class="post-back" href="/archive/">← DailyLogs</a>
+		<header class="post-header">
+			<div class:list={['post-header-content', `archive-color-${categoryColor(post.data.categories)}`]}>
+				<h1 class="post-title">{post.data.title}</h1>
+				<div class="post-meta">
+					<time datetime={date.toISOString()}>{formattedDate(post)}</time>
+					{post.data.categories.map((category) => (
+						<span class:list={['archive-category', `archive-color-${categoryColor([category])}`]}>{category}</span>
+					))}
+					{post.data.tags.map((tag) => <span class="post-tag">#{tag}</span>)}
+				</div>
+			</div>
+		</header>
+		<div class="post-content">
+			<slot />
+		</div>
+		{(hasContentImages(post.body) || hasContentImages(post.rendered?.html)) && <ImageLightbox client:idle />}
+	</article>
+</BaseLayout>

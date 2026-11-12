@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryDocs, docUrl, isCategoryIndex, sortDocs } from '../../lib/docs';
+import { siteConfig } from '../../lib/site-config';
+
+const docs = await getCollection('docs');
+const categories = sortDocs(docs.filter(isCategoryIndex));
+---
+
+<BaseLayout title={`Documents | ${siteConfig.title}`}>
+	<article class="docs-index">
+		<header class="docs-index-header">
+			<p class="docs-eyebrow">Knowledge base</p>
+			<h1>Documents</h1>
+			<p class="docs-intro">資料や読み物をまとめています。</p>
+		</header>
+		<section class="docs-overview" aria-labelledby="docs-categories-heading">
+			<div class="docs-section-label"><h2 id="docs-categories-heading">Browse by category</h2><span>{categories.length} categories</span></div>
+			<ul class="docs-directory">
+				{categories.map((category) => (
+					<li>
+						<a href={docUrl(category)}>
+							<i class="bi bi-folder2" aria-hidden="true"></i>
+							<span class="docs-category-text">
+								<strong>{category.data.title}</strong>
+								{category.data.description && <span>{category.data.description}</span>}
+							</span>
+							<span class="docs-count">{categoryDocs(docs, category.data.categories[0]).length} docs</span>
+							<span class="docs-list-arrow" aria-hidden="true">›</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+	</article>
+</BaseLayout>

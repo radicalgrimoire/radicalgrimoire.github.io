@@ -1,0 +1,83 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DocsBreadcrumbs from './DocsBreadcrumbs.astro';
+import DocsList from './DocsList.astro';
+import ImageLightbox from './ImageLightbox';
+import { hasContentImages } from '../lib/content-images';
+import { categoryDocs, docUrl, isCategoryIndex } from '../lib/docs';
+import { siteConfig } from '../lib/site-config';
+
+interface Props {
+	doc: CollectionEntry<'docs'>;
+}
+
+const { doc } = Astro.props;
+const docs = await getCollection('docs');
+const category = docs.find((entry) => isCategoryIndex(entry) && entry.data.categories[0] === doc.data.categories[0]);
+const siblings = categoryDocs(docs, doc.data.categories[0]);
+const groups = doc.data.sections.map((section) => ({
+	...section,
+	docs: siblings.filter((entry) => entry.data.categories[1] === section.id),
+}));
+const otherDocs = siblings.filter((entry) => !doc.data.sections.some((section) => section.id === entry.data.categories[1]));
+const section = category?.data.sections.find((entry) => entry.id === doc.data.categories[1]);
+const sectionTitle = category && category.data.sections.length > 0 ? section?.title ?? 'その他' : undefined;
+const order = doc.data.order;
+const previous = order === undefined ? undefined : siblings.filter((entry) => entry.data.order !== undefined && entry.data.order < order).at(-1);
+const next = order === undefined ? undefined : siblings.find((entry) => entry.data.order !== undefined && entry.data.order > order);
+const { Content } = await render(doc);
+---
+
+<BaseLayout title={`${doc.data.title} | ${siteConfig.title}`}>
+	{isCategoryIndex(doc) ? (
+		<article class="docs-index">
+			<DocsBreadcrumbs doc={doc} category={category} />
+			<header class="docs-index-header">
+				<p class="docs-eyebrow">Category</p>
+				<h1>{doc.data.title}</h1>
+				{doc.data.description && <p class="docs-intro">{doc.data.description}</p>}
+			</header>
+			<section class="docs-overview" aria-labelledby="docs-list-heading">
+				<div class="docs-section-label"><h2 id="docs-list-heading">Documents</h2><span>{siblings.length} docs</span></div>
+				{doc.data.sections.length > 0 ? (
+					<>
+						{groups.filter((group) => group.docs.length > 0).map((group) => (
+							<details class="docs-group" name="docs-groups">
+								<summary class="docs-group-heading"><h3>{group.title}</h3><span>{group.docs.length} docs</span></summary>
+								<DocsList docs={group.docs} />
+							</details>
+						))}
+						{otherDocs.length > 0 && (
+							<details class="docs-group" name="docs-groups">
+								<summary class="docs-group-heading"><h3>その他</h3><span>{otherDocs.length} docs</span></summary>
+								<DocsList docs={otherDocs} />
+							</details>
+						)}
+					</>
+				) : <DocsList docs={siblings} />}
+			</section>
+			<Content />
+		</article>
+	) : (
+		<article class="post-article docs-article">
+			<DocsBreadcrumbs doc={doc} category={category} />
+			<header class="post-header">
+				<div class="post-header-content">
+					<h1 class="post-title">{doc.data.title}</h1>
+					{sectionTitle && <div class="post-meta"><span class="docs-article-section">{sectionTitle}</span></div>}
+				</div>
+			</header>
+			<div class="post-content">
+				<Content />
+			</div>
+			{(hasContentImages(doc.body) || hasContentImages(doc.rendered?.html)) && <ImageLightbox client:idle />}
+			{(previous || next) && (
+				<nav class="docs-pagination" aria-label="資料の前後">
+					{previous && <a class="docs-pagination-previous" href={docUrl(previous)}><span class="docs-pagination-label">← 前の記事</span><span class="docs-pagination-title">{previous.data.title}</span></a>}
+					{next && <a class="docs-pagination-next" href={docUrl(next)}><span class="docs-pagination-label">次の記事 →</span><span class="docs-pagination-title">{next.data.title}</span></a>}
+				</nav>
+			)}
+		</article>
+	)}
+</BaseLayout>

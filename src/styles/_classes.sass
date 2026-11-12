@@ -1,0 +1,278 @@
+@use 'sass:color'
+@use 'index' as *
+
+.title
+  font-size: 1.25em
+
+.archive
+  font-size: 1.1em
+  line-height: 1.3
+  list-style: none
+  margin: 0
+  padding: 0 0 0 1em
+
+.archive time
+  display: inline-block
+  min-width: 10ch
+  min-height: 1.75em
+  margin: 0 .2em
+
+.archive-taxonomies
+  color: reduce(100)
+  font-size: .7em
+  margin-left: .5em
+
+.docs-breadcrumbs
+  margin-bottom: .75em
+
+.docs-breadcrumbs .breadcrumb
+  --bs-breadcrumb-divider-color: currentColor
+  --bs-breadcrumb-item-padding-x: .5rem
+  --bs-breadcrumb-item-active-color: currentColor
+  margin: 0
+
+.docs-breadcrumbs .breadcrumb-item + .breadcrumb-item::before
+  content: ">"
+
+.docs-breadcrumbs a
+  margin: 0
+
+.image__link
+  cursor: zoom-in
+  display: block
+
+.image__link img
+  display: block
+
+.github-alert
+  --github-alert-color: #0969da
+  --github-alert-background: #ddf4ff
+  background: var(--github-alert-background)
+  border-left: .25em solid var(--github-alert-color)
+  margin: 1em 0
+  padding: .2em 1em
+
+.github-alert > :first-child
+  margin-top: 0
+
+.github-alert > :last-child
+  margin-bottom: 0
+
+.github-alert-title
+  align-items: center
+  color: var(--github-alert-color)
+  display: flex
+  font-weight: 600
+  gap: .5em
+  margin: 0 0 .5em
+
+.github-alert-tip
+  --github-alert-color: #1a7f37
+  --github-alert-background: #dafbe1
+
+.github-alert-important
+  --github-alert-color: #8250df
+  --github-alert-background: #fbefff
+
+.github-alert-warning
+  --github-alert-color: #9a6700
+  --github-alert-background: #fff8c5
+
+.github-alert-caution
+  --github-alert-color: #cf222e
+  --github-alert-background: #ffebe9
+
+.github-code-view
+  background: color.change(color.adjust($dark, $lightness: 6%), $alpha: .9)
+  border: 1px solid reduce(24)
+  border-radius: 2px
+  color: #f8f8f2
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
+  font-size: 1em
+  margin: 1.5em 0
+  overflow-x: auto
+
+.github-code-view-header
+  background: color.change($dark, $alpha: .5)
+  border-bottom: 1px solid reduce(24)
+  padding: .65em 1em
+
+.github-code-view-header a
+  color: inherit
+
+.github-code-view-content
+  background: transparent
+  border-radius: 0
+  font-size: inherit
+  margin: 0
+  padding: .6em 0
+  overflow: visible
+
+.github-code-view-line
+  display: grid
+  grid-template-columns: max-content minmax(max-content, 1fr)
+  min-height: 1.5em
+
+.github-code-view-line.is-highlighted
+  background: color.change(#66d9ef, $alpha: .24)
+
+.github-code-view-line-number
+  color: #a29f90
+  padding: 0 1em
+  text-align: right
+  user-select: none
+
+.github-code-view-line-number:hover
+  background: color.change(white, $alpha: .1)
+  color: white
+  text-decoration: none
+
+.github-code-view-line-content
+  min-width: max-content
+  padding-right: 1em
+  white-space: pre
+
+.github-code-view[data-wrap="true"] .github-code-view-line-content
+  min-width: 0
+  overflow-wrap: anywhere
+  white-space: pre-wrap
+
+@media (prefers-color-scheme: dark)
+  .github-alert
+    --github-alert-color: #4493f8
+    --github-alert-background: #0d2847
+  .github-alert-tip
+    --github-alert-color: #3fb950
+    --github-alert-background: #0d2d1a
+  .github-alert-important
+    --github-alert-color: #ab7df8
+    --github-alert-background: #2a1d4b
+  .github-alert-warning
+    --github-alert-color: #d29922
+    --github-alert-background: #332701
+  .github-alert-caution
+    --github-alert-color: #f85149
+    --github-alert-background: #3b1719
+
+// Lightbox3 theme overrides
+\:root
+  --lb-backdrop-color: rgba(12, 14, 18, .9)
+  --lb-image-border-radius: 12px
+  --lb-image-padding: 48px
+  --lb-chrome-bg: rgba(24, 28, 34, .86)
+  --lb-chrome-border-radius: 14px
+
+.icon
+  height: 1em
+  width: 1em
+  fill: currentColor
+  transition: .2s color
+  vertical-align: middle
+  margin-bottom: .15em
+
+a:hover .icon
+  color: reduce(100)
+
+.full table
+  display: table
+  width: 100%
+
+.katex
+  overflow-x: auto
+  overflow-y: hidden
+
+.rouge-table
+  &, th, td, tr, pre
+    font-size: inherit
+    background: inherit !important
+    box-shadow: none
+    width: initial
+    margin: 0
+    padding: 0
+  .gl pre
+    margin: 0 1.5em 0 .25em
+    opacity: .5
+
+.highlight // https://github.com/richleland/pygments-css/blob/master/monokai.css <http://unlicense.org>
+  pre
+    background: color.change(color.adjust($dark, $lightness: 6%), $alpha: .9)
+    color: white
+  .c
+    color: #a29f90
+  .err
+    color: #960050
+    background-color: #1e0010
+  .k
+    color: #66d9ef
+  .l
+    color: #ae81ff
+  .n
+    color: #f8f8f2
+  .o
+    color: #f92672
+  .p
+    color: #f8f8f2
+  .cm, .cp, .c1, .cs
+    color: #75715e
+  .ge
+    font-style: italic
+  .gs
+    font-weight: bold
+  .kc, .kd
+    color: #66d9ef
+  .kn
+    color: #f92672
+  .kp, .kr, .kt
+    color: #66d9ef
+  .ld
+    color: #e6db74
+  .m
+    color: #ae81ff
+  .s
+    color: #e6db74
+  .na
+    color: #a6e22e
+  .nb
+    color: #f8f8f2
+  .nc
+    color: #a6e22e
+  .no
+    color: #66d9ef
+  .nd
+    color: #a6e22e
+  .ni
+    color: #f8f8f2
+  .ne, .nf
+    color: #a6e22e
+  .nl, .nn
+    color: #f8f8f2
+  .nx
+    color: #a6e22e
+  .py
+    color: #f8f8f2
+  .nt
+    color: #f92672
+  .nv
+    color: #f8f8f2
+  .ow
+    color: #f92672
+  .w
+    color: #f8f8f2
+  .mf, .mh, .mi, .mo
+    color: #ae81ff
+  .sb, .sc, .sd, .s2
+    color: #e6db74
+  .se
+    color: #ae81ff
+  .sh, .si, .sx, .sr, .s1, .ss
+    color: #e6db74
+  .bp, .vc, .vg, .vi
+    color: #f8f8f2
+  .il
+    color: #ae81ff
+  .gu
+    color: #75715e
+  .gd
+    color: #f92672
+  .gi
+    color: #a6e22e

@@ -1,0 +1,39 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import DocumentPage from '../components/DocumentPage.astro';
+import PostLayout from '../layouts/PostLayout.astro';
+import { docUrl } from '../lib/docs';
+import { postUrl } from '../lib/posts';
+
+type Route =
+	| { kind: 'post'; post: CollectionEntry<'posts'> }
+	| { kind: 'doc'; doc: CollectionEntry<'docs'> };
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	const docs = await getCollection('docs');
+	const routes = new Map<string, Route>();
+	const reserved = new Set(['about', 'archive', 'documents', 'giants-calendar']);
+	const add = (url: string, route: Route) => {
+		const path = url.replace(/^\/|\/$/g, '');
+		if (!path || reserved.has(path) || /^(?:assets|scripts|_astro|posts|documents)(?:\/|$)/.test(path) || routes.has(path)) {
+			throw new Error(`Conflicting content URL: ${url}`);
+		}
+		routes.set(path, route);
+	};
+	for (const post of posts) add(postUrl(post), { kind: 'post', post });
+	for (const doc of docs) add(docUrl(doc), { kind: 'doc', doc });
+	return [...routes].map(([path, route]) => ({ params: { path }, props: { route } }));
+}
+
+interface Props {
+	route: Route;
+}
+
+const { route } = Astro.props;
+const rendered = route.kind === 'post' ? await render(route.post) : undefined;
+const Content = rendered?.Content;
+---
+
+{route.kind === 'post' && Content && <PostLayout post={route.post}><Content /></PostLayout>}
+{route.kind === 'doc' && <DocumentPage doc={route.doc} />}

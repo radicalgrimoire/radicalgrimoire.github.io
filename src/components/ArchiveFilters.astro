@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+	idPrefix: string;
+}
+
+const { idPrefix } = Astro.props;
+const posts = await getCollection('posts');
+const filters = (['category', 'tag'] as const).map((type) => {
+	const counts = new Map<string, number>();
+	for (const post of posts) {
+		for (const value of new Set(type === 'category' ? post.data.categories : post.data.tags)) {
+			counts.set(value, (counts.get(value) ?? 0) + 1);
+		}
+	}
+	return {
+		type,
+		label: type === 'category' ? 'Categories' : 'Tags',
+		items: [...counts.entries()].sort(([a], [b]) => a.localeCompare(b)),
+	};
+});
+---
+
+{filters.map(({ type, label, items }) => (
+	<>
+		<button type="button" class="archive-filter-trigger" popovertarget={`${idPrefix}-${type}`} data-filter-trigger={type} hidden>{label} <span data-filter-count></span></button>
+		<div class="archive-filters" id={`${idPrefix}-${type}`} popover="auto" aria-label={label} data-archive-filters data-filter-panel-type={type} hidden>
+			<div class="archive-filter-group">
+				<p class="archive-filter-label">{label}</p>
+				<div class="archive-filter-options">
+					{items.map(([name, count]) => (
+						<button type="button" class="archive-filter-option" data-filter-type={type} data-filter-value={name} title={name} aria-pressed="false"><span class="archive-filter-name">{name}</span><span class="archive-filter-count">{count}</span></button>
+					))}
+				</div>
+			</div>
+		</div>
+	</>
+))}
+<button type="button" class="archive-filter-clear" data-filter-clear hidden>Clear all filters</button>

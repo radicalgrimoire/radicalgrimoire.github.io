@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import ArchiveFilters from '../components/ArchiveFilters.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { categoryColor, dateParts, formattedDate, postDate, postUrl } from '../lib/posts';
+import { siteConfig } from '../lib/site-config';
+
+const posts = (await getCollection('posts')).sort(
+	(a, b) => postDate(b).getTime() - postDate(a).getTime() || b.id.localeCompare(a.id),
+);
+---
+
+<BaseLayout title={`DailyLogs | ${siteConfig.title}`}>
+	<article class="archive-page">
+		<header><h1 tabindex="-1">DailyLogs</h1></header>
+		<div class="archive-mobile-filters"><ArchiveFilters idPrefix="mobile-archive-filters" /></div>
+		<noscript><p>絞り込みとページ送りにはJavaScriptが必要です。すべての記事を表示しています。</p></noscript>
+		<div class="archive-overview">
+			<p class="archive-years" data-archive-years>All years</p>
+			<p class="archive-filter-status" data-filter-status role="status" hidden></p>
+		</div>
+		<ul class="archive-grid">
+			{posts.map((post) => (
+				<li class:list={['archive-card', `archive-color-${categoryColor(post.data.categories)}`]} data-archive-post data-year={dateParts(post).year} data-categories={JSON.stringify(post.data.categories)} data-tags={JSON.stringify(post.data.tags)}>
+					<a class="archive-card-link" href={postUrl(post)}>
+						<time class="archive-card-date" datetime={postDate(post).toISOString()}>{formattedDate(post)}</time>
+						<span class="archive-card-title">{post.data.title}</span>
+						{post.data.categories.length > 0 && (
+							<span class="archive-card-categories">
+								{post.data.categories.map((category) => <span class:list={['archive-category', `archive-color-${categoryColor([category])}`]}>{category}</span>)}
+							</span>
+						)}
+						{post.data.tags.length > 0 && (
+							<span class="archive-card-tags">{post.data.tags.map((tag) => <span>#{tag}</span>)}</span>
+						)}
+					</a>
+				</li>
+			))}
+		</ul>
+		<nav class="archive-pagination" data-archive-pagination aria-label="Archive pagination" hidden>
+			<button type="button" data-archive-previous>← Newer</button>
+			<span data-archive-page role="status"></span>
+			<button type="button" data-archive-next>Older →</button>
+		</nav>
+	</article>
+	<section class="archive-reader" id="archive-reader" aria-label="記事プレビュー" data-archive-reader hidden>
+		<div class="archive-reader-toolbar">
+			<a data-archive-reader-link>記事ページを直接開く ↗</a>
+			<button type="button" data-archive-reader-close>✕ 閉じる</button>
+		</div>
+		<div class="archive-reader-content" data-archive-reader-content></div>
+	</section>
+	<script is:inline defer src="/scripts/archive-filters.js"></script>
+	<script is:inline defer src="/scripts/archive-reader.js"></script>
+</BaseLayout>

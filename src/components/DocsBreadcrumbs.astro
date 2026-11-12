@@ -1,0 +1,20 @@
+---
+import { docUrl, type Doc } from '../lib/docs';
+
+interface Props {
+	doc: Doc;
+	category?: Doc;
+}
+
+const { doc, category } = Astro.props;
+---
+
+<nav class="docs-breadcrumbs" aria-label="Breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/documents/">Documents</a></li>
+		{category && category.id !== doc.id && (
+			<li class="breadcrumb-item"><a href={docUrl(category)}>{category.data.title}</a></li>
+		)}
+		<li class="breadcrumb-item active" aria-current="page">{doc.data.title}</li>
+	</ol>
+</nav>

@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { dateParts } from '../lib/dates';
+import { docUrl } from '../lib/docs';
+import { postUrl } from '../lib/posts';
+import { siteConfig } from '../lib/site-config';
+import { contentUpdateHistory } from '../lib/update-history';
+
+const [posts, docs] = await Promise.all([getCollection('posts'), getCollection('docs')]);
+const history = contentUpdateHistory();
+const items = [
+	...posts.map((post) => ({
+		path: post.filePath, id: post.id, title: post.data.title, url: postUrl(post),
+		type: 'Posts', categories: post.data.categories, tags: post.data.tags,
+	})),
+	...docs.map((doc) => ({
+		path: doc.filePath, id: doc.id, title: doc.data.title, url: docUrl(doc),
+		type: 'Docs', categories: doc.data.categories, tags: [],
+	})),
+].flatMap((item) => {
+	if (!item.path) throw new Error(`Missing source path for ${item.type} "${item.id}"`);
+	const date = history.get(item.path.replaceAll('\\', '/'));
+	if (!date) {
+		console.warn(`No Git update history for ${item.path}; excluded from the home page`);
+		return [];
+	}
+	return [{ ...item, path: item.path, date }];
+}).sort((a, b) => b.date.getTime() - a.date.getTime() || a.path.localeCompare(b.path)).slice(0, 10);
+---
+
+<BaseLayout title={siteConfig.title}>
+	<section class="home-list" aria-labelledby="latest-notes">
+		<div class="home-heading">
+			<div>
+				<p class="home-eyebrow">{siteConfig.title}</p>
+				<h1 id="latest-notes">Latest Notes</h1>
+				<p class="home-intro">記事と資料の最新10件を更新順に表示しています。</p>
+			</div>
+		</div>
+		<ol class="note-list" aria-label="記事と資料の更新一覧">
+			{items.map((item) => {
+				const parts = dateParts({ id: item.id, data: { date: item.date } }, siteConfig.timezone);
+				return (
+					<li class="note-item">
+						<a class="note-link" href={item.url}>
+							<time class="note-date" datetime={item.date.toISOString()}>
+								<span>{parts.monthName}</span>
+								<strong>{parts.day}</strong>
+								<span>{parts.year}</span>
+							</time>
+							<span class="note-content">
+								<span class="note-title">{item.title}</span>
+								<span class="note-taxonomies">
+									<span class="note-type">{item.type}</span>
+									{item.categories.map((category) => <span>{category}</span>)}
+									{item.tags.map((tag) => <span>#{tag}</span>)}
+								</span>
+							</span>
+							<span class="note-arrow" aria-hidden="true">›</span>
+						</a>
+					</li>
+				);
+			})}
+		</ol>
+	</section>
+</BaseLayout>

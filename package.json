@@ -1,0 +1,50 @@
+{
+  "name": "GadgetLogs",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "astro check",
+    "preview": "astro preview",
+    "astro": "astro",
+    "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs",
+    "test:social": "node --test tests/social-embeds.test.mjs",
+    "test:video": "node --test tests/video-embeds.test.mjs",
+    "test:embeds": "node --test tests/markdown-embeds.test.mjs tests/social-embeds.test.mjs tests/video-embeds.test.mjs",
+    "test:images": "node --test tests/images.test.mjs",
+    "test:lightbox": "node --test tests/image-lightbox.test.mjs",
+    "test:posts": "node --test tests/post-links.test.mjs",
+    "test:archive": "node --test tests/archive.test.mjs",
+    "test:about": "node --test tests/about.test.mjs",
+    "test:menu": "node --test tests/mobile-menu.test.mjs",
+    "test:calendar": "node --test tests/giants-calendar.test.mjs",
+    "test:config": "node --test tests/site-config.test.mjs"
+  },
+  "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.8",
+    "@astrojs/react": "^7.1.7",
+    "@astryxdesign/core": "^0.7.13",
+    "@astryxdesign/theme-neutral": "^0.7.13",
+    "@stylexjs/stylex": "^0.19.1",
+    "astro": "^7.4.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "satteri": "^0.11.7",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astryxdesign/cli": "^0.7.13",
+    "@types/hast": "^3.0.5",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "sass": "^1.108.2",
+    "typescript": "^6.0.3"
+  }
+}

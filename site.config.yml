@@ -1,0 +1,33 @@
+title: "GadgetLogs"
+title_accent: "Logs"
+author: "radicalgrimoire"
+description: "I am the most fucking engineer."
+timezone: "Asia/Tokyo"
+lang: "ja"
+
+category_colors:
+  fallback:
+    light: { accent: "#64788e", label_background: "#e8edf3", label_text: "#3e5268" }
+    dark: { accent: "#a7b9cd", label_background: "#344656", label_text: "#e1eaf2" }
+  categories:
+    - name: tech
+      light: { accent: "#3775ba", label_background: "#dceaf9", label_text: "#245388" }
+      dark: { accent: "#79baff", label_background: "#254760", label_text: "#cae5ff" }
+    - name: baseball
+      light: { accent: "#ba691c", label_background: "#f9e9d8", label_text: "#894a12" }
+      dark: { accent: "#f3ad69", label_background: "#60432f", label_text: "#ffddbb" }
+    - name: game
+      light: { accent: "#8a5aad", label_background: "#eee2f7", label_text: "#653d83" }
+      dark: { accent: "#d1a5ef", label_background: "#49365c", label_text: "#f0d9ff" }
+
+navigation:
+  - { title: "Home", url: "/", icon: "house" }
+  - title: "Logs"
+    children:
+      - { title: "DailyLogs", url: "/archive/", icon: "chat-left-text", section: "posts", description: "日記・ブログ記事" }
+      - { title: "Documents", url: "/documents/", icon: "folder2", section: "documents", description: "資料・読み物" }
+      - { title: "Giants Calendar", url: "/giants-calendar/", icon: "calendar3", description: "ジャイアンツの試合日程" }
+  - { title: "About", url: "/about/", icon: "file-text" }
+
+external:
+  - { title: "GitHub", icon: "github", url: "https://github.com/radicalgrimoire" }
