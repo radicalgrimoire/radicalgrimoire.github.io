@@ -1,9 +1,9 @@
 .giants-calendar {
-  --giants-orange: #c65a0c;
-  --giants-surface: #fff;
-  --giants-border: #e4dcd4;
-  --giants-muted: #6d625a;
-  color: #29231f;
+  --giants-orange: #ffad70;
+  --giants-surface: #292e36;
+  --giants-border: #44444a;
+  --giants-muted: #c0b9b2;
+  color: #eee9e5;
 }
 .giants-calendar-label {
   color: var(--giants-orange);
@@ -42,13 +42,13 @@
 .giants-calendar-weekdays span { padding: .5rem; }
 .giants-calendar-grid { gap: 1px; overflow: hidden; border: 1px solid var(--giants-border); border-radius: .5rem; background: var(--giants-border); }
 .giants-calendar-day, .giants-calendar-empty { min-height: 8rem; padding: .45rem; background: var(--giants-surface); }
-.giants-calendar-empty { background: #f8f5f2; }
+.giants-calendar-empty { background: #22262d; }
 .giants-calendar-day-number { margin-bottom: .35rem; font-size: .85rem; font-weight: 700; }
 .giants-calendar-mobile-day { display: none; }
-.giants-calendar-event { display: block; width: 100%; margin: .25rem 0; padding: .35rem; border: 0; border-left: 3px solid #e87524; border-radius: .2rem; background: #fff2e8; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
-.giants-calendar-event:hover { background: #ffe4d0; }
-.giants-calendar-event-time { display: block; color: #994407; font-size: .7rem; font-weight: 700; }
-.giants-calendar-event-title { display: block; color: #34261c; font-size: .75rem; line-height: 1.4; }
+.giants-calendar-event { display: block; width: 100%; margin: .25rem 0; padding: .35rem; border: 0; border-left: 3px solid #e87524; border-radius: .2rem; background: #4a3326; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.giants-calendar-event:hover { background: #60412f; }
+.giants-calendar-event-time { display: block; color: #ffbf8b; font-size: .7rem; font-weight: 700; }
+.giants-calendar-event-title { display: block; color: #fff2e8; font-size: .75rem; line-height: 1.4; }
 .giants-calendar-dialog {
   width: min(32rem, calc(100% - 2rem));
   max-height: min(80vh, 40rem);
@@ -81,12 +81,4 @@
   .giants-calendar-mobile-day { display: inline; }
   .giants-calendar-event { padding: .5rem; }
   .giants-calendar-event-title { font-size: .9rem; }
-}
-@media (prefers-color-scheme: dark) {
-  .giants-calendar { --giants-orange: #ffad70; --giants-surface: #292e36; --giants-border: #44444a; --giants-muted: #c0b9b2; color: #eee9e5; }
-  .giants-calendar-empty { background: #22262d; }
-  .giants-calendar-event { background: #4a3326; }
-  .giants-calendar-event:hover { background: #60412f; }
-  .giants-calendar-event-time { color: #ffbf8b; }
-  .giants-calendar-event-title { color: #fff2e8; }
 }

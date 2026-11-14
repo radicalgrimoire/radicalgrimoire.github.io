@@ -45,8 +45,8 @@
   display: block
 
 .github-alert
-  --github-alert-color: #0969da
-  --github-alert-background: #ddf4ff
+  --github-alert-color: #4493f8
+  --github-alert-background: #0d2847
   background: var(--github-alert-background)
   border-left: .25em solid var(--github-alert-color)
   margin: 1em 0
@@ -67,20 +67,20 @@
   margin: 0 0 .5em
 
 .github-alert-tip
-  --github-alert-color: #1a7f37
-  --github-alert-background: #dafbe1
+  --github-alert-color: #3fb950
+  --github-alert-background: #0d2d1a
 
 .github-alert-important
-  --github-alert-color: #8250df
-  --github-alert-background: #fbefff
+  --github-alert-color: #ab7df8
+  --github-alert-background: #2a1d4b
 
 .github-alert-warning
-  --github-alert-color: #9a6700
-  --github-alert-background: #fff8c5
+  --github-alert-color: #d29922
+  --github-alert-background: #332701
 
 .github-alert-caution
-  --github-alert-color: #cf222e
-  --github-alert-background: #ffebe9
+  --github-alert-color: #f85149
+  --github-alert-background: #3b1719
 
 .github-code-view
   background: color.change(color.adjust($dark, $lightness: 6%), $alpha: .9)
@@ -136,23 +136,6 @@
   min-width: 0
   overflow-wrap: anywhere
   white-space: pre-wrap
-
-@media (prefers-color-scheme: dark)
-  .github-alert
-    --github-alert-color: #4493f8
-    --github-alert-background: #0d2847
-  .github-alert-tip
-    --github-alert-color: #3fb950
-    --github-alert-background: #0d2d1a
-  .github-alert-important
-    --github-alert-color: #ab7df8
-    --github-alert-background: #2a1d4b
-  .github-alert-warning
-    --github-alert-color: #d29922
-    --github-alert-background: #332701
-  .github-alert-caution
-    --github-alert-color: #f85149
-    --github-alert-background: #3b1719
 
 // Lightbox3 theme overrides
 \:root

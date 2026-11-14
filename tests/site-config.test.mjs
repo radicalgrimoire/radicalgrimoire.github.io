@@ -11,15 +11,13 @@ test('configured category colors support additions, ordering, and fallback', () 
 	const data = parse(source);
 	const category = structuredClone(data.category_colors.categories[0]);
 	category.name = 'custom';
-	category.light.accent = '#123456';
-	category.dark.accent = '#abcdef';
+	category.accent = '#abcdef';
 	data.category_colors.categories.unshift(category);
 	const config = parseSiteConfig(stringify(data));
 	assert.equal(categoryColor(['baseball', 'custom'], config), 'configured-0');
 	assert.equal(categoryColor(['unknown'], config), 'other');
 	const css = categoryColorsCss(config);
-	assert.match(css, /\.archive-color-configured-0\{--archive-accent:#123456;/);
-	assert.match(css, /@media \(prefers-color-scheme:dark\)\{.*\.archive-color-configured-0\{--archive-accent:#abcdef;/);
+	assert.match(css, /\.archive-color-configured-0\{--archive-accent:#abcdef;/);
 });
 
 test('invalid configuration fails with a useful field name', () => {
@@ -33,9 +31,9 @@ test('invalid configuration fails with a useful field name', () => {
 		assert.throws(() => parseSiteConfig(stringify(data)), new RegExp(field));
 	}
 	const data = parse(source);
-	data.category_colors.fallback.light.accent = 'red;}</style>';
+	data.category_colors.fallback.accent = 'red;}</style>';
 	assert.throws(() => parseSiteConfig(stringify(data)), /accent/);
-	data.category_colors.fallback.light.accent = '#123456';
+	data.category_colors.fallback.accent = '#123456';
 	data.external[0].url = 'javascript:alert(1)';
 	assert.throws(() => parseSiteConfig(stringify(data)), /external/);
 });
@@ -78,6 +76,14 @@ test('site titles are not links and Home navigation remains available', () => {
 		assert.match(html, new RegExp(`<span class="${className}">[^<]*<span class="site-title-accent">[^<]+</span></span>`));
 	}
 	assert.match(html, /<a href="\/"[^>]*>(?:<i[^>]*><\/i>)?Home<\/a>/);
+});
+
+test('pages declare a dark-only theme without a theme switch', () => {
+	for (const path of ['dist/index.html', 'dist/archive/index.html', 'dist/giants-calendar/index.html']) {
+		const html = readFileSync(path, 'utf8');
+		assert.match(html, /<meta name="color-scheme" content="dark">/);
+		assert.doesNotMatch(html, /data-theme-toggle|data-theme-init|\/scripts\/theme\.js/);
+	}
 });
 
 test('external stylesheets use integrity checks and limit referrer disclosure', () => {

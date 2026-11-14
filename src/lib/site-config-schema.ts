@@ -18,7 +18,6 @@ const palette = z.strictObject({
 	label_background: color,
 	label_text: color,
 });
-const colorPair = z.strictObject({ light: palette, dark: palette });
 const navigationLink = z.strictObject({
 	title: text,
 	url,
@@ -41,8 +40,8 @@ export const siteConfigSchema = z.strictObject({
 	lang: text,
 	latest_notes_count: z.number().int().positive(),
 	category_colors: z.strictObject({
-		fallback: colorPair,
-		categories: z.array(z.strictObject({ name: text, light: palette, dark: palette })),
+		fallback: palette,
+		categories: z.array(z.strictObject({ name: text, ...palette.shape })),
 	}),
 	navigation: z.array(z.union([navigationLink, navigationGroup])),
 	external: z.array(z.strictObject({ title: text, icon, url })),
@@ -79,13 +78,11 @@ export function parseSiteConfig(source: string): SiteConfig {
 }
 
 export function categoryColorsCss(config: SiteConfig): string {
-	const pairs = [config.category_colors.fallback, ...config.category_colors.categories];
-	const rules = (mode: 'light' | 'dark') => pairs.map((pair, index) => {
+	const palettes = [config.category_colors.fallback, ...config.category_colors.categories];
+	return palettes.map((colors, index) => {
 		const name = index === 0 ? 'other' : `configured-${index - 1}`;
-		const colors = pair[mode];
 		return `.archive-color-${name}{--archive-accent:${colors.accent};--archive-label-background:${colors.label_background};--archive-label-color:${colors.label_text}}`;
 	}).join('');
-	return `${rules('light')}@media (prefers-color-scheme:dark){${rules('dark')}}`;
 }
 
 export function categoryColor(categories: string[], config: SiteConfig): string {
