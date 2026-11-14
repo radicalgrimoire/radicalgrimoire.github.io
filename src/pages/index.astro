@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { dateParts } from '../lib/dates';
 import { docUrl } from '../lib/docs';
-import { postUrl } from '../lib/posts';
+import { categoryColor, postUrl } from '../lib/posts';
 import { siteConfig } from '../lib/site-config';
 import { contentUpdateHistory } from '../lib/update-history';
 
@@ -12,11 +12,11 @@ const history = contentUpdateHistory();
 const items = [
 	...posts.map((post) => ({
 		path: post.filePath, id: post.id, title: post.data.title, url: postUrl(post),
-		type: 'Posts', categories: post.data.categories, tags: post.data.tags,
+		type: 'Posts' as const, categories: post.data.categories, tags: post.data.tags,
 	})),
 	...docs.map((doc) => ({
 		path: doc.filePath, id: doc.id, title: doc.data.title, url: docUrl(doc),
-		type: 'Docs', categories: doc.data.categories, tags: [],
+		type: 'Docs' as const, categories: doc.data.categories, tags: [],
 	})),
 ].flatMap((item) => {
 	if (!item.path) throw new Error(`Missing source path for ${item.type} "${item.id}"`);
@@ -26,23 +26,33 @@ const items = [
 		return [];
 	}
 	return [{ ...item, path: item.path, date }];
-}).sort((a, b) => b.date.getTime() - a.date.getTime() || a.path.localeCompare(b.path)).slice(0, 10);
+}).sort((a, b) => b.date.getTime() - a.date.getTime() || a.path.localeCompare(b.path));
+const counts = { Posts: 0, Docs: 0 };
+const recentItems = items.filter((item, index) => {
+	counts[item.type]++;
+	return index < 10 || counts[item.type] <= 10;
+});
 ---
 
 <BaseLayout title={siteConfig.title}>
 	<section class="home-list" aria-labelledby="latest-notes">
 		<div class="home-heading">
 			<div>
-				<p class="home-eyebrow">{siteConfig.title}</p>
 				<h1 id="latest-notes">Latest Notes</h1>
 				<p class="home-intro">記事と資料の最新10件を更新順に表示しています。</p>
 			</div>
 		</div>
-		<ol class="note-list" aria-label="記事と資料の更新一覧">
-			{items.map((item) => {
+		<div class="home-filters" role="group" aria-label="更新一覧の種類" data-home-filters hidden>
+			<button type="button" data-home-filter="all" aria-pressed="true">すべて</button>
+			<button type="button" data-home-filter="Posts" aria-pressed="false">記事</button>
+			<button type="button" data-home-filter="Docs" aria-pressed="false">資料</button>
+		</div>
+		<p class="home-filter-status" role="status" data-home-status></p>
+		<ol class="note-list" role="list" aria-label="記事と資料の更新一覧">
+			{recentItems.map((item, index) => {
 				const parts = dateParts({ id: item.id, data: { date: item.date } }, siteConfig.timezone);
 				return (
-					<li class="note-item">
+					<li class="note-item" data-home-item={item.type} hidden={index >= 10}>
 						<a class="note-link" href={item.url}>
 							<time class="note-date" datetime={item.date.toISOString()}>
 								<span>{parts.monthName}</span>
@@ -53,7 +63,7 @@ const items = [
 								<span class="note-title">{item.title}</span>
 								<span class="note-taxonomies">
 									<span class="note-type">{item.type}</span>
-									{item.categories.map((category) => <span>{category}</span>)}
+									{item.categories.map((category) => <span class:list={['note-category', `archive-color-${categoryColor([category])}`]}>{category}</span>)}
 									{item.tags.map((tag) => <span>#{tag}</span>)}
 								</span>
 							</span>
@@ -64,4 +74,5 @@ const items = [
 			})}
 		</ol>
 	</section>
+	<script is:inline defer src="/scripts/home-filters.js"></script>
 </BaseLayout>

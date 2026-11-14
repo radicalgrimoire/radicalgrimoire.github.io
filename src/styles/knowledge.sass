@@ -70,18 +70,42 @@ body > header > nav
   font-weight: 700
   margin: 0
 
-.home-eyebrow
-  color: #68809d
-  font-size: .75rem
-  font-weight: 700
-  letter-spacing: .12em
-  margin: 0 0 .4rem
-  text-transform: uppercase
-
 .home-intro
   color: #637287
   margin: .35rem 0 0
   text-align: left
+
+.home-filters
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+  margin-bottom: 1rem
+  &[hidden]
+    display: none
+  button
+    min-height: 2.75rem
+    padding: .4rem .9rem
+    border: 1px solid #71839a
+    border-radius: .4rem
+    background: transparent
+    color: inherit
+    font-weight: 600
+    &:hover
+      background: #eaf0f8
+    &[aria-pressed="true"]
+      border-color: #315fa8
+      background: #315fa8
+      color: #fff
+    &:focus-visible
+      outline: 2px solid #2867cc
+      outline-offset: 2px
+
+.home-filter-status
+  margin: 0
+  &:not(:empty)
+    margin-bottom: .75rem
+    color: #637287
+    font-size: .85rem
 
 .note-list
   list-style: none
@@ -154,6 +178,10 @@ body > header > nav
   color: #344f6d
   font-weight: 700
 
+.note-taxonomies .note-category
+  background: var(--archive-label-background)
+  color: var(--archive-label-color)
+
 .note-arrow
   color: #8192a8
   font-size: 1.5rem
@@ -169,6 +197,16 @@ body > header > nav
 .home-pagination a
   margin: 0
   color: #315fa8
+
+@media (max-width: 37.5em)
+  .note-link
+    gap: .65rem
+    padding-inline: .15rem
+  .note-date
+    flex-basis: 3.25rem
+    min-height: 3.75rem
+  .note-arrow
+    font-size: 1.25rem
 
 .docs-index-header .docs-eyebrow
   margin: 0 0 .65rem
@@ -999,8 +1037,20 @@ html.archive-preview .site-main > .post-article
     background: #293747
   .docs-list a
     color: #a6c8ff
-  .home-intro, .home-eyebrow
+  .home-intro
     color: #aab9ca
+  .home-filter-status:not(:empty)
+    color: #aab9ca
+  .home-filters button
+    border-color: #aab9ca
+    &:hover
+      background: #293747
+    &[aria-pressed="true"]
+      border-color: #a6c8ff
+      background: #a6c8ff
+      color: #172432
+    &:focus-visible
+      outline-color: #a6c8ff
   .home-pagination a
     color: #a6c8ff
   .note-list, .note-item

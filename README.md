@@ -19,7 +19,7 @@ Giants Calendar. Pushes to `main` build and deploy the site to GitHub Pages.
 
 ## Local development
 
-Requires Node.js 22.23.4 or newer and a Git checkout with full history.
+Requires Node.js 26 or newer and a Git checkout with full history.
 
 ```sh
 npm install

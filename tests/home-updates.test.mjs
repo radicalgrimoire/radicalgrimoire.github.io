@@ -4,6 +4,7 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
+import { runInNewContext } from 'node:vm';
 import { parse } from 'yaml';
 import { contentUpdateHistory } from '../src/lib/update-history.ts';
 import { postPath } from './post-paths.mjs';
@@ -57,11 +58,14 @@ test('home shows exactly the latest ten posts and documents with their update da
 		const id = path.replace(/^src\/content\/(?:posts|docs)\//, '').replace(/\.md$/, '');
 		const url = isPost ? `/${postPath(id)}/` : `/${id.replace(/\/index$/, '')}/`;
 		return { path, url, type: isPost ? 'Posts' : 'Docs', date: new Date(Number(timestamp) * 1000).toISOString() };
-	}).sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path)).slice(0, 10);
+	}).sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path));
 
 	const html = readFileSync('dist/index.html', 'utf8');
 	const { timezone } = parse(readFileSync('site.config.yml', 'utf8'));
-	const items = [...html.matchAll(/<li class="note-item">([\s\S]*?)<\/li>/g)].map((match) => match[1]);
+	const rendered = [...html.matchAll(/<li class="note-item"([^>]*)>([\s\S]*?)<\/li>/g)];
+	const items = rendered
+		.filter((match) => !/\shidden(?:\s|=|$)/.test(match[1]))
+		.map((match) => match[2]);
 	assert.equal(items.length, 10);
 	for (const [index, item] of items.entries()) {
 		assert.ok(item.includes(`href="${expected[index].url}"`), expected[index].path);
@@ -75,4 +79,50 @@ test('home shows exactly the latest ten posts and documents with their update da
 		const month = new Intl.DateTimeFormat('en-US', { timeZone: timezone, month: 'short' }).format(date);
 		assert.ok(item.includes(`<span>${month}</span><strong>${part('day')}</strong><span>${part('year')}</span>`));
 	}
+	for (const type of ['Posts', 'Docs']) {
+		const actual = rendered.filter((match) => match[1].includes(`data-home-item="${type}"`));
+		const recent = expected.filter((item) => item.type === type).slice(0, 10);
+		assert.equal(actual.length, recent.length);
+		for (const [index, item] of recent.entries()) {
+			assert.ok(actual[index][2].includes(`href="${item.url}"`), item.path);
+		}
+	}
+});
+
+test('home filters show the latest ten of each type and preserve the initial list', () => {
+	const html = readFileSync('dist/index.html', 'utf8');
+	const rendered = [...html.matchAll(/<li class="note-item"([^>]*)>([\s\S]*?)<\/li>/g)];
+	const items = rendered.map((match) => ({
+		dataset: { homeItem: match[1].match(/data-home-item="([^"]+)"/)[1] },
+		hidden: /\shidden(?:\s|=|$)/.test(match[1]),
+	}));
+	const initial = items.filter((item) => !item.hidden);
+	const buttons = ['all', 'Posts', 'Docs'].map((type) => ({
+		dataset: { homeFilter: type },
+		textContent: { all: 'すべて', Posts: '記事', Docs: '資料' }[type],
+		addEventListener(_type, handler) { this.click = handler; },
+		setAttribute(name, value) { this[name] = value; },
+	}));
+	const filters = { hidden: true, querySelectorAll: () => buttons };
+	const status = { textContent: '' };
+	const document = {
+		querySelector: (selector) => selector === '[data-home-filters]' ? filters : status,
+		querySelectorAll: () => items,
+	};
+	runInNewContext(readFileSync('public/scripts/home-filters.js', 'utf8'), { document });
+	assert.equal(filters.hidden, false);
+	for (const [index, type] of ['Posts', 'Docs'].entries()) {
+		buttons[index + 1].click();
+		assert.deepEqual(items.filter((item) => !item.hidden), items.filter((item) => item.dataset.homeItem === type).slice(0, 10));
+		assert.equal(buttons[index + 1]['aria-pressed'], 'true');
+		assert.equal(buttons[0]['aria-pressed'], 'false');
+	}
+	buttons[0].click();
+	assert.deepEqual(items.filter((item) => !item.hidden), initial);
+	assert.equal(buttons[0]['aria-pressed'], 'true');
+	items.splice(0, items.length);
+	buttons[1].click();
+	assert.equal(status.textContent, '該当する更新はありません。');
+	assert.match(html, /data-home-filters hidden/);
+	assert.match(html, /class="note-category archive-color-(?:configured-\d+|other)"/);
 });
