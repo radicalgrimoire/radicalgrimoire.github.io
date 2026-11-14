@@ -4,6 +4,7 @@ author: "radicalgrimoire"
 description: "I am the most fucking engineer."
 timezone: "Asia/Tokyo"
 lang: "ja"
+latest_notes_count: 7
 
 category_colors:
   fallback:

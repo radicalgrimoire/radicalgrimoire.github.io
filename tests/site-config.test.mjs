@@ -40,6 +40,16 @@ test('invalid configuration fails with a useful field name', () => {
 	assert.throws(() => parseSiteConfig(stringify(data)), /external/);
 });
 
+test('latest notes count must be a positive integer', () => {
+	const data = parse(source);
+	data.latest_notes_count = 3;
+	assert.equal(parseSiteConfig(stringify(data)).latest_notes_count, 3);
+	for (const value of [0, -1, 1.5, '10']) {
+		data.latest_notes_count = value;
+		assert.throws(() => parseSiteConfig(stringify(data)), /latest_notes_count/);
+	}
+});
+
 test('date-only posts retain their date while timestamps use the configured timezone', () => {
 	const entry = (date) => ({ id: '2026-01-01-example', data: { date } });
 	assert.equal(dateParts(entry('2026-01-01'), 'America/Los_Angeles').day, '01');

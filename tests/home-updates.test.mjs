@@ -45,7 +45,7 @@ test('Git history records the latest content commit, including renames', (t) => 
 	assert.throws(() => contentUpdateHistory(cwd), /Full Git history is required/);
 });
 
-test('home shows exactly the latest ten posts and documents with their update dates', () => {
+test('home shows the configured number of latest posts and documents with their update dates', () => {
 	const files = execFileSync('git', ['ls-files', '-z', '--', 'src/content/posts', 'src/content/docs'], {
 		encoding: 'utf8',
 	}).split('\0').filter((path) => path.endsWith('.md'));
@@ -61,12 +61,14 @@ test('home shows exactly the latest ten posts and documents with their update da
 	}).sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path));
 
 	const html = readFileSync('dist/index.html', 'utf8');
-	const { timezone } = parse(readFileSync('site.config.yml', 'utf8'));
+	const { timezone, latest_notes_count: limit } = parse(readFileSync('site.config.yml', 'utf8'));
 	const rendered = [...html.matchAll(/<li class="note-item"([^>]*)>([\s\S]*?)<\/li>/g)];
 	const items = rendered
 		.filter((match) => !/\shidden(?:\s|=|$)/.test(match[1]))
 		.map((match) => match[2]);
-	assert.equal(items.length, 10);
+	assert.equal(items.length, Math.min(limit, expected.length));
+	assert.ok(html.includes(`記事と資料の最新${limit}件を更新順に表示しています。`));
+	assert.ok(html.includes(`data-home-limit="${limit}"`));
 	for (const [index, item] of items.entries()) {
 		assert.ok(item.includes(`href="${expected[index].url}"`), expected[index].path);
 		assert.ok(item.includes(`datetime="${expected[index].date}"`), expected[index].path);
@@ -81,7 +83,7 @@ test('home shows exactly the latest ten posts and documents with their update da
 	}
 	for (const type of ['Posts', 'Docs']) {
 		const actual = rendered.filter((match) => match[1].includes(`data-home-item="${type}"`));
-		const recent = expected.filter((item) => item.type === type).slice(0, 10);
+		const recent = expected.filter((item) => item.type === type).slice(0, limit);
 		assert.equal(actual.length, recent.length);
 		for (const [index, item] of recent.entries()) {
 			assert.ok(actual[index][2].includes(`href="${item.url}"`), item.path);
@@ -89,8 +91,9 @@ test('home shows exactly the latest ten posts and documents with their update da
 	}
 });
 
-test('home filters show the latest ten of each type and preserve the initial list', () => {
+test('home filters honor the configured limit and preserve the initial list', () => {
 	const html = readFileSync('dist/index.html', 'utf8');
+	const limit = Number(html.match(/data-home-limit="(\d+)"/)[1]);
 	const rendered = [...html.matchAll(/<li class="note-item"([^>]*)>([\s\S]*?)<\/li>/g)];
 	const items = rendered.map((match) => ({
 		dataset: { homeItem: match[1].match(/data-home-item="([^"]+)"/)[1] },
@@ -103,7 +106,7 @@ test('home filters show the latest ten of each type and preserve the initial lis
 		addEventListener(_type, handler) { this.click = handler; },
 		setAttribute(name, value) { this[name] = value; },
 	}));
-	const filters = { hidden: true, querySelectorAll: () => buttons };
+	const filters = { hidden: true, dataset: { homeLimit: String(limit) }, querySelectorAll: () => buttons };
 	const status = { textContent: '' };
 	const document = {
 		querySelector: (selector) => selector === '[data-home-filters]' ? filters : status,
@@ -113,7 +116,7 @@ test('home filters show the latest ten of each type and preserve the initial lis
 	assert.equal(filters.hidden, false);
 	for (const [index, type] of ['Posts', 'Docs'].entries()) {
 		buttons[index + 1].click();
-		assert.deepEqual(items.filter((item) => !item.hidden), items.filter((item) => item.dataset.homeItem === type).slice(0, 10));
+		assert.deepEqual(items.filter((item) => !item.hidden), items.filter((item) => item.dataset.homeItem === type).slice(0, limit));
 		assert.equal(buttons[index + 1]['aria-pressed'], 'true');
 		assert.equal(buttons[0]['aria-pressed'], 'false');
 	}
@@ -125,4 +128,30 @@ test('home filters show the latest ten of each type and preserve the initial lis
 	assert.equal(status.textContent, '該当する更新はありません。');
 	assert.match(html, /data-home-filters hidden/);
 	assert.match(html, /class="note-category archive-color-(?:configured-\d+|other)"/);
+});
+
+test('home filters use a non-default limit for each selection', () => {
+	const items = ['Posts', 'Docs', 'Posts', 'Docs', 'Posts', 'Docs'].map((type, index) => ({
+		dataset: { homeItem: type }, hidden: index >= 2,
+	}));
+	const buttons = ['all', 'Posts', 'Docs'].map((type) => ({
+		dataset: { homeFilter: type }, textContent: type,
+		addEventListener(_type, handler) { this.click = handler; },
+		setAttribute() {},
+	}));
+	const filters = { hidden: true, dataset: { homeLimit: '2' }, querySelectorAll: () => buttons };
+	const status = { textContent: '' };
+	const document = {
+		querySelector: (selector) => selector === '[data-home-filters]' ? filters : status,
+		querySelectorAll: () => items,
+	};
+	runInNewContext(readFileSync('public/scripts/home-filters.js', 'utf8'), { document });
+	for (const button of buttons) {
+		button.click();
+		const visible = items.filter((item) => !item.hidden);
+		assert.equal(visible.length, 2);
+		if (button.dataset.homeFilter !== 'all') {
+			assert.ok(visible.every((item) => item.dataset.homeItem === button.dataset.homeFilter));
+		}
+	}
 });

@@ -29,7 +29,8 @@ npm run dev
 Open the local URL shown in the terminal (normally `http://localhost:4321/`).
 Stop the server with `Ctrl+C`. The home page orders entries by Git commit
 time, so uncommitted changes do not affect that order and new files without
-Git history are omitted.
+Git history are omitted. Set `latest_notes_count` in `site.config.yml` to a
+positive integer to control how many recent items appear in each home filter.
 
 - To include external Markdown, place a standalone link such as
   `[Document](https://raw.githubusercontent.com/user/repo/main/document.md "embed")`

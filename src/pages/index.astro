@@ -9,6 +9,7 @@ import { contentUpdateHistory } from '../lib/update-history';
 
 const [posts, docs] = await Promise.all([getCollection('posts'), getCollection('docs')]);
 const history = contentUpdateHistory();
+const limit = siteConfig.latest_notes_count;
 const items = [
 	...posts.map((post) => ({
 		path: post.filePath, id: post.id, title: post.data.title, url: postUrl(post),
@@ -30,7 +31,7 @@ const items = [
 const counts = { Posts: 0, Docs: 0 };
 const recentItems = items.filter((item, index) => {
 	counts[item.type]++;
-	return index < 10 || counts[item.type] <= 10;
+	return index < limit || counts[item.type] <= limit;
 });
 ---
 
@@ -39,10 +40,10 @@ const recentItems = items.filter((item, index) => {
 		<div class="home-heading">
 			<div>
 				<h1 id="latest-notes">Latest Notes</h1>
-				<p class="home-intro">記事と資料の最新10件を更新順に表示しています。</p>
+				<p class="home-intro">記事と資料の最新{limit}件を更新順に表示しています。</p>
 			</div>
 		</div>
-		<div class="home-filters" role="group" aria-label="更新一覧の種類" data-home-filters hidden>
+		<div class="home-filters" role="group" aria-label="更新一覧の種類" data-home-limit={limit} data-home-filters hidden>
 			<button type="button" data-home-filter="all" aria-pressed="true">すべて</button>
 			<button type="button" data-home-filter="Posts" aria-pressed="false">記事</button>
 			<button type="button" data-home-filter="Docs" aria-pressed="false">資料</button>
@@ -52,7 +53,7 @@ const recentItems = items.filter((item, index) => {
 			{recentItems.map((item, index) => {
 				const parts = dateParts({ id: item.id, data: { date: item.date } }, siteConfig.timezone);
 				return (
-					<li class="note-item" data-home-item={item.type} hidden={index >= 10}>
+					<li class="note-item" data-home-item={item.type} hidden={index >= limit}>
 						<a class="note-link" href={item.url}>
 							<time class="note-date" datetime={item.date.toISOString()}>
 								<span>{parts.monthName}</span>

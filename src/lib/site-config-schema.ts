@@ -39,6 +39,7 @@ export const siteConfigSchema = z.strictObject({
 	description: text,
 	timezone: text,
 	lang: text,
+	latest_notes_count: z.number().int().positive(),
 	category_colors: z.strictObject({
 		fallback: colorPair,
 		categories: z.array(z.strictObject({ name: text, light: palette, dark: palette })),

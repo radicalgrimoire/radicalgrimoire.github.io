@@ -1,5 +1,7 @@
 (() => {
   const filters = document.querySelector("[data-home-filters]");
+  const limit = Number(filters.dataset.homeLimit);
+  if (!Number.isSafeInteger(limit) || limit < 1) throw new Error("Invalid home updates limit");
   const buttons = filters.querySelectorAll("[data-home-filter]");
   const items = document.querySelectorAll("[data-home-item]");
   const status = document.querySelector("[data-home-status]");
@@ -10,7 +12,7 @@
       let count = 0;
       for (const item of items) {
         const matches = selected === "all" || item.dataset.homeItem === selected;
-        item.hidden = !matches || count >= 10;
+        item.hidden = !matches || count >= limit;
         if (!item.hidden) count++;
       }
       for (const option of buttons) {
