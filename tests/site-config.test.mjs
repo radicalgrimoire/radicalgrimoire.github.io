@@ -69,3 +69,14 @@ test('site titles are not links and Home navigation remains available', () => {
 	}
 	assert.match(html, /<a href="\/"[^>]*>(?:<i[^>]*><\/i>)?Home<\/a>/);
 });
+
+test('external stylesheets use integrity checks and limit referrer disclosure', () => {
+	const html = readFileSync('dist/index.html', 'utf8');
+	const stylesheets = [...html.matchAll(/<link\b[^>]*href="https:\/\/cdn\.jsdelivr\.net\/npm\/bootstrap(?:-icons)?@[^"]+\.css"[^>]*>/g)];
+	assert.equal(stylesheets.length, 2);
+	for (const [link] of stylesheets) {
+		assert.match(link, /integrity="sha384-[A-Za-z0-9+/]{64}"/);
+		assert.match(link, /crossorigin="anonymous"/);
+		assert.match(link, /referrerpolicy="no-referrer"/);
+	}
+});
