@@ -36,6 +36,9 @@ jobs:
         run: npm run check
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_TEST_FORM_GAS_URL: ${{ vars.PUBLIC_TEST_FORM_GAS_URL }}
+          PUBLIC_RECAPTCHA_SITE_KEY: ${{ vars.PUBLIC_RECAPTCHA_SITE_KEY }}
       - name: Test
         run: node --test tests/*.test.mjs
       - name: Upload artifact

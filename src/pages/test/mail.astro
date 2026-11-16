@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../lib/site-config';
+
+const gasUrl = import.meta.env.PUBLIC_TEST_FORM_GAS_URL ?? '';
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? '';
+const configured = /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(gasUrl)
+	&& recaptchaSiteKey.length > 0;
+---
+
+<BaseLayout title={`メール送信テスト | ${siteConfig.title}`}>
+	<section class="test-form-page" aria-labelledby="test-form-title">
+		<header>
+			<h1 id="test-form-title">メール送信フォームのテスト</h1>
+			<p>送信内容は設定済みの宛先にメールで届きます。テスト用途のため、個人情報や機密情報は入力しないでください。</p>
+		</header>
+
+		{configured ? (
+			<form
+				class="test-form"
+				aria-labelledby="test-form-title"
+				action={gasUrl}
+				method="post"
+				target="_blank"
+			>
+				<div class="field">
+					<label for="sender-name">お名前 <span aria-hidden="true">*</span></label>
+					<input id="sender-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+				</div>
+
+				<div class="field">
+					<label for="sender-email">メールアドレス <span aria-hidden="true">*</span></label>
+					<input
+						id="sender-email"
+						name="email"
+						type="email"
+						autocomplete="email"
+						autocapitalize="none"
+						spellcheck="false"
+						maxlength="254"
+						required
+					/>
+				</div>
+
+				<div class="field">
+					<label for="message">メッセージ <span aria-hidden="true">*</span></label>
+					<textarea id="message" name="message" rows="7" maxlength="5000" required></textarea>
+				</div>
+
+				<div class="honeypot" aria-hidden="true">
+					<label for="website">この欄には入力しないでください</label>
+					<input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+				</div>
+
+				<div class="captcha-field">
+					<p id="captcha-help">送信前に「私はロボットではありません」にチェックしてください。</p>
+					<div class="g-recaptcha" data-sitekey={recaptchaSiteKey} aria-describedby="captcha-help"></div>
+					<script is:inline async defer src="https://www.google.com/recaptcha/api.js"></script>
+				</div>
+
+				<button type="submit">テストメールを送信</button>
+				<p class="submit-help">送信結果は新しいタブに表示されます。reCAPTCHAはGoogleのサービスです（<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">プライバシー</a>・<a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">利用規約</a>）。</p>
+			</form>
+		) : (
+			<p class="configuration-notice" role="status">
+				このフォームはまだ設定されていません。<code>PUBLIC_TEST_FORM_GAS_URL</code> と
+				<code>PUBLIC_RECAPTCHA_SITE_KEY</code> を設定してサイトを再ビルドしてください。
+			</p>
+		)}
+	</section>
+</BaseLayout>
+
+<style>
+	.test-form-page {
+		max-width: 46rem;
+		margin-inline: auto;
+		padding: 1.5rem;
+	}
+
+	.test-form-page h1 {
+		margin-top: 0;
+	}
+
+	.test-form {
+		display: grid;
+		gap: 1.25rem;
+		margin-top: 2rem;
+	}
+
+	.field {
+		display: grid;
+		gap: .4rem;
+	}
+
+	.field input,
+	.field textarea {
+		box-sizing: border-box;
+		width: 100%;
+		border: 1px solid #87909c;
+		border-radius: 4px;
+		padding: .7rem;
+		background: #fff;
+		color: #212228;
+		font: inherit;
+	}
+
+	.field textarea {
+		resize: vertical;
+	}
+
+	.field input:focus-visible,
+	.field textarea:focus-visible,
+	.test-form button:focus-visible {
+		outline: 3px solid #79baff;
+		outline-offset: 2px;
+	}
+
+	.test-form button {
+		justify-self: start;
+		border: 0;
+		border-radius: 4px;
+		padding: .7rem 1.2rem;
+		background: #254760;
+		color: #fff;
+		font: inherit;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.test-form button:hover {
+		background: #345f7d;
+	}
+
+	.captcha-field {
+		display: grid;
+		gap: .5rem;
+	}
+
+	.captcha-field p,
+	.submit-help {
+		margin: 0;
+	}
+
+	.submit-help {
+		font-size: .9em;
+	}
+
+	.configuration-notice {
+		margin-top: 2rem;
+		padding: 1rem;
+		border-left: 3px solid #f3ad69;
+		background: rgb(243 173 105 / 10%);
+	}
+
+	.honeypot {
+		position: absolute;
+		inset-inline-start: -10000px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+</style>
