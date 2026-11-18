@@ -95,10 +95,12 @@ test('home tabs switch panels and support keyboard navigation', () => {
 		focused: false,
 		addEventListener(type, handler) { this[type] = handler; },
 		setAttribute(name, value) { this[name] = value; },
+		getAttribute(name) { return this[name]; },
 		focus() { this.focused = true; },
 	}));
 	const panels = ['articles', 'calendar'].map((name, index) => ({
 		dataset: { homePanel: name }, hidden: index > 0,
+		addEventListener(type, handler) { this[type] = handler; },
 	}));
 	const tabs = { hidden: true, querySelectorAll: () => buttons };
 	const document = {
@@ -115,6 +117,23 @@ test('home tabs switch panels and support keyboard navigation', () => {
 	assert.deepEqual(panels.map((panel) => panel.hidden), [false, true]);
 	assert.equal(buttons[0].focused, true);
 	assert.equal(buttons[0].tabIndex, 0);
+	const target = { closest: () => null };
+	panels[0].touchstart({ touches: [{ clientX: 300, clientY: 100 }], target });
+	const swipeToCalendar = {
+		touches: [{ clientX: 210, clientY: 105 }], target, cancelable: true,
+		preventDefault() { this.defaultPrevented = true; },
+	};
+	panels[0].touchmove(swipeToCalendar);
+	assert.deepEqual(panels.map((panel) => panel.hidden), [true, false]);
+	assert.equal(swipeToCalendar.defaultPrevented, true);
+	panels[1].touchstart({ touches: [{ clientX: 210, clientY: 100 }], target });
+	const verticalScroll = {
+		touches: [{ clientX: 195, clientY: 180 }], target, cancelable: true,
+		preventDefault() { this.defaultPrevented = true; },
+	};
+	panels[1].touchmove(verticalScroll);
+	assert.deepEqual(panels.map((panel) => panel.hidden), [true, false]);
+	assert.equal(verticalScroll.defaultPrevented, undefined);
 	assert.match(html, /data-home-tabs hidden/);
 	assert.match(html, /class="note-category archive-color-(?:configured-\d+|other)"/);
 });
