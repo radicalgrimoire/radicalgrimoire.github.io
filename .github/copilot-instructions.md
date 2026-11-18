@@ -43,3 +43,9 @@ Invoke the following installed skills **only when relevant to the task**, and re
 * If requirements or reproduction steps are ambiguous, ask clarifying questions during Investigation/Planning rather than guessing.
 * **Always communicate and write reports to the user concisely in Japanese.**
 
+* **UI Standards**:
+  * Do NOT use raw/unstyled default browser HTML form appearances (`<input>`, `<select>`, `<button>`, etc.); always apply custom, cohesive styling.
+  * Match the visual language (colors, border-radius, shadows, typography) of the surrounding application/admin UI—never leave isolated, unstyled blocks.
+  * Prioritize reusing existing shared components over creating new ones.
+  * Follow a mobile-first responsive approach.
+  * Semantic HTML and accessibility (`alt`, `aria-label`) are mandatory.
