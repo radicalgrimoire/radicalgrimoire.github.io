@@ -1,31 +1,32 @@
-# 開発指示書（ウェブサイト実装・保守）
+# Development Instructions (Website Implementation & Maintenance)
 
-## 1. 絶対遵守ルール
-* **承認前の変更禁止**: ユーザーの明示的な承認前に、コードや設定ファイル（`.github/workflows/` 含む）の作成・編集・削除を一切行わない。
-* **GitHub Actions 等の無断実行禁止**: 明示的な実行依頼なしにワークフローを手動実行・再実行しない（`gh`、API、Web UI 問わず）。
-* **調査の自律実行（承認不要）**: ファイル読み取り、検索、Git 履歴確認、GitHub Actions の履歴・ログ閲覧（`gh run list` / `gh run view --log` 等の読み取り専用コマンド）は承認なしで自律実行してよい。
+## 1. Strict Rules (Non-Negotiable)
+* **No Changes Before Approval**: Do NOT create, edit, or delete any code or config files (including `.github/workflows/`) without explicit user approval.
+* **No Unauthorized GitHub Actions Execution**: Do NOT manually trigger or re-run any GitHub Actions workflows (via `gh`, API, Web UI, etc.) without an explicit execution request from the user.
+* **Autonomous Investigation (No Approval Needed)**: You may autonomously perform read-only actions—such as reading files, searching code, checking Git history, and viewing GitHub Actions run history/logs (`gh run list`, `gh run view --log`, etc.)—without prior approval.
 
-## 2. 開発プロセス（順序厳守）
-タスクを受けたら **Step 1 と Step 2 を承認なしで一気に実行**し、計画提示後に必ず停止すること。
+## 2. Mandatory Workflow (Strict Order)
+Upon receiving a task, **execute Step 1 and Step 2 consecutively without waiting for approval**, then stop immediately after presenting the plan.
 
-1. **調査 (Investigation)**【自律実行】
-   * 関連コード・構成・型・スタイルを読み取り、影響範囲を把握する。
-   * バグや CI エラーの場合は、コードや Actions ログから根本原因を特定する（「調査のみ」の依頼ならここで報告して終了）。
-2. **計画作成 (Planning)**【自律実行 → 提示後に停止】
-   * 変更対象ファイル、具体的な修正・実装内容、UI/UX・状態管理の方針、エッジケース対策を提示する。
-   * **ここで必ず処理を停止し、ユーザーの承認を待つ。**
-3. **レビュー (Review)**
-   * フィードバックに基づき計画を修正する。明確な承認があるまで次に進まない。
-4. **実装 (Implementation)**
-   * 承認された計画の範囲内のみで実装する（勝手なリファクタリングや仕様変更は禁止）。
-   * 完了後、変更内容と確認方法を報告する（ワークフローの再実行も勝手に行わない）。
+1. **Investigation** [Autonomous]
+   * Read relevant files, project structure, types, and styles to understand the scope and impact.
+   * For bugs or CI errors, inspect the codebase and Actions logs to identify the root cause. (If the user only requested an investigation, report the findings here and stop.)
+2. **Planning** [Autonomous -> Stop After Presenting]
+   * Present a concrete plan covering: target files, specific changes/fixes, UI/UX and state management approach, and edge-case/regression handling.
+   * **STOP here and wait for explicit user review and approval.**
+3. **Review**
+   * Refine the plan based on user feedback. Do not proceed until explicitly approved.
+4. **Implementation**
+   * Implement strictly within the approved plan (no unrequested refactoring or spec changes).
+   * After completion, report a summary of changes and verification steps (do not re-run workflows automatically).
 
-## 3. 利用スキルの適用
-以下のインストール済みスキルを該当工程で必ず参照・適用し、その方針も「計画作成」で提示すること。
-* **`modern-web-guidance`**: 調査・設計・実装全般（モダンな Web API、パフォーマンス、アクセシビリティ、セキュリティ）
-* **`ui-ux-pro-max`**: 計画作成および UI・レイアウト実装時（デザインシステム、配色、タイポグラフィ、コンポーネント・インタラクション設計）
+## 3. Agent Skills Usage
+Invoke the following installed skills **only when relevant to the task**, and reflect their guidance in the **Planning** phase:
+* **`modern-web-guidance`**: Invoke when designing/implementing web features, optimizing performance/accessibility, or selecting modern Web APIs.
+* **`ui-ux-pro-max`**: Invoke when designing or modifying UI, layouts, styling, or visual components.
 
-## 4. 実装・応答基準
-* モバイルファースト・レスポンシブ・セマンティック HTML・アクセシビリティ（`alt`, `aria-label`）を徹底する。
-* 既存の共通コンポーネントを再利用し、不要な `console.log` やデッドコードを残さない。
-* 仕様や再現条件が曖昧な場合は推測せず、調査・計画段階で質問する。応答は日本語で簡潔に記述する。
+## 4. Coding & Communication Standards
+* Follow mobile-first, responsive design, semantic HTML, and accessibility best practices (`alt`, `aria-label`).
+* Reuse existing shared components; leave no unused `console.log` statements or dead code.
+* If requirements or reproduction steps are ambiguous, ask clarifying questions during Investigation/Planning rather than guessing.
+* **Always communicate and write reports to the user concisely in Japanese.**
