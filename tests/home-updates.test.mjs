@@ -137,3 +137,32 @@ test('home tabs switch panels and support keyboard navigation', () => {
 	assert.match(html, /data-home-tabs hidden/);
 	assert.match(html, /class="note-category archive-color-(?:configured-\d+|other)"/);
 });
+
+test('home tab transitions slide according to the selected tab order', () => {
+	const buttons = ['articles', 'calendar'].map((name) => ({
+		dataset: { homeTab: name },
+		addEventListener(type, handler) { this[type] = handler; },
+		setAttribute(name, value) { this[name] = value; },
+		getAttribute(name) { return this[name]; },
+	}));
+	const panels = ['articles', 'calendar'].map((name, index) => ({
+		dataset: { homePanel: name }, hidden: index > 0,
+		addEventListener(type, handler) { this[type] = handler; },
+	}));
+	const tabs = { hidden: true, querySelectorAll: () => buttons };
+	const directions = [];
+	const document = {
+		documentElement: { dataset: {} },
+		querySelector: () => tabs,
+		querySelectorAll: () => panels,
+		startViewTransition(update) {
+			directions.push(this.documentElement.dataset.homeSlideDirection);
+			update();
+		},
+	};
+	runInNewContext(readFileSync('public/scripts/home-filters.js', 'utf8'), { document });
+	buttons[1].click();
+	buttons[0].click();
+	assert.deepEqual(directions, ['next', 'previous']);
+	assert.deepEqual(panels.map((panel) => panel.hidden), [false, true]);
+});

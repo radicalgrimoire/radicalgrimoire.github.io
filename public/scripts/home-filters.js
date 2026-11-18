@@ -6,13 +6,24 @@
 
   function activate(button, moveFocus = false) {
     const selected = button.dataset.homeTab;
-    for (const tab of buttons) {
-      const active = tab === button;
-      tab.setAttribute("aria-selected", String(active));
-      tab.tabIndex = active ? 0 : -1;
-    }
-    for (const panel of panels) {
-      panel.hidden = panel.dataset.homePanel !== selected;
+    const activeIndex = buttons.findIndex(tab => tab.getAttribute("aria-selected") === "true");
+    const nextIndex = buttons.indexOf(button);
+    const update = () => {
+      for (const tab of buttons) {
+        const active = tab === button;
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+      }
+      for (const panel of panels) {
+        panel.hidden = panel.dataset.homePanel !== selected;
+      }
+    };
+
+    if (activeIndex !== nextIndex && typeof document.startViewTransition === "function") {
+      document.documentElement.dataset.homeSlideDirection = nextIndex > activeIndex ? "next" : "previous";
+      document.startViewTransition(update);
+    } else {
+      update();
     }
     if (moveFocus) button.focus();
   }

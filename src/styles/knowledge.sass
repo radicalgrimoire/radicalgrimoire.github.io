@@ -110,6 +110,35 @@ body > header > nav
 
 [data-home-panel]
   touch-action: pan-y
+  view-transition-name: home-panel
+
+:root
+  --home-panel-in-x: 1rem
+  --home-panel-out-x: -1rem
+
+:root[data-home-slide-direction="previous"]
+  --home-panel-in-x: -1rem
+  --home-panel-out-x: 1rem
+
+::view-transition-old(home-panel)
+  animation: home-panel-out .2s ease both
+
+::view-transition-new(home-panel)
+  animation: home-panel-in .2s ease both
+
+@media (prefers-reduced-motion: reduce)
+  ::view-transition-old(home-panel), ::view-transition-new(home-panel)
+    animation: none
+
+@keyframes home-panel-out
+  to
+    opacity: 0
+    transform: translateX(var(--home-panel-out-x))
+
+@keyframes home-panel-in
+  from
+    opacity: 0
+    transform: translateX(var(--home-panel-in-x))
 
 .note-list
   list-style: none
