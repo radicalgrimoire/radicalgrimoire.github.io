@@ -78,37 +78,35 @@ body > header > nav
   margin: .35rem 0 0
   text-align: left
 
-.home-filters
+.home-tabs
   display: flex
-  flex-wrap: wrap
-  gap: .5rem
-  margin-bottom: 1rem
+  gap: .25rem
+  margin-bottom: 1.25rem
+  border-bottom: 1px solid #354a5b
   &[hidden]
     display: none
   button
+    min-width: 3.25rem
     min-height: 2.75rem
-    padding: .4rem .9rem
-    border: 1px solid #71839a
-    border-radius: .4rem
+    padding: .4rem 1rem
+    border: 0
+    border-bottom: 2px solid transparent
     background: transparent
     color: inherit
     font-weight: 600
     &:hover
       background: #eaf0f8
-    &[aria-pressed="true"]
-      border-color: #315fa8
-      background: #315fa8
-      color: #fff
+    &[aria-selected="true"]
+      border-bottom-color: #315fa8
+      color: #315fa8
     &:focus-visible
       outline: 2px solid #2867cc
       outline-offset: 2px
 
-.home-filter-status
-  margin: 0
-  &:not(:empty)
-    margin-bottom: .75rem
-    color: #637287
-    font-size: .85rem
+.home-tabs [data-home-tab="articles"], .home-tabs [data-home-tab="calendar"]
+  padding-right: .75rem
+  padding-left: .75rem
+  font-size: 1.1rem
 
 .note-list
   list-style: none
@@ -1039,16 +1037,14 @@ html
     color: #a6c8ff
   .home-intro
     color: #aab9ca
-  .home-filter-status:not(:empty)
-    color: #aab9ca
-  .home-filters button
-    border-color: #aab9ca
+  .home-tabs
+    border-color: #405165
+  .home-tabs button
     &:hover
       background: #293747
-    &[aria-pressed="true"]
-      border-color: #a6c8ff
-      background: #a6c8ff
-      color: #172432
+    &[aria-selected="true"]
+      border-bottom-color: #a6c8ff
+      color: #a6c8ff
     &:focus-visible
       outline-color: #a6c8ff
   .home-pagination a

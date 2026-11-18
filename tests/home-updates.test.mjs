@@ -45,8 +45,8 @@ test('Git history records the latest content commit, including renames', (t) => 
 	assert.throws(() => contentUpdateHistory(cwd), /Full Git history is required/);
 });
 
-test('home shows the configured number of latest posts and documents with their update dates', () => {
-	const files = execFileSync('git', ['ls-files', '-z', '--', 'src/content/posts', 'src/content/docs'], {
+test('home shows the configured number of latest posts with their update dates', () => {
+	const files = execFileSync('git', ['ls-files', '-z', '--', 'src/content/posts'], {
 		encoding: 'utf8',
 	}).split('\0').filter((path) => path.endsWith('.md'));
 	const expected = files.map((path) => {
@@ -54,10 +54,8 @@ test('home shows the configured number of latest posts and documents with their 
 			encoding: 'utf8',
 		}).trim();
 		assert.ok(timestamp, `Missing Git history for ${path}`);
-		const isPost = path.startsWith('src/content/posts/');
-		const id = path.replace(/^src\/content\/(?:posts|docs)\//, '').replace(/\.md$/, '');
-		const url = isPost ? `/${postPath(id)}/` : `/${id.replace(/\/index$/, '')}/`;
-		return { path, url, type: isPost ? 'Posts' : 'Docs', date: new Date(Number(timestamp) * 1000).toISOString() };
+		const id = path.replace(/^src\/content\/posts\//, '').replace(/\.md$/, '');
+		return { path, url: `/${postPath(id)}/`, type: 'Posts', date: new Date(Number(timestamp) * 1000).toISOString() };
 	}).sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path));
 
 	const html = readFileSync('dist/index.html', 'utf8');
@@ -67,8 +65,11 @@ test('home shows the configured number of latest posts and documents with their 
 		.filter((match) => !/\shidden(?:\s|=|$)/.test(match[1]))
 		.map((match) => match[2]);
 	assert.equal(items.length, Math.min(limit, expected.length));
-	assert.ok(html.includes(`記事と資料の最新${limit}件を更新順に表示しています。`));
-	assert.ok(html.includes(`data-home-limit="${limit}"`));
+	assert.ok(html.includes(`記事の最新${limit}件を更新順に表示しています。`));
+	assert.ok(html.includes('role="tablist" aria-label="トップページの表示"'));
+	assert.ok(html.includes('aria-label="G-Cal"'));
+	assert.ok(html.includes('data-calendar-mode="week"'));
+	assert.ok(html.includes('src="/scripts/giants-calendar.js"'));
 	for (const [index, item] of items.entries()) {
 		assert.ok(item.includes(`href="${expected[index].url}"`), expected[index].path);
 		assert.ok(item.includes(`datetime="${expected[index].date}"`), expected[index].path);
@@ -81,77 +82,39 @@ test('home shows the configured number of latest posts and documents with their 
 		const month = new Intl.DateTimeFormat('en-US', { timeZone: timezone, month: 'short' }).format(date);
 		assert.ok(item.includes(`<span>${month}</span><strong>${part('day')}</strong><span>${part('year')}</span>`));
 	}
-	for (const type of ['Posts', 'Docs']) {
-		const actual = rendered.filter((match) => match[1].includes(`data-home-item="${type}"`));
-		const recent = expected.filter((item) => item.type === type).slice(0, limit);
-		assert.equal(actual.length, recent.length);
-		for (const [index, item] of recent.entries()) {
-			assert.ok(actual[index][2].includes(`href="${item.url}"`), item.path);
-		}
+	assert.equal(rendered.length, Math.min(limit, expected.length));
+	for (const [index, item] of expected.slice(0, limit).entries()) {
+		assert.ok(rendered[index][2].includes(`href="${item.url}"`), item.path);
 	}
 });
 
-test('home filters honor the configured limit and preserve the initial list', () => {
+test('home tabs switch panels and support keyboard navigation', () => {
 	const html = readFileSync('dist/index.html', 'utf8');
-	const limit = Number(html.match(/data-home-limit="(\d+)"/)[1]);
-	const rendered = [...html.matchAll(/<li class="note-item"([^>]*)>([\s\S]*?)<\/li>/g)];
-	const items = rendered.map((match) => ({
-		dataset: { homeItem: match[1].match(/data-home-item="([^"]+)"/)[1] },
-		hidden: /\shidden(?:\s|=|$)/.test(match[1]),
-	}));
-	const initial = items.filter((item) => !item.hidden);
-	const buttons = ['all', 'Posts', 'Docs'].map((type) => ({
-		dataset: { homeFilter: type },
-		textContent: { all: 'すべて', Posts: '記事', Docs: '資料' }[type],
-		addEventListener(_type, handler) { this.click = handler; },
+	const buttons = ['articles', 'calendar'].map((name) => ({
+		dataset: { homeTab: name },
+		focused: false,
+		addEventListener(type, handler) { this[type] = handler; },
 		setAttribute(name, value) { this[name] = value; },
+		focus() { this.focused = true; },
 	}));
-	const filters = { hidden: true, dataset: { homeLimit: String(limit) }, querySelectorAll: () => buttons };
-	const status = { textContent: '' };
+	const panels = ['articles', 'calendar'].map((name, index) => ({
+		dataset: { homePanel: name }, hidden: index > 0,
+	}));
+	const tabs = { hidden: true, querySelectorAll: () => buttons };
 	const document = {
-		querySelector: (selector) => selector === '[data-home-filters]' ? filters : status,
-		querySelectorAll: () => items,
+		querySelector: () => tabs,
+		querySelectorAll: () => panels,
 	};
 	runInNewContext(readFileSync('public/scripts/home-filters.js', 'utf8'), { document });
-	assert.equal(filters.hidden, false);
-	for (const [index, type] of ['Posts', 'Docs'].entries()) {
-		buttons[index + 1].click();
-		assert.deepEqual(items.filter((item) => !item.hidden), items.filter((item) => item.dataset.homeItem === type).slice(0, limit));
-		assert.equal(buttons[index + 1]['aria-pressed'], 'true');
-		assert.equal(buttons[0]['aria-pressed'], 'false');
-	}
-	buttons[0].click();
-	assert.deepEqual(items.filter((item) => !item.hidden), initial);
-	assert.equal(buttons[0]['aria-pressed'], 'true');
-	items.splice(0, items.length);
+	assert.equal(tabs.hidden, false);
 	buttons[1].click();
-	assert.equal(status.textContent, '該当する更新はありません。');
-	assert.match(html, /data-home-filters hidden/);
+	assert.deepEqual(panels.map((panel) => panel.hidden), [true, false]);
+	assert.equal(buttons[1]['aria-selected'], 'true');
+	assert.equal(buttons[0]['aria-selected'], 'false');
+	buttons[1].keydown({ key: 'ArrowLeft', preventDefault() { this.prevented = true; } });
+	assert.deepEqual(panels.map((panel) => panel.hidden), [false, true]);
+	assert.equal(buttons[0].focused, true);
+	assert.equal(buttons[0].tabIndex, 0);
+	assert.match(html, /data-home-tabs hidden/);
 	assert.match(html, /class="note-category archive-color-(?:configured-\d+|other)"/);
-});
-
-test('home filters use a non-default limit for each selection', () => {
-	const items = ['Posts', 'Docs', 'Posts', 'Docs', 'Posts', 'Docs'].map((type, index) => ({
-		dataset: { homeItem: type }, hidden: index >= 2,
-	}));
-	const buttons = ['all', 'Posts', 'Docs'].map((type) => ({
-		dataset: { homeFilter: type }, textContent: type,
-		addEventListener(_type, handler) { this.click = handler; },
-		setAttribute() {},
-	}));
-	const filters = { hidden: true, dataset: { homeLimit: '2' }, querySelectorAll: () => buttons };
-	const status = { textContent: '' };
-	const document = {
-		querySelector: (selector) => selector === '[data-home-filters]' ? filters : status,
-		querySelectorAll: () => items,
-	};
-	runInNewContext(readFileSync('public/scripts/home-filters.js', 'utf8'), { document });
-	for (const button of buttons) {
-		button.click();
-		const visible = items.filter((item) => !item.hidden);
-		assert.equal(visible.length, 2);
-		if (button.dataset.homeFilter !== 'all') {
-			assert.ok(visible.every((item) => item.dataset.homeItem === button.dataset.homeFilter));
-		}
-	}
 });

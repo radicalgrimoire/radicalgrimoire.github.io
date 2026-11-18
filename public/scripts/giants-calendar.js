@@ -154,13 +154,35 @@
     return `${result}（日本時間）`;
   }
 
+  function weekDates(now) {
+    const current = dateParts(now);
+    const start = new Date(Date.UTC(+current.year, +current.month - 1, +current.day - 3));
+    return Array.from({ length: 7 }, (_, index) => {
+      const date = new Date(start);
+      date.setUTCDate(start.getUTCDate() + index);
+      return date.toISOString().slice(0, 10);
+    });
+  }
+
+  function formatWeekRange(dates) {
+    const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+    const parts = dates.map(date => date.split("-").map(Number));
+    const [startYear, startMonth, startDay] = parts[0];
+    const [endYear, endMonth, endDay] = parts[6];
+    const weekday = ([year, month, day]) => weekdays[new Date(Date.UTC(year, month - 1, day)).getUTCDay()];
+    const start = `${startYear !== endYear ? `${startYear}年` : ""}${startMonth}月${startDay}日（${weekday(parts[0])}）`;
+    const endPrefix = startYear !== endYear ? `${endYear}年${endMonth}月` : startMonth !== endMonth ? `${endMonth}月` : "";
+    return `${start}〜${endPrefix}${endDay}日（${weekday(parts[6])}）`;
+  }
+
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { parseCalendar, parseDate, occursOnDate, formatEventDate, isFutureEvent, googleCalendarUrl, descriptionParts };
+    module.exports = { parseCalendar, parseDate, occursOnDate, formatEventDate, isFutureEvent, googleCalendarUrl, descriptionParts, weekDates, formatWeekRange };
   }
   if (typeof document === "undefined") return;
 
   const root = document.getElementById("giants-calendar");
   if (!root) return;
+  const isWeekly = root.dataset.calendarMode === "week";
   const heading = root.querySelector("#giants-calendar-month");
   const status = root.querySelector(".giants-calendar-status");
   const grid = root.querySelector(".giants-calendar-grid");
@@ -221,8 +243,47 @@
   });
 
   function render() {
-    heading.textContent = `${year}年 ${month + 1}月`;
     grid.replaceChildren();
+    if (isWeekly) {
+      const dates = weekDates(new Date());
+      const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+      heading.textContent = formatWeekRange(dates);
+      if (!events) return;
+
+      const weekEvents = events.filter(event => dates.some(date => occursOnDate(event, date)));
+      status.textContent = weekEvents.length
+        ? `${weekEvents.length}件の予定 · 時刻は日本時間`
+        : "この期間の予定はありません。";
+      for (const date of dates) {
+        const [dateYear, dateMonth, dateDay] = date.split("-").map(Number);
+        const weekday = new Date(Date.UTC(dateYear, dateMonth - 1, dateDay)).getUTCDay();
+        const dayEvents = weekEvents.filter(event => occursOnDate(event, date));
+        const isToday = date === `${today.year}-${today.month}-${today.day}`;
+        const cell = element("section", `giants-calendar-day${dayEvents.length ? " has-events" : ""}${isToday ? " is-today" : ""}`);
+        cell.setAttribute("aria-label", `${dateYear}年${dateMonth}月${dateDay}日（${weekdays[weekday]}）${isToday ? " 今日" : ""}`);
+        const dayHeading = element("div", "giants-calendar-day-number");
+        dayHeading.textContent = `${dateMonth}月${dateDay}日（${weekdays[weekday]}）`;
+        cell.append(dayHeading);
+        if (dayEvents.length) {
+          for (const event of dayEvents) {
+            const button = element("button", "giants-calendar-event");
+            button.type = "button";
+            button.append(element("span", "giants-calendar-event-time",
+              event.start.date !== date ? "継続" : event.start.time || "終日"));
+            button.append(element("span", "giants-calendar-event-title",
+              (event.status === "CANCELLED" ? "【中止】" : "") + event.summary));
+            button.addEventListener("click", () => showEvent(event));
+            cell.append(button);
+          }
+        } else {
+          cell.append(element("span", "giants-calendar-no-event", "予定なし"));
+        }
+        grid.append(cell);
+      }
+      return;
+    }
+
+    heading.textContent = `${year}年 ${month + 1}月`;
     if (!events) return;
 
     const prefix = `${year}-${String(month + 1).padStart(2, "0")}-`;

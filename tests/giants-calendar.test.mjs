@@ -6,7 +6,7 @@ import test from 'node:test';
 const script = readFileSync('public/scripts/giants-calendar.js', 'utf8');
 const context = { module: { exports: {} }, Intl, Date, URLSearchParams };
 runInNewContext(script, context);
-const { parseCalendar, parseDate, occursOnDate, isFutureEvent, googleCalendarUrl, descriptionParts } = context.module.exports;
+const { parseCalendar, parseDate, occursOnDate, isFutureEvent, googleCalendarUrl, descriptionParts, weekDates, formatWeekRange } = context.module.exports;
 
 const calendar = [
 	'BEGIN:VCALENDAR',
@@ -50,6 +50,17 @@ test('future events generate Google Calendar links and descriptions retain safe 
 	assert.equal(url.searchParams.get('location'), 'Tokyo Dome');
 	assert.equal(descriptionParts('Open https://example.com/game')[1].href, 'https://example.com/game');
 	assert.equal(descriptionParts('javascript:alert(1)')[0].href, undefined);
+});
+
+test('weekly range is centered on today in Tokyo and crosses month boundaries', () => {
+	assert.deepEqual(Array.from(weekDates(new Date('2026-11-18T03:00:00Z'))), [
+		'2026-11-15', '2026-11-16', '2026-11-17', '2026-11-18', '2026-11-19', '2026-11-20', '2026-11-21',
+	]);
+	assert.deepEqual(Array.from(weekDates(new Date('2027-01-01T03:00:00Z'))), [
+		'2026-12-29', '2026-12-30', '2026-12-31', '2027-01-01', '2027-01-02', '2027-01-03', '2027-01-04',
+	]);
+	assert.equal(formatWeekRange(weekDates(new Date('2026-11-18T03:00:00Z'))), '11月15日（日）〜21日（土）');
+	assert.equal(formatWeekRange(weekDates(new Date('2027-01-01T03:00:00Z'))), '2026年12月29日（火）〜2027年1月4日（月）');
 });
 
 test('unsupported or invalid calendar data fails explicitly', () => {
